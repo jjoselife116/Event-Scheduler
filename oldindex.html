@@ -1,0 +1,1096 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        Event Calendar
+    </title>
+
+    <link href="eventcalendar.css" rel="stylesheet">
+    <link href="eventcalendar.print.css" rel="stylesheet" media="print">
+
+    <link href="scheduler.css" rel="stylesheet">
+    <link href="addTask.css" rel="stylesheet">
+
+    <script src="scheduler.js"></script>
+    <script src="jsonsubmit.js"></script>
+    <script src="addEmp.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+            font-size: 14px;
+        }
+        #calendar {
+            max-width: 1900px;
+            margin: 50px auto;
+        }
+    </style>
+
+</head>
+
+<body class="">
+    <div id="calendar" class="ec ec-unthemed ec-ltr">
+        <div class="ec-toolbar ec-header-toolbar">
+
+
+
+
+
+<!--*********************************************************************************************************-->
+          <!--Add Task button-->
+            <div class="ec-left">
+              <button type="button" class="ec-today-button ec-button ec-state-default ec-corner-left ec-corner-right " onclick="document.getElementById('addTask').style.display='block'">Add Task
+              </button>
+
+              <button type="button" class="add-Emp-button" onclick="document.getElementById('addEmployee').style.display='block'">Add Employee
+
+
+
+
+
+
+        </button>
+
+        </button>
+
+            </div>
+            <div class="ec-right">
+                <div class="ec-button-group">
+                    <button type="button" class="ec-timelineDay-button ec-button ec-state-default ec-corner-left">day</button>
+                    <button type="button" class="ec-timelineWeek-button ec-button ec-state-default ec-corner-right ec-state-active">week</button>
+                </div>
+            </div>
+            <div class="ec-center">
+                <h2>May 6 – 12, 2018</h2>
+            </div>
+            <div class="ec-clear"></div>
+        </div>
+        <div class="ec-view-container" style="">
+            <div class="ec-view ec-timelineWeek-view ec-timeline ec-unselectable ec-nested">
+                <table class="">
+                    <thead class="ec-head">
+                        <tr>
+                            <td class="ec-resource-area ec-widget-header">
+                                <div class="ec-scroller-clip">
+                                    <div class="ec-scroller" style="overflow-x: scroll; overflow-y: hidden; margin: 0px 0px -17px;">
+                                        <div class="ec-scroller-canvas" style="min-width: 70px;">
+                                            <div class="ec-content">
+
+                                                <!-- This is the top bar of the table "Resources" (Needs to stay stagnant) -->
+                                                <table class="" style="height: 47.2px;">
+                                                    <colgroup>
+                                                        <col class="ec-main-col">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th class="ec-widget-header" style="background-color:#364256">
+                                                                <div >
+                                                                    <div class="ec-cell-content"><span class="ec-expander-space"><span class="ec-icon"></span></span><span class="ec-cell-text back" >Employee Name/Tasks</span></div>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                            </div>
+                                            <div class="ec-bg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ec-divider ec-col-resizer ec-widget-header"></td>
+                            <td class="ec-time-area ec-widget-header">
+                                <div class="ec-scroller-clip">
+                                    <div class="ec-scroller" style="overflow-x: scroll; overflow-y: hidden; margin: 0px 0px -17px;">
+                                        <div class="ec-scroller-canvas ec-gutter-right" style="padding-right: 17px; width: 7745px;">
+                                            <div class="ec-content">
+
+                                              <!-- Looks like this is the days at the top of the table (Scrollable Sideways) -->
+                                                <table class="tableScrollDays" style="height: 47.2px;">
+                                                    <colgroup>
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col id="width">
+                                                        <col>
+                                                    </colgroup>
+                                                    <tbody>
+
+                                                        <!--
+                                                        Bar above the days of the week at the top of the table.
+                                                        Not 100% sure what date-date is. Best guess is a possible identifier.
+                                                        -->
+                                                        <tr>
+                                                            <th class="top-day-header" data-date="2018-05-06T00:00:00" colspan="100">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text" style="position: relative; visibility: hidden;"></span></div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-07T00:00:00" colspan="24">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text" style="position: relative;">Mon 5/7</span></div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-08T00:00:00" colspan="24">
+                                                                <div class="ec-cell-content">
+                                                                    <span class="ec-cell-text" style="position: relative;">Tue 5/8</span></div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-09T00:00:00" colspan="24">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text" style="position: relative;">Wed 5/9</span></div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-10T00:00:00" colspan="24">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text" style="position: relative;">Thu 5/10</span></div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-11T00:00:00" colspan="24">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text" style="position: relative;">Fri 5/11</span></div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-12T00:00:00" colspan="24">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text" style="position: relative;">Sat 5/12</span></div>
+                                                            </th>
+                                                        </tr>
+
+                                                        <!-- Blocks at the top of the table that contain the days of the week -->
+                                                        <tr>
+                                                            <th class="day-header" data-date="2018-05-06T00:00:00">
+                                                                <div class="day-text">
+                                                                    Sunday
+                                                            <th class="day-header" data-date="2018-05-06T01:00:00">
+                                                                    Monday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T02:00:00">
+                                                                   Tuesday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T03:00:00">
+                                                                 Wednesday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T04:00:00">
+                                                              Thursday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T05:00:00">
+                                                              Friday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T06:00:00">
+                                                              Saturday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T07:00:00">
+                                                              Sunday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T08:00:00">
+                                                                Monday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T09:00:00">
+                                                            Tuesday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T10:00:00">
+                                                              Wednesday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T11:00:00">
+                                                              Thursday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T12:00:00">
+                                                              Friday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T13:00:00">
+                                                              Saturday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T14:00:00">
+                                                              Sunday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T15:00:00">
+                                                              Monday
+                                                            </th>
+                                                            <th class="day-header" data-date="2018-05-06T16:00:00">
+                                                              Tuesday
+                                                            </div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-06T17:00:00">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text">5pm</span></div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-06T18:00:00">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text">6pm</span></div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-06T19:00:00">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text">7pm</span></div>
+                                                            </th>
+                                                            <th class="ec-widget-header" data-date="2018-05-06T20:00:00">
+                                                                <div class="ec-cell-content"><span class="ec-cell-text">8pm</span></div>
+                                                            </th>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                            <div class="ec-bg" style="right: 17px;"></div>
+                                        </div>
+                                    </div>
+                                    <span class="ec-cell-text ec-following" style="position: absolute; z-index: 1000; font-weight: 700; font-size: 14px; font-family: &quot;Lucida Grande&quot;, Helvetica, Arial, Verdana, sans-serif; text-decoration: none solid rgb(0, 0, 0); color: rgb(0, 0, 0); padding: 0px 4px; top: 3px; left: 284px;">
+</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody class="ec-body">
+                        <tr>
+                            <td class="ec-resource-area ec-widget-content">
+                                <div class="ec-scroller-clip">
+                                    <div class="ec-scroller" style="overflow-x: auto; overflow-y: scroll;; height: 617.8px; margin: 0px -17px 0px 0px;">
+                                        <div class="ec-scroller-canvas ec-gutter-bottom" style="min-width: 100px; padding-bottom: 17px; background-color: #364256;">
+                                            <div class="ec-content">
+                                                <div class="ec-rows">
+
+                                                    <!-- Column on the left with Employee names and tasks -->
+                                                    <table class="">
+                                                        <colgroup>
+                                                            <col class="ec-main-col">
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="ec-divider" colspan="1">
+                                                                    <div id="height">
+                                                                    <div class="projectsCols">
+                                                                        <div class="ec-cell-content">
+                                                                          <span class="ec-expander">
+                                                                            <span class="ec-icon ec-icon-down-triangle">
+                                                                            </span>
+                                                                          </span>
+                                                                          <span class="employee1-name-text">Josh J</span>
+                                                                        </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="a" class="">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span><span class="ec-expander-space"><span class="ec-icon"></span></span><span class="ec-cell-text">Project A</span></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="b">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon">
+                                                                        </span>
+                                                                        <span class="ec-expander-space">
+                                                                          <span class="ec-icon"></span>
+                                                                        </span>
+                                                                        <span class="ec-cell-text">Project B</span>
+                                                                      </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="c">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span><span class="ec-expander-space"><span class="ec-icon"></span></span><span class="ec-cell-text">Project C
+                       </span></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="d">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span>
+                                                                            <span class="ec-expander-space"><span class="ec-icon"></span></span><span class="ec-cell-text">Project D</span></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="e">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span><span class="ec-expander-space"><span class="ec-icon"></span></span><span class="ec-cell-text">Project E</span></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="f">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span><span class="ec-expander-space"><span class="ec-icon"></span></span><span class="ec-cell-text">Project F</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="ec-divider" colspan="1">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content">
+                                                                          <span class="ec-expander">
+                                                                            <span class="ec-icon ec-icon-down-triangle"></span>
+                                                                          </span>
+                                                                          <span class="employee2-name-text">Ryan C</span>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="g" class="">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span><span class="ec-expander-space"><span class="ec-icon"></span></span><span class="ec-cell-text">Project G</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="h">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span><span class="ec-expander-space"><span class="ec-icon"></span></span>
+                                                                            <span class="ec-cell-text">Project H</span></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="i">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span><span class="ec-expander-space"><span class="ec-icon"></span>
+                                                                            </span><span class="ec-cell-text">Project I</span></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="j">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span><span class="ec-expander-space">
+                               <span class="ec-icon"></span></span><span class="ec-cell-text">Project J</span></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="k">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content"><span class="ec-icon"></span>
+                                                                            <span class="ec-expander-space"><span class="ec-icon"></span></span><span class="ec-cell-text">Project K</span></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="l">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-cell-content">
+                                                                            <span class="ec-icon"></span><span class="ec-expander-space"><span class="ec-icon"></span></span><span class="ec-cell-text">Project L</span></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                                  </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                            <div class="ec-bg" style="bottom: 17px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ec-divider ec-col-resizer ec-widget-header"></td>
+                            <td class="ec-time-area ec-widget-content">
+                                <div class="ec-scroller-clip">
+                                    <div class="ec-scroller" style="overflow: auto; height: 617.4px; margin: 0px;">
+                                        <div class="ec-scroller-canvas" style="width: 7728px; min-width: 0px;">
+                                            <div class="ec-content">
+                                                <div class="ec-rows">
+
+                                                    <!-- Horizontal lines on the main calendar section -->
+                                                    <table class="mainBody">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="ec-divider">
+                                                                    <div id="height"></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="a" class="">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="b">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="c">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="d">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="e">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="f">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="ec-divider">
+                                                                    <div id="height"></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="g" class="">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="h">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="i">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="j">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="k">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="l">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="m">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="n">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="ec-divider">
+                                                                    <div id="height"></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="o">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="p">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="q">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="r">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container">
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="s">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="t">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="u">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="v">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="w">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="x">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="y">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-resource-id="z">
+                                                                <td class="ec-widget-content">
+                                                                    <div id="height">
+                                                                        <div class="ec-event-container"></div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                            <div class="ec-bg">
+                                                <div class="ec-slats">
+
+                                                    <!-- Vertical lines of the main body of the calendar -->
+                                                    <table class="">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T00:00:00">
+                                                                    <div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T01:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T02:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T03:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T04:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T05:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T06:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T07:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T08:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T09:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T10:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T11:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T12:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T13:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T14:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T15:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T16:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T17:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T18:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T19:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T20:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T21:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T22:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-06T23:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T00:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T01:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T02:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T03:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T04:00:00">
+                                                                    <div></div>
+                                                                </td>
+
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T05:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T06:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T07:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T08:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T09:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T10:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T11:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T12:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T13:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T14:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T15:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T16:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T17:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T18:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T19:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T20:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T21:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T22:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-07T23:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T00:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T01:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T02:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T03:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T04:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T05:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T06:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T07:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T08:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T09:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T10:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T11:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T12:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T13:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T14:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T15:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T16:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T17:00:00">
+                                                                    <div></div>
+                                                                </td>
+                                                                <td class="ec-widget-content ec-major" data-date="2018-05-08T18:00:00">
+                                                                    <div></div>
+                                                                </td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="addTask" class="modal">
+      <!--form addTask-->
+<div id="task-messages">
+      <form class="modal-content animate" method="POST" name="taskForm" onsubmit="return submit_json(this);">
+
+        <div class="container">
+          <div class="imgcontainer">
+            <span onclick="document.getElementById('addTask').style.display='none'" class="close" title="Close Modal">&times;</span>
+          </div>
+          <label for="tskname"><b>Task Name:</b></label>
+          <input type="text" name="tskname" required><br>
+
+          <label for="tskdes"><b>Task Descripts:</b></label><br>
+          <textarea rows="4" cols="50" name="tskdes">
+            Enter Task Descripts here...</textarea><br>
+
+          <label for="tskstart"><b>Task Start Date:</b></label>
+          <input type="date" name="tskstart" required><br>
+
+          <label for="tskend"><b>Task End Date:</b></label>
+          <input type="date"  name="tskend" required><br>
+
+          <label for="tskStatus"><b>Task Status:</b></label>
+          <input type="text" name="tskStatus" required><br>
+
+          <button id="submitbtn" type="submit">Submit</button>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" onclick="document.getElementById('addTask').style.display='none'" class="cancelbtn">Cancel</button>
+        </div>
+      </form>
+      </div>
+    </div>
+
+
+
+
+    <div id="addEmployee" class="modal">
+      <!--form addTask-->
+<div id="task-messages">
+      <form class="modal-content animate" method="POST" name="empForm" onsubmit="return create_employee(this);">
+
+        <div class="container">
+          <div class="imgcontainer">
+            <span onclick="document.getElementById('addEmployee').style.display='none'" class="close" title="Close Modal">&times;</span>
+          </div>
+          <label for="empName"><b>Employee Name:</b></label>
+          <input type="text" name="empName" required><br>
+
+          <label for="tskname"><b>Task Name:</b></label>
+          <input type="text" name="tskname" required><br>
+
+          <label for="tskdes"><b>Task Descripts:</b></label><br>
+          <textarea rows="4" cols="50" name="tskdes">
+            Enter Task Descripts here...</textarea><br>
+
+          <label for="tskstart"><b>Task Start Date:</b></label>
+          <input type="date" name="tskstart" required><br>
+
+          <label for="tskend"><b>Task End Date:</b></label>
+          <input type="date"  name="tskend" required><br>
+
+          <label for="tskStatus"><b>Task Status:</b></label>
+          <input type="text" name="tskStatus" required><br>
+
+          <button id="submitbtn" type="submit">Submit</button>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" onclick="document.getElementById('addEmployee').style.display='none'" class="cancelbtn">Cancel</button>
+        </div>
+      </form>
+      </div>
+    </div>
+
+    <script>
+    // Get the modal
+    var modal = document.getElementById('addEmployee');
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+    }
+</script>
+
+<pre id=output>
+
+
+
+</pre>
+<script>
+
+
+console.log()
+
+
+</script>
+</body>
+
+</html>

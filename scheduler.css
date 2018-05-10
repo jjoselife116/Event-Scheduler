@@ -1,0 +1,409 @@
+/*!
+ * FullCalendar Scheduler v1.9.4
+ * Docs & License: https://fullcalendar.io/scheduler/
+ * (c) 2018 Adam Shaw
+ */.ec-resource-area .ec-cell-content, .ec-timeline {
+    padding-left: 4px;
+    padding-right: 4px;
+    color: :white;
+
+}
+.ec-cell-text{
+  padding-left: 5px;
+  padding-right: 25px;
+  color: white;
+
+}
+
+//******employee text colors***********
+
+Needs to be dynamic
+mybe use a javascript array to cycle throught the colors of the rainbow.
+
+*/
+.employee1-name-text{
+  color: black;
+}
+.employee2-name-text{
+  color: #ff02b3;
+}
+.employee3-name-text{
+  color: green;
+}
+
+
+
+.ec-resource-area th>div, .ec-scroller-canvas, .ec-scroller-canvas>.ec-content, .ec-scroller-clip {
+    position: relative;
+
+}
+.ec-scroller-clip, .ec-timeline .ec-cell-content, tr.ec-collapsed>td, tr.ec-transitioning>td {
+    overflow: hidden;
+
+}
+.ec-no-scrollbars {
+    background: rgba(255, 255, 255, 0);
+}
+.ec-timeline .ec-body .ec-divider.ui-widget-header, .ec-timeline .ec-body .ui-widget-content {
+    background-image: none;
+
+}
+.ec-no-scrollbars::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+
+}
+.ec-scroller-canvas {
+    box-sizing: border-box;
+    min-height: 100%
+
+  }
+.ec-scroller-canvas>.ec-bg {
+    z-index: 1;
+}
+.ec-scroller-canvas>.ec-content {
+    z-index: 2;
+    border-style: solid;
+    border-width: 0;
+}
+.ui-widget .ec-scroller-canvas>.ec-content {
+    border-color: transparent;
+}
+.ec-scroller-canvas.ec-gutter-left>.ec-content {
+    border-left-width: 1px;
+    margin-left: -1px;
+}
+.ec-scroller-canvas.ec-gutter-right>.ec-content {
+    border-right-width: 1px;
+    margin-right: -1px;
+}
+.ec-scroller-canvas.ec-gutter-top>.ec-content {
+    border-top-width: 1px;
+    margin-top: -1px;
+}
+.ec-rtl .ec-timeline {
+    direction: rtl;
+}
+.ec-timeline .ec-divider {
+    width: 3px;
+    border-style: double;
+}
+.ec-timeline .ec-head>tr>.ec-divider {
+    border-bottom: 0;
+}
+.ec-timeline .ec-body>tr>.ec-divider {
+    border-top: 0;
+}
+.ec-scrolled .ec-head .ec-scroller {
+    z-index: 2;
+}
+.ec-timeline.ec-scrolled .ec-head .ec-scroller {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, .075);
+}
+.ec-timeline .ec-body .ec-scroller {
+    z-index: 1;
+}
+.ec-timeline .ec-scroller-canvas>div>div>table, .ec-timeline .ec-scroller-canvas>div>table {
+    border-style: hidden;
+}
+.ec-timeline .ec-scroller-canvas>.ec-content>.ec-rows>table {
+    border-bottom-style: none;
+}
+.ec-timeline td, .ec-timeline th {
+    white-space: nowrap;
+}
+.ec-timeline .ec-col-resizer {
+    cursor: col-resize;
+}
+.ec-timeline th {
+    vertical-align: middle;
+}
+.ec-timeline .ec-head .ec-cell-content {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.ec-resource-area {
+    width: 30%}
+.ec-resource-area col {
+    width: 40%;
+    min-width: 70px;
+}
+.ec-resource-area col.ec-main-col {
+    width: 60%}
+.ec-flat .ec-expander-space {
+    display: none;
+}
+.ec-ltr .ec-resource-area tr>* {
+    text-align: left;
+}
+.ec-rtl .ec-resource-area tr>* {
+    text-align: right;
+}
+.ec-resource-area .ec-super th {
+    text-align: center;
+}
+.ec-resource-area th .ec-cell-content {
+    position: relative;
+    z-index: 1;
+}
+.ec-resource-area th .ec-col-resizer {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+}
+.ec-ltr .ec-resource-area th .ec-col-resizer {
+    right: -3px;
+}
+.ec-rtl .ec-resource-area th .ec-col-resizer {
+    left: -3px;
+}
+tr.ec-transitioning>td>div {
+    transition: margin-top .2s;
+}
+tr.ec-collapsed>td>div {
+    margin-top: -10px;
+}
+.ec-body .ec-resource-area .ec-cell-content {
+    position: relative;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.ec-time-area .ec-bgevent, .ec-time-area .ec-highlight, .ec-time-area .ec-slats {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+.ec-no-overlap .ec-body .ec-resource-area .ec-cell-content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+}
+.ec-resource-area .ec-icon {
+    width: 1em;
+    font-size: .9em;
+    vertical-align: middle;
+    margin-top: -1%}
+.ec-resource-area .ec-expander {
+    cursor: pointer;
+    color: #666;
+}
+.ec-time-area col {
+    min-width: 2.2em;
+}
+.ec-ltr .ec-time-area .ec-chrono th {
+    text-align: left;
+}
+.ec-rtl .ec-time-area .ec-chrono th {
+    text-align: right;
+}
+.ec-time-area .ec-slats {
+    z-index: 1;
+    left: 0;
+    right: 0;
+}
+.ec-time-area .ec-slats table {
+    height: 100%}
+.ec-time-area .ec-slats .ec-minor {
+    border-style: dotted;
+}
+.ec-time-area .ec-slats td {
+    border-width: 0 1px;
+}
+.ec-ltr .ec-time-area .ec-slats td {
+    border-right-width: 0;
+}
+.ec-rtl .ec-time-area .ec-slats td {
+    border-left-width: 0;
+}
+.ec-time-area .ec-bgevent-container, .ec-time-area .ec-highlight-container {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    width: 0;
+}
+.ec-ltr .ec-time-area .ec-bgevent-container, .ec-ltr .ec-time-area .ec-helper-container, .ec-ltr .ec-time-area .ec-highlight-container {
+    left: 0;
+}
+.ec-rtl .ec-time-area .ec-bgevent-container, .ec-rtl .ec-time-area .ec-helper-container, .ec-rtl .ec-time-area .ec-highlight-container {
+    right: 0;
+}
+.ec-time-area .ec-rows {
+    position: relative;
+    z-index: 3;
+}
+.ec-time-area .ec-rows .ui-widget-content {
+    background: 0 0;
+}
+.ec-time-area .ec-rows td>div {
+    position: relative;
+}
+.ec-time-area .ec-rows .ec-bgevent-container, .ec-time-area .ec-rows .ec-highlight-container {
+    z-index: 1;
+}
+.ec-time-area .ec-event-container {
+    position: relative;
+    z-index: 2;
+    width: 0;
+}
+.ec-time-area .ec-helper-container {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+}
+.ec-time-area .ec-event-container {
+    padding-bottom: 8px;
+    top: -1px;
+}
+.ec-time-area tr:first-child .ec-event-container {
+    top: 0;
+}
+.ec-no-overlap .ec-time-area .ec-event-container {
+    padding-bottom: 0;
+    top: 0;
+}
+.ec-timeline .ec-now-indicator {
+    z-index: 3;
+    top: 0;
+}
+.ec-time-area .ec-now-indicator-arrow {
+    margin: 0 -6px;
+    border-width: 6px 5px 0;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+.ec-time-area .ec-now-indicator-line {
+    margin: 0 -1px;
+    bottom: 0;
+    border-left-width: 1px;
+}
+.ec-timeline-event {
+    position: absolute;
+    border-radius: 0;
+    padding: 2px 0;
+    margin-bottom: 1px;
+}
+.ec-no-overlap .ec-timeline-event {
+    padding: 5px 0;
+    margin-bottom: 0;
+}
+.ec-ltr .ec-timeline-event {
+    margin-right: 1px;
+}
+.ec-rtl .ec-timeline-event {
+    margin-left: 1px;
+}
+.ec-timeline-event .ec-content {
+    padding: 0 1px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.ec-timeline-event .ec-time {
+    font-weight: 700;
+    padding: 0 1px;
+}
+.ec-rtl .ec-timeline-event .ec-time {
+    display: inline-block;
+}
+.ec-timeline-event .ec-title {
+    position: relative;
+    padding: 0 1px;
+}
+.ec-timeline-event.ec-selected .ec-bg {
+    display: none;
+}
+.ec-ltr .ec-timeline-event .ec-title {
+    padding-left: 10px;
+    margin-left: -8px;
+}
+.ec-rtl .ec-timeline-event .ec-title {
+    padding-right: 10px;
+    margin-right: -8px;
+}
+.ec-ltr .ec-timeline-event.ec-not-start .ec-title {
+    margin-left: -2px;
+}
+.ec-rtl .ec-timeline-event.ec-not-start .ec-title {
+    margin-right: -2px;
+}
+.ec-body .ec-time-area .ec-following, .ec-timeline-event.ec-not-start .ec-title {
+    position: relative;
+}
+.ec-body .ec-time-area .ec-following:before, .ec-timeline-event.ec-not-start .ec-title:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    border: 5px solid #000;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    opacity: .5;
+}
+.ec-ltr .ec-body .ec-time-area .ec-following:before, .ec-ltr .ec-timeline-event.ec-not-start .ec-title:before {
+    border-left: 0;
+    left: 2px;
+}
+.ec-rtl .ec-body .ec-time-area .ec-following:before, .ec-rtl .ec-timeline-event.ec-not-start .ec-title:before {
+    border-right: 0;
+    right: 2px;
+}
+.ec-license-message {
+    position: absolute;
+    z-index: 99999;
+    bottom: 1px;
+    left: 1px;
+    background: #eee;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 1px 1px 0 0;
+    padding: 2px 4px;
+    font-size: 12px;
+    border-top-right-radius: 3px;
+}
+
+
+.ec-widget-header{
+  color: black;
+}
+
+.day-text, .day-header, .top-day-header{
+    background-color: #364256;
+    color: white;
+}
+
+
+.ec-divider{
+  background-color: #364256;
+}
+
+#height{
+    height: 42.8px;
+
+}
+#width{
+  width: 96px;
+}
+
+.mainBody {
+	overflow-x: auto;
+	border-right: 2px solid #797979;
+	box-sizing: border-box;
+	width: 100%;
+	margin-bottom:20px;
+}
+
+.tableScrollDays {
+	overflow-x: scroll;
+	box-sizing: border-box;
+	margin: 0;
+	height:20px;
+	width: 100%;
+}
+
+.tableWide {
+	width: 1500px;
+	table-layout: fixed;
+	margin-top: 0 !important;
+}

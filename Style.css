@@ -1,0 +1,72 @@
+/* To control the style of the overall table class */
+table, th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+/* Settings for Days row */
+.tableDays {
+  column-width: 50px;
+}
+
+/* Settings for Employee column */
+.tableEmployees {
+  line-height: 40px;
+}
+
+/* Settings for Tasks table */
+.tableTasks {
+  float:right;
+  width:100%;
+  margin-top:5px;
+  empty-cells: show;
+  height:1000px;
+}
+
+.empTaskCont {
+  height: 500px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+#table-wrapper-days {
+  position:relative;
+  width:81%;
+  float:right;
+}
+
+#table-scroll-days {
+  height:auto;
+  overflow-x: scroll;
+}
+
+#table-wrapper-employees {
+  position: relative;
+  float:left;
+  width:18%;
+  margin-top:68px;
+}
+
+#table-scroll-employees {
+  width: auto;
+  overflow-y: scroll;
+  max-height: 500px;
+}
+
+#table-wrapper-scheduler {
+  position:relative;
+  width:81%;
+  float:right;
+}
+
+#table-scroll-schedular {
+  overflow: scroll;
+  max-height: 505px;
+}
+
+.employee-mod-btn{
+  float:left;
+}
