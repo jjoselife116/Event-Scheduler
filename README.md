@@ -1,2 +1,1 @@
 # EventCalendar
-# Event-Scheduler

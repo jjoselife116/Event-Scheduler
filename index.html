@@ -8,15 +8,34 @@
     <link href="addTask.css" rel="stylesheet">
     <script src="jsonsubmit.js"></script>
     <script src="addEmp.js"></script>
-  </head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @media screen and (max-width:500px) {
+        .tableDays, .tableEmployees, .tableTasks, #table-wrapper-days {
+          width:100%;
+        }
+      }
+    </style>
+  </meta>
+</head>
 
 <body>
   <h2 align="center">Scheduling Calendar</h2>
 
+  <script>
+    function scrollPosSides(){
+      var rightScrollPos = document.getElementById("table-scroll-tasks").scrollTop;
+    	document.getElementById("table-scroll-employees").scrollTop = rightScrollPos;
+      var bottomScrollPos = document.getElementById("table-scroll-tasks").scrollLeft;
+    	document.getElementById("table-scroll-days").scrollLeft = bottomScrollPos;
+    }
+  </script>
+
   <!-- Scrollable y-axis line of days above the scheduler -->
   <div id="table-wrapper-days">
     <div id="table-scroll-days">
-      <table id="dayRow">
+      <table id="dayRow" class="tableDays">
         <tr>
           <td>Monday 5/7</td>
           <td>Tuesday 5/8</td>
@@ -52,9 +71,9 @@
   </div>
 
   <!-- Scrollable x-axis column of employees to the left of the scheduler -->
-  <div id="table-wrapper-employees">
+  <div id="table-wrapper-employees"; onscroll="divScrollL();">
     <div id="table-scroll-employees">
-      <table id="employeeCol" class="tableEmployees">
+      <table id="employeeCol"; class="tableEmployees">
         <tr><td>Employee A</td></tr>
         <tr><td>Employee B</td></tr>
         <tr><td>Employee C</td></tr>
@@ -85,18 +104,18 @@
   </div>
 </div>
 
-<div id="table-wrapper-scheduler">
-  <div id="table-scroll-schedular">
+<div id="table-wrapper-tasks">
+  <div id="table-scroll-tasks" onscroll="scrollPosSides();">
     <script>
       var rows = document.getElementById('dayRow').getElementsByTagName("td").length;
       var cols = document.getElementById('employeeCol').getElementsByTagName("tr").length;
       var rowT = null;
 
-      var drawTable = '<table>';
-        for (let i = 0; i < rows; i++) {
+      var drawTable = '<table id="tasksBody"; class="tableTasks">';
+        for (let i = 0; i < cols; i++) {
           drawTable += '<tr>';
-          for(let j = 0; j < cols; j++) {
-            drawTable += '<td>Task</td>';
+          for(let j = 0; j < rows; j++) {
+            drawTable += '<td></td>';
           }
           drawTable += '</tr>';
         }
@@ -106,6 +125,32 @@
       </script>
     </div>
   </div>
+
+  <!-- <div id="table-wrapper-tasks">
+    <div id="table-scroll-tasks">
+      <script>
+        var rows = document.getElementById('dayRow').getElementsByTagName("td").length;
+        var cols = document.getElementById('employeeCol').getElementsByTagName("tr").length;
+        var myTable = document.createElement('table');
+        myTable.setAttribute('class', 'tableTasks');
+        var tr1 = null;
+        var td1 = null;
+        var text1 = null;
+        for(let i = 0; i < rows; i++) {
+          tr1 = document.createElement('tr');
+          for(let j = 0; j < cols; j++) {
+            td1 = document.createElement('td');
+            td1.id = 'cell-' + i + '-' + j;
+            text1 = document.createTextNode('cell');
+            td1.appendChild(text1);
+            tr1.appendChild(td1);
+          }
+          myTable.appendChild(tr1);
+        }
+        document.body.appendChild(myTable);
+        </script>
+      </div>
+    </div> -->
 
 <div id="addEmployee" class="modal">
     <!--form addEmployee-->
