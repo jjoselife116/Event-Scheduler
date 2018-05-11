@@ -1,53 +1,29 @@
 
 
 function submit_json(form){
-/*
-  let taskData={
-    "Task Name"             : form.tskname.value,
-    "Task Descripts"        : form.tskdes.value,
-    "Task Start Date"       : form.tskstart.value,
-    "Task End Date"         : form.tskend.value,
-    "Task Status"           : form.tskStatus.value,
-  };
-*/
 
+console.log(form.emplName.value);
 
-  // JSON.stringify(value[, replacer[, space]])
+// pull from the local storage
+//let employee = JSON.parse(localStorage.getItem(form.emplName.value);
+let employee = localStorage.getItem(form.emplName.value);
+if(employee){
+  employee = JSON.parse(employee);
+}
 
-
-  //console.log(taskData);
-
-
-
-let data =  localStorage.getItem("Employee");
-let obj =JSON.parse(data);
-
-// access the employees name
-console.log(obj['Employee Name']);
-
-// check for employee to add task to
-
-if(obj['Employee Name'] === form.emplName.value){
-
-
-obj['Task'].push({
+// add task to the end of the task array for chosen employee
+employee.Task.push({
   "Task Name"             : form.tskname.value,
   "Task Descripts"        : form.tskdes.value,
   "Task Start Date"       : form.tskstart.value,
   "Task End Date"         : form.tskend.value,
-  "Task Status"           : form.tskStatus.value,});
-}else{
-  alert("employee not found");
-}
-  //localStorage.setItem(data,taskJson);
-data = JSON.stringify(obj,0,4);
+  "Task Status"           : form.tskStatus.value,
+});
+
+// overwrite the employee JSON in the local storage with the newly updated task array
+localStorage.setItem(form.emplName.value, JSON.stringify(employee));
 
 
-  console.log(data);
-
-  //document.getElementById('output').innerHTML = localStorage.getItem("Data");
-
-  localStorage.setItem("Employee",data);
-
+console.log(employee);
 
 }
