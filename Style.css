@@ -1,49 +1,49 @@
 /* To control the style of the overall table class */
 table {
-  border: 1px solid black;
+  border: 0.0625em solid black;
   text-align: center;
   table-layout: fixed;
 }
 
 th, td {
-  border: 1px solid black;
-  width: 140px;
-  height: 35px;
+  border: 0.0625em solid black;
+  width: 8.75em;
+  height: 2.1875em;
 }
 
 /* Settings for Days row */
 .tableDays {
-  width: 140px;
+  width: 8.75em;
 }
 
 /* Settings for Employee column */
 .tableEmployees {
-  line-height: 35px;
+  line-height: 2.1875em;
 }
 
 /* Settings for Tasks table */
 .tableTasks {
   width:100%;
-  margin-top:5px;
+  margin-top:0.3125em;
   empty-cells: show;
-  height:1000px;
-  line-height: 35px;
-  width: 100px;
+  height:62.5em;
+  line-height: 2.1875em;
+  width: 6.25em;
 }
 
 .empTaskCont {
-  height: 500px;
+  height: 31.25em;
   width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   position: relative;
-  padding-bottom: 30px;
+  padding-bottom: 1.875em;
 }
 
 #table-wrapper-days {
   position: relative;
-  width:1064px;
-  margin-left: 253px;
+  width: 66.5em;
+  margin-left: 15.8125em;
   /*float:right;*/
 }
 
@@ -56,13 +56,13 @@ th, td {
   position: relative;
   float:left;
   width:18%;
-  margin-top:8px;
+  margin-top:0.5em;
 }
 
 #table-scroll-employees {
   width: auto;
   overflow-y: hidden;
-  max-height: 500px;
+  max-height: 31.25em;
 }
 
 #table-wrapper-tasks {
@@ -74,7 +74,7 @@ th, td {
 #table-scroll-tasks {
   overflow-x: scroll;
   overflow-y: scroll;
-  max-height: 522px;
+  max-height: 32.625em;
 }
 
 .employee-mod-btn{
