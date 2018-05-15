@@ -88,6 +88,7 @@
   <!-- Scrollable y-axis column of employees to the left of the scheduler -->
   <div id="table-wrapper-employees">
     <div id="table-scroll-employees">
+
       <script>
 
         let x =0;
@@ -109,10 +110,16 @@
           y++;
         }
         }
+        for (var k = 0; k < 8; k++) {
+          drawTable += '<tr>';
+          drawTable += "<td id = emp" + x + '-' + y + '>'  + 'Hello' + "</td>"
+          drawTable += '</tr>';
+            }
         drawTable += '</table>';
 
         document.write(drawTable);
       </script>
+
   </div>
 </div>
 
@@ -258,8 +265,8 @@
 
   <!--Add Task button-->
   <div class="employee-mod-btn">
-    <button type="button" class="add-Emp-button" onclick="document.getElementById('addEmployee').style.display='block'">Add Employee</button>
-    <button type="button" class="ec-today-button ec-button ec-state-default ec-corner-left ec-corner-right " onclick="document.getElementById('addTask').style.display='block'">Add Task
+    <button type="button"  onclick="document.getElementById('addEmployee').style.display='inline-block'">Add Employee</button>
+    <button type="button"  onclick="document.getElementById('addTask').style.display='inline-block'">Add Task
     </button>
   </div>
 
