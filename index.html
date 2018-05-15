@@ -1,124 +1,91 @@
+<!-- https://datatables.net/ -->
+
 <!DOCTYPE html>
 <html>
   <head>
+    <title> Scheduling Application </title>
+
     <link rel="stylesheet" href="Style.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <link href="addTask.css" rel="stylesheet">
+    <link href="Style.css" rel="stylesheet">
     <script src="jsonsubmit.js"></script>
     <script src="addEmp.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      @media screen and (max-width:500px) {
-        .tableDays, .tableEmployees, .tableTasks, #table-wrapper-days {
-          width:100%;
-        }
+    <script>
+      function scrollPosSides(){
+        var rightScrollPos = document.getElementById("table-scroll-tasks").scrollTop;
+      	document.getElementById("table-scroll-employees").scrollTop = rightScrollPos;
+        var bottomScrollPos = document.getElementById("table-scroll-tasks").scrollLeft;
+      	document.getElementById("table-scroll-days").scrollLeft = bottomScrollPos;
       }
-    </style>
-  </meta>
-</head>
+    </script>
+
+    <!-- Drag to scroll table script (Open Source javascript) -->
+    <script type="text/javascript" src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>
+  </head>
 
 <body>
   <h2 align="center">Scheduling Calendar</h2>
 
-  <script>
-    function scrollPosSides(){
-      var rightScrollPos = document.getElementById("table-scroll-tasks").scrollTop;
-    	document.getElementById("table-scroll-employees").scrollTop = rightScrollPos;
-      var bottomScrollPos = document.getElementById("table-scroll-tasks").scrollLeft;
-    	document.getElementById("table-scroll-days").scrollLeft = bottomScrollPos;
-    }
-  </script>
-
   <!-- Scrollable y-axis line of days above the scheduler -->
   <div id="table-wrapper-days">
     <div id="table-scroll-days">
-      <table id="dayRow" class="tableDays">
-        <tr>
-          <td>Monday 5/7</td>
-          <td>Tuesday 5/8</td>
-          <td>Wednesday 5/9</td>
-          <td>Thursday 5/10</td>
-          <td>Friday 5/11</td>
-          <td>Saturday 5/12</td>
-          <td>Sunday 5/13</td>
-          <td>Monday 5/14</td>
-          <td>Tuesday 5/15</td>
-          <td>Wednesday 5/16</td>
-          <td>Thursday 5/17</td>
-          <td>Friday 5/18</td>
-          <td>Saturday 5/19</td>
-          <td>Sunday 5/20</td>
-          <td>Monday 5/21</td>
-          <td>Tuesday 5/22</td>
-          <td>Wednesday 5/23</td>
-          <td>Thursday 5/24</td>
-          <td>Friday 5/25</td>
-          <td>Saturday 5/26</td>
-          <td>Sunday 5/27</td>
-          <td>Monday 5/28</td>
-          <td>Tuesday 5/29</td>
-          <td>Wednesday 5/30</td>
-          <td>Thursday 5/31</td>
-          <td>Friday 6/1</td>
-          <td>Saturday 6/2</td>
-          <td>Sunday 6/3</td>
-        </tr>
-      </table>
+      <script>
+        var sysDate = new Date();
+        var sysDay = new Date();
+        var sysMonth = new Date();
+        var dayCount = sysDay.getDay();
+        var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        var drawTable = '<table id="dayRow" class="tableDays">';
+        drawTable += "<tr>";
+        for (let i = sysDate.getDate() - 7; i <= sysDate.getDate() + 7; i++) {
+          drawTable += "<td>" + weekdays[sysDay.getDay()] + " " + sysMonth.getMonth() + "/" + i + "</td>";
+        }
+        drawTable += "</tr>";
+        drawTable += '</table>';
+
+        document.write(drawTable);
+      </script>
     </div>
   </div>
 
-  <!-- Scrollable x-axis column of employees to the left of the scheduler -->
-  <div id="table-wrapper-employees"; onscroll="divScrollL();">
+  <!-- Scrollable y-axis column of employees to the left of the scheduler -->
+  <<div id="table-wrapper-employees">
     <div id="table-scroll-employees">
-      <table id="employeeCol"; class="tableEmployees">
-        <tr><td>Employee A</td></tr>
-        <tr><td>Employee B</td></tr>
-        <tr><td>Employee C</td></tr>
-        <tr><td>Employee D</td></tr>
-        <tr><td>Employee E</td></tr>
-        <tr><td>Employee F</td></tr>
-        <tr><td>Employee G</td></tr>
-        <tr><td>Employee H</td></tr>
-        <tr><td>Employee I</td></tr>
-        <tr><td>Employee J</td></tr>
-        <tr><td>Employee K</td></tr>
-        <tr><td>Employee L</td></tr>
-        <tr><td>Employee M</td></tr>
-        <tr><td>Employee N</td></tr>
-        <tr><td>Employee O</td></tr>
-        <tr><td>Employee P</td></tr>
-        <tr><td>Employee Q</td></tr>
-        <tr><td>Employee R</td></tr>
-        <tr><td>Employee S</td></tr>
-        <tr><td>Employee T</td></tr>
-        <tr><td>Employee U</td></tr>
-        <tr><td>Employee V</td></tr>
-        <tr><td>Employee W</td></tr>
-        <tr><td>Employee X</td></tr>
-        <tr><td>Employee Y</td></tr>
-        <tr><td>Employee Z</td></tr>
-    </table>
-  </div>
-</div>
+      <script>
+        var emps = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+                    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
-<div id="table-wrapper-tasks">
-  <div id="table-scroll-tasks" onscroll="scrollPosSides();">
-    <script>
-      var rows = document.getElementById('dayRow').getElementsByTagName("td").length;
-      var cols = document.getElementById('employeeCol').getElementsByTagName("tr").length;
-      var rowT = null;
-
-      var drawTable = '<table id="tasksBody"; class="tableTasks">';
-        for (let i = 0; i < cols; i++) {
+        var drawTable = '<table id="employeeCol"; class="tableEmployees">';
+        for (let i = 0; i < emps.length; i++) {
           drawTable += '<tr>';
-          for(let j = 0; j < rows; j++) {
-            drawTable += '<td></td>';
-          }
+          drawTable += "<td>Employee " + emps[i] + "</td>"
           drawTable += '</tr>';
         }
+        drawTable += '</table>';
+
+        document.write(drawTable);
+      </script>
+    </div>
+  </div>
+
+  <!-- Create main scheduling table according to the number of scheduled  employees and days -->
+  <div id="table-wrapper-tasks">
+    <div id="table-scroll-tasks" class="dragscroll" onscroll="scrollPosSides();">
+      <script>
+        var rows = document.getElementById('dayRow').getElementsByTagName("td").length;
+        var cols = document.getElementById('employeeCol').getElementsByTagName("tr").length;
+
+        var drawTable = '<table id="tasksBody"; class="tableTasks">';
+          for (let i = 0; i < cols; i++) {
+            drawTable += '<tr>';
+            for(let j = 0; j < rows; j++) {
+              drawTable += '<td id="' + j + '-' + i + '"></td>';
+            }
+            drawTable += '</tr>';
+          }
         drawTable += '</table>';
 
         document.write(drawTable);
