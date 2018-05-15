@@ -3,11 +3,14 @@
   <head>
     <title> Scheduling Application </title>
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
     <link rel="stylesheet" href="Style.css">
 
     <link href="addTask.css" rel="stylesheet">
-    <script src="jsonsubmit.js"></script>
+    <script src="createEmp.js"></script>
     <script src="addEmp.js"></script>
+    <script src="displayTask.js"></script>
 
     <script>
       function scrollPosSides(){
@@ -88,12 +91,24 @@
       <script>
         var emps = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
                     "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        let x =0;
+        let y =0;
 
         var drawTable = '<table id="employeeCol"; class="tableEmployees">';
-        for (let i = 0; i < emps.length; i++) {
+
+
+
+        for (var key in localStorage) {
+
+          typeofKey = (typeof localStorage[key]);
+          if(typeofKey == 'string' || typeofKey instanceof String ){
+          employee = JSON.parse(localStorage.getItem(key));
+
           drawTable += '<tr>';
-          drawTable += "<td>Employee " + emps[i] + "</td>"
+          drawTable += "<td id = emp" + x + '-' + y + '>'  + employee['Employee Name'] + "</td>"
           drawTable += '</tr>';
+          y++;
+        }
         }
         drawTable += '</table>';
 
