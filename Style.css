@@ -19,6 +19,7 @@ th, td {
 /* Settings for Employee column */
 .tableEmployees {
   line-height: 2.1875em;
+  width: 59.5%;
 }
 
 /* Settings for Tasks table */
@@ -42,8 +43,8 @@ th, td {
 
 #table-wrapper-days {
   position: relative;
-  width: 66.5em;
-  margin-left: 15.8125em;
+  width: 77.8em;
+  margin-left: 17.9125em;
   /*float:right;*/
 }
 
@@ -56,6 +57,7 @@ th, td {
   position: relative;
   float:left;
   width:18%;
+  height:100%;
   margin-top:0.5em;
 }
 
@@ -63,6 +65,7 @@ th, td {
   width: auto;
   overflow-y: hidden;
   max-height: 31.25em;
+  width: 30.5em;
 }
 
 #table-wrapper-tasks {
