@@ -7,9 +7,9 @@ console.log(form.emplName.value);
 // pull from the local storage
 //let employee = JSON.parse(localStorage.getItem(form.emplName.value);
 let employee = localStorage.getItem(form.emplName.value);
-if(employee){
+
   employee = JSON.parse(employee);
-}
+
 
 // add task to the end of the task array for chosen employee
 employee.Task.push({
@@ -22,6 +22,9 @@ employee.Task.push({
 
 // overwrite the employee JSON in the local storage with the newly updated task array
 localStorage.setItem(form.emplName.value, JSON.stringify(employee));
+
+
+
 
 
 console.log(employee);

@@ -13,8 +13,9 @@
     <link href="teststyle.css" rel="stylesheet">
 
     <script src="addEmp.js"></script>
+    <script src="addTask.js"></script>
     <script src="javascript.js"></script>
-    <scrpit src="displayTask.js"></scrpit>
+    <script src="displayTask.js"></script>
 
 
     <!-- Drag to scroll table script (Open Source javascript) -->
@@ -104,32 +105,20 @@
 
           <div class="container">
             <div class="imgcontainer">
-              <span onclick="document.getElementById('addEmp/Task').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <span onclick="document.getElementById('addEmployee').style.display='none'" class="close" title="Close Modal">&times;</span>
             </div>
             <label for="empName"><b>Employee Name:</b></label>
             <input type="text" name="empName" required><br>
 
-            <label for="tskname"><b>Task Name:</b></label>
-            <input type="text" name="tskname" required><br>
-
-            <label for="tskdes"><b>Task Descripts:</b></label><br>
-            <textarea rows="4" cols="50" name="tskdes">
-              Enter Task Descripts here...</textarea><br>
-
-            <label for="tskstart"><b>Task Start Date:</b></label>
-            <input type="date" name="tskstart" required><br>
-
-            <label for="tskend"><b>Task End Date:</b></label>
-            <input type="date"  name="tskend" required><br>
-
-            <label for="tskStatus"><b>Task Status:</b></label>
-            <input type="text" name="tskStatus" required><br>
+            <label for="tskname"><b>Employee Id:</b></label>
+            <input type="text" name="empId" required><br>
 
             <button id="submitbtn" type="submit">Submit</button>
+            <button type="button" onclick="document.getElementById('addEmployee').style.display='none'; " class="cancelbtn">Cancel</button>
           </div>
 
           <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="document.getElementById('addEmp/Task').style.display='none'" class="cancelbtn">Cancel</button>
+
           </div>
         </form>
         </div>
@@ -164,10 +153,11 @@
                 <input type="text" name="tskStatus" required><br>
 
                 <button id="submitbtn" type="submit">Submit</button>
+                <button type="button" onclick="document.getElementById('addTask').style.display='none'" class="cancelbtn">Cancel</button>
               </div>
 
               <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('addTask').style.display='none'" class="cancelbtn">Cancel</button>
+
               </div>
             </form>
         </div>
@@ -175,7 +165,7 @@
 
       <script>
         // Get the modal
-        var modal = document.getElementById('addEmp/Task');
+        var modal = document.getElementById('addEmployee');
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
           if (event.target == modal) {
