@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Scheduling Application </title>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="Style.css">
+
+    <link href="addTask.css" rel="stylesheet">
+    <script src="addTask.js"></script>
+    <script src="addEmp.js"></script>
+    <script src="displayTask.js"></script>
+
+    <script>
+      function scrollPosSides(){
+        var rightScrollPos = document.getElementById("table-scroll-tasks").scrollTop;
+      	document.getElementById("table-scroll-employees").scrollTop = rightScrollPos;
+        var bottomScrollPos = document.getElementById("table-scroll-tasks").scrollLeft;
+      	document.getElementById("table-scroll-days").scrollLeft = bottomScrollPos;
+      }
+    </script>
+
+    <!-- Drag to scroll table script (Open Source javascript) -->
+    <script type="text/javascript" src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>
+  </head>
+
+<body>
+  <h2 align="center">Scheduling Calendar</h2>
+
+  <!-- Scrollable y-axis line of days above the scheduler -->
+  <div id="table-wrapper-days">
+    <div id="table-scroll-days">
+      <!-- <table id="dayRow" class="tableDays">
+        <tr>
+          <td>Monday 5/7</td>
+          <td>Tuesday 5/8</td>
+          <td>Wednesday 5/9</td>
+          <td>Thursday 5/10</td>
+          <td>Friday 5/11</td>
+          <td>Saturday 5/12</td>
+          <td>Sunday 5/13</td>
+          <td>Monday 5/14</td>
+          <td>Tuesday 5/15</td>
+          <td>Wednesday 5/16</td>
+          <td>Thursday 5/17</td>
+          <td>Friday 5/18</td>
+          <td>Saturday 5/19</td>
+          <td>Sunday 5/20</td>
+          <td>Monday 5/21</td>
+          <td>Tuesday 5/22</td>
+          <td>Wednesday 5/23</td>
+          <td>Thursday 5/24</td>
+          <td>Friday 5/25</td>
+          <td>Saturday 5/26</td>
+          <td>Sunday 5/27</td>
+          <td>Monday 5/28</td>
+          <td>Tuesday 5/29</td>
+          <td>Wednesday 5/30</td>
+          <td>Thursday 5/31</td>
+          <td>Friday 6/1</td>
+          <td>Saturday 6/2</td>
+          <td>Sunday 6/3</td>
+        </tr>
+      </table> -->
+
+      <!-- Scrollable x-axis line of days above the scheduler -->
+      <script>
+        var sysDate = new Date();
+        var sysDay = new Date();
+        var sysMonth = new Date();
+        var dayCount = sysDay.getDay();
+        var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        var drawTable = '<table id="dayRow" class="tableDays">';
+        drawTable += "<tr>";
+        for (let i = sysDate.getDate() - 7; i <= sysDate.getDate() + 7; i++) {
+          drawTable += "<td>" + weekdays[sysDay.getDay()] + " " + sysMonth.getMonth() + "/" + i + "</td>";
+        }
+        drawTable += "</tr>";
+        drawTable += '</table>';
+
+        document.write(drawTable);
+      </script>
+    </div>
+  </div>
+
+  <!-- Scrollable y-axis column of employees to the left of the scheduler -->
+  <div id="table-wrapper-employees">
+    <div id="table-scroll-employees">
+
+      <script>
+
+        let x =0;
+        let y =0;
+
+        var drawTable = '<table id="employeeCol"; class="tableEmployees">';
+
+
+
+        for (var key in localStorage) {
+
+        let  typeofKey = (typeof localStorage[key]);
+          if(typeofKey == 'string' || typeofKey instanceof String ){
+          employee = JSON.parse(localStorage.getItem(key));
+
+          drawTable += '<tr>';
+          drawTable += "<td id = emp" + x + '-' + y + '>'  + employee['Employee Name'] + "</td>"
+          drawTable += '</tr>';
+          y++;
+        }
+        }
+        for (var k = 0; k < 8; k++) {
+          drawTable += '<tr>';
+          drawTable += "<td id = emp" + x + '-' + y + '>'  + 'Hello' + "</td>"
+          drawTable += '</tr>';
+            }
+        drawTable += '</table>';
+
+        document.write(drawTable);
+      </script>
+
+  </div>
+</div>
+
+<!-- Create main scheduling table according to the number of scheduled  employees and days -->
+<div id="table-wrapper-tasks">
+  <div id="table-scroll-tasks" class="dragscroll" onscroll="scrollPosSides();">
+    <script>
+      var rows = document.getElementById('dayRow').getElementsByTagName("td").length;
+      var cols = document.getElementById('employeeCol').getElementsByTagName("tr").length;
+
+      var drawTable = '<table id="tasksBody"; class="tableTasks">';
+        for (let i = 0; i < cols; i++) {
+          drawTable += '<tr>';
+          for(let j = 0; j < rows; j++) {
+            drawTable += '<td id="' + j + '-' + i + '"></td>';
+          }
+          drawTable += '</tr>';
+        }
+        drawTable += '</table>';
+
+        document.write(drawTable);
+      </script>
+    </div>
+  </div>
+
+  <!-- <div id="table-wrapper-tasks">
+    <div id="table-scroll-tasks">
+      <script>
+        var rows = document.getElementById('dayRow').getElementsByTagName("td").length;
+        var cols = document.getElementById('employeeCol').getElementsByTagName("tr").length;
+        var myTable = document.createElement('table');
+        myTable.setAttribute('class', 'tableTasks');
+        var tr1 = null;
+        var td1 = null;
+        var text1 = null;
+        for(let i = 0; i < rows; i++) {
+          tr1 = document.createElement('tr');
+          for(let j = 0; j < cols; j++) {
+            td1 = document.createElement('td');
+            td1.id = 'cell-' + i + '-' + j;
+            text1 = document.createTextNode('cell');
+            td1.appendChild(text1);
+            tr1.appendChild(td1);
+          }
+          myTable.appendChild(tr1);
+        }
+        document.body.appendChild(myTable);
+        </script>
+      </div>
+    </div> -->
+
+<div id="addEmployee" class="modal">
+    <!--form addEmployee-->
+<div id="task-messages">
+    <form class="modal-content animate" method="POST" name="empForm" onsubmit="return create_employee(this);">
+
+      <div class="container">
+        <div class="imgcontainer">
+          <span onclick="document.getElementById('addEmp/Task').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <label for="empName"><b>Employee Name:</b></label>
+        <input type="text" name="empName" required><br>
+
+        <label for="tskname"><b>Task Name:</b></label>
+        <input type="text" name="tskname" required><br>
+
+        <label for="tskdes"><b>Task Descripts:</b></label><br>
+        <textarea rows="4" cols="50" name="tskdes">
+          Enter Task Descripts here...</textarea><br>
+
+        <label for="tskstart"><b>Task Start Date:</b></label>
+        <input type="date" name="tskstart" required><br>
+
+        <label for="tskend"><b>Task End Date:</b></label>
+        <input type="date"  name="tskend" required><br>
+
+        <label for="tskStatus"><b>Task Status:</b></label>
+        <input type="text" name="tskStatus" required><br>
+
+        <button id="submitbtn" type="submit">Submit</button>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('addEmp/Task').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+    </div>
+  </div>
+
+<div id="addTask" class="modal">
+  <!--form addTask-->
+  <div id="task-messages">
+        <form class="modal-content animate" method="POST" name="taskForm" onsubmit="return submit_json(this);">
+
+          <div class="container">
+            <div class="imgcontainer">
+              <span onclick="document.getElementById('addTask').style.display='none'" class="close" title="Close Modal">&times;</span>
+            </div>
+
+            <label for="emplName"><b>Employee to add Task to:</b></label>
+            <input typr="text" name="emplName" required><br>
+            <label for="tskname"><b>Task Name:</b></label>
+            <input type="text" name="tskname" required><br>
+
+            <label for="tskdes"><b>Task Descripts:</b></label><br>
+            <textarea rows="4" cols="50" name="tskdes">
+              Enter Task Descripts here...</textarea><br>
+
+            <label for="tskstart"><b>Task Start Date:</b></label>
+            <input type="date" name="tskstart" required><br>
+
+            <label for="tskend"><b>Task End Date:</b></label>
+            <input type="date"  name="tskend" required><br>
+
+            <label for="tskStatus"><b>Task Status:</b></label>
+            <input type="text" name="tskStatus" required><br>
+
+            <button id="submitbtn" type="submit">Submit</button>
+          </div>
+
+          <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('addTask').style.display='none'" class="cancelbtn">Cancel</button>
+          </div>
+        </form>
+    </div>
+</div>
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById('addEmp/Task');
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+    }
+  </script>
+
+  <pre id=output></pre>
+
+  <script> console.log() </script>
+
+
+  <!--Add Task button-->
+  <div class="employee-mod-btn">
+    <button type="button"  onclick="document.getElementById('addEmployee').style.display='inline-block'">Add Employee</button>
+    <button type="button"  onclick="document.getElementById('addTask').style.display='inline-block'">Add Task
+    </button>
+  </div>
+
+</body>
+
+</html>
