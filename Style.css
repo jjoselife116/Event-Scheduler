@@ -3,28 +3,35 @@ table {
   border: 0.0625em solid black;
   text-align: center;
   table-layout: fixed;
+  border-collapse:collapse;
+  empty-cells: show;
+
 }
 
 th, td {
-  border: 0.0625em solid black;
+  border: 0.0925em solid black;
   width: 8.75em;
   height: 2.1875em;
 }
 
 /* Settings for Days row */
 .tableDays {
-  width: 8.75em;
+  width: 18.75em;
+  background-color: #071833;
+  color: white;
 }
 
 /* Settings for Employee column */
 .tableEmployees {
   line-height: 2.1875em;
+  width: 39.5%;
+  background-color: #071833;
+  color: white;
 }
 
 /* Settings for Tasks table */
 .tableTasks {
-  width:100%;
-  margin-top:0.3125em;
+  width:200%;
   empty-cells: show;
   height:62.5em;
   line-height: 2.1875em;
@@ -42,8 +49,8 @@ th, td {
 
 #table-wrapper-days {
   position: relative;
-  width: 66.5em;
-  margin-left: 15.8125em;
+  width: 97.8em;
+  //margin-left: .9125em;
   /*float:right;*/
 }
 
@@ -56,27 +63,34 @@ th, td {
   position: relative;
   float:left;
   width:18%;
-  margin-top:0.5em;
+  height:100%;
+
+  margin-right: -115px;
 }
 
 #table-scroll-employees {
-  width: auto;
+  width: 25em;
+  display:inline-flex;
+  max-height: 38.625em;
+  overflow-y: scroll;
   overflow-y: hidden;
-  max-height: 31.25em;
+  margin-right: -50px;
 }
 
 #table-wrapper-tasks {
-  position: relative;
-  width:81%;
-  float:right;
+ position: relative;
+  width:82%;
+  float:left;
+  margin-right: 100px;;
+
+
 }
 
 #table-scroll-tasks {
   overflow-x: scroll;
   overflow-y: scroll;
-  max-height: 32.625em;
-}
-
-.employee-mod-btn{
-  float:left;
+  max-height: 38.625em;
+  margin-right: -105px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
