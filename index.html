@@ -14,6 +14,7 @@
 
     <script src="addEmp.js"></script>
     <script src="javascript.js"></script>
+    <scrpit src="displayTask.js"></scrpit>
 
 
     <!-- Drag to scroll table script (Open Source javascript) -->
@@ -37,13 +38,16 @@
 
       let employee;
       let typeofKey;
+      let x = 1;
+      let y =0;
       var drawTable = '<table>';
       drawTable += "<thead>";
       drawTable += "<tr>";
       drawTable += "<th style='color:white;'>Employee Name</th>";
 
       for (let i = sysDate.getDate() - 7; i <= sysDate.getDate() + 7; i++) {
-        drawTable += "<th id = days>" + weekdays[sysDay.getDay()] + " " + sysMonth.getMonth() + "/" + i + "</th>";
+        drawTable += "<th class = days id = days" + x + '-' + y + ">" + weekdays[sysDay.getDay()]  + " " + sysMonth.getMonth() + "/" + i + "</th>";
+        x++;
       }
 
       drawTable += "</tr>";
@@ -53,25 +57,41 @@
 
 
         drawTable += '<tr>';
+        //counters for the employee and date rows/col
+        x=0;
+        y=1;
+
+        // counter for the main table
+        let z =1;
         for (var key in localStorage) {
 
             typeofKey = (typeof localStorage[key]);
 
-
+        //cols of the employee names
         if(typeofKey == 'string' || typeofKey instanceof String ){
             employee = JSON.parse(localStorage.getItem(key));
-        drawTable += "<td id =emp>" + employee['Employee Name'] + "</td>";
+        drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "</td>";
 
-
+        // rows and cols of the main table and date
         for (let j = sysDate.getDate() - 7; j <= sysDate.getDate() + 7; j++) {
-          drawTable += "<td></td>";
+          drawTable += "<td id =" + z + '-' + y + "></td>";
+          z++;
         }
+        // set z to one to start the main tables x at 1 for off by one error
+        z=1;
+        //reset x for each row
+        x=0;
+
+
         drawTable += '</tr>';
+        y++;
 
 
 
     }
+
 }
+
       drawTable += "</tbody>";
       drawTable += "</table>";
       document.write(drawTable);

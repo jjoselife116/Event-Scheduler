@@ -4,19 +4,24 @@ table {
   overflow: hidden;
   border-collapse: collapse;
 }
+html, body{
+  height: 100%;
+  width: 100%;
+}
 
 
 /*thead*/
 thead {
   position: relative;
   display: block; /*seperates the header from the body allowing it to be positioned*/
-  width: 1335px;
+  width: 1535px;
   overflow: visible;
   border: 1px solid black;
 }
 
 thead th {
-  min-width: 140px;
+  min-width: 139px;
+  max-width: 140px;
   height: 35px;
 }
 
@@ -31,7 +36,7 @@ display:float;
 tbody {
   position: relative;
   display: block; /*seperates the tbody from the header*/
-  width: 1335px;
+  width: 1535px;
   height: 475px;
   overflow: scroll;
 }
@@ -51,6 +56,13 @@ tbody tr td:nth-child(1) {  /*the first cell in each tr*/
 .dragscroll {
   overflow-x: hidden;
   overflow-y: hidden;
+  margin-right: 0;
+
+}
+.days,.employ {
+  background-color: #071833;
+  color: white;
+  text-align: center;
 }
 #days, #emp{
 background-color: #071833;
