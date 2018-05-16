@@ -14,12 +14,28 @@ let employee;
 
       }
     //  console.log(empArry.toString());
+    // loop through the local storage and pull the data
 for(let j = 0; j < empArry.length; j++){
+
   employee = JSON.parse(localStorage.getItem(empArry[j]));
-  for(let k = 0; k < employee.Task.length; k++){
-      console.log(employee['Employee Name']);
-      console.log(employee.Task[k]["Task Name"])
+  // If employee has any task
+  if("Task" in employee){
+    // while employee has task in his array
+  for(let taskIndex = 0; taskIndex < employee.Task.length; taskIndex++){
+      //console.log(employee['Employee Name']);
+      //console.log(employee.Task[taskIndex]["Task Name"])
+      //
+      if($("#wholeTable #emp0-1").text() == employee['Employee Name']){
+        $('#1-1').html(employee.Task[taskIndex]["Task Name"]);
+
+      }
+
+}
+
+
+
     }
+
 }
 
 
