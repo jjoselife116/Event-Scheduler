@@ -3,22 +3,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Test Index </title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
+    <title> Scheduling Calendar </title>
 
     <link href="addTask.css" rel="stylesheet">
     <link href="teststyle.css" rel="stylesheet">
 
+    <script src="jquery.js"></script>
     <script src="addEmp.js"></script>
     <script src="addTask.js"></script>
     <script src="javascript.js"></script>
     <script src="displayTask.js"></script>
-
-
-    <!-- Drag to scroll table script (Open Source javascript) -->
   </head>
 
   <body>
@@ -31,129 +25,127 @@
       var dayCount = sysDay.getDay();
       var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-
-
-
-
-
       let employee;
       let typeofKey;
       let x = 1;
-      let y =0;
+      let y = 0;
       var drawTable = '<table id = wholeTable>';
       drawTable += "<thead>";
       drawTable += "<tr>";
       drawTable += "<th style='color:white;'>Employee Name</th>";
 
-      // for (let i = sysDate.getDate() - 7; i <= sysDate.getDate() + 7; i++) {
-      //   drawTable += "<th class = days id = days" + x + '-' + y + ">" + weekdays[sysDay.getDay()]  + " " + sysMonth.getMonth() + "/" + i + "</th>";
-      //   x++;
-      // }
-
       /* Finds the logged earliest and latest dates */
-      let startDate = 10000000000000000000000000000000000000000000000000000;
+      let startDate = 10000000000000000000;
       let endDate = 0;
       let startDateN = 0;
       let endDateN = 0;
       for (var key in localStorage) {
         typeofKey = (typeof localStorage[key]);
-        if(typeofKey == 'string' || typeofKey instanceof String ){
+        if (typeofKey == 'string' || typeofKey instanceof String ){
           emp1 = JSON.parse(localStorage.getItem(key));
-          if("Task" in emp1){
-          for (let i = 0; i < emp1.Task.length; i++) {
-            startDateN = parseInt(emp1.Task[i]['Task Start Date'].substr(0,4) + emp1.Task[i]['Task Start Date'].substr(5,2) + emp1.Task[i]['Task Start Date'].substr(8,2));
-            endDateN = parseInt(emp1.Task[i]['Task End Date'].substr(0,4) + emp1.Task[i]['Task End Date'].substr(5,2) + emp1.Task[i]['Task End Date'].substr(8,2));
-            if(endDateN > endDate) {
-              endDate = endDateN;
-            }
-            if(startDateN < startDate) {
-              startDate = startDateN;
+          if ("Task" in emp1) {
+            for (let i = 0; i < emp1.Task.length; i++) {
+              startDateN = parseInt(emp1.Task[i]['Task Start Date'].substr(0,4) + emp1.Task[i]['Task Start Date'].substr(5,2) + emp1.Task[i]['Task Start Date'].substr(8,2));
+              endDateN = parseInt(emp1.Task[i]['Task End Date'].substr(0,4) + emp1.Task[i]['Task End Date'].substr(5,2) + emp1.Task[i]['Task End Date'].substr(8,2));
+              if(endDateN > endDate) {
+                endDate = endDateN;
+              }
+              if(startDateN < startDate) {
+                startDate = startDateN;
+              }
             }
           }
         }
-        }
       }
-      //console.log(startDate + " -> " + endDate);
+
       let numStr = null;
       let numStrDay = null;
       let finalDay = null;
       let finalDayF = null;
+      let colCount = 0;
       for (let i = startDate; i <= endDate; i++) {
-        numStr = (i.toString()).substr(5,2);
-        numStrDay = (i.toString()).substr(8,2);
+        numStr = (i.toString()).substr(4,2);
+        numStrDay = (i.toString()).substr(6,2);
         if(numStr == '09' || numStr == '04' || numStr == '06' || numStr == '11') {
           if(numStrDay == '30') {
             i += 70;
-            drawTable += "<th class = days id = days" + x + '-' + y + ">" + i + "</th>";
+          }
+          else {
+            finalDay = i.toString()
+            finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
+            drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
+            colCount++;
           }
         }
         else if(numStr == '01' || numStr == '03' || numStr == '05' || numStr == '07' || numStr == '08' || numStr == '10' || numStr == '12') {
           if(numStrDay == '31') {
             i += 69;
-            drawTable += "<th class = days id = days" + x + '-' + y + ">" + i + "</th>";
+          }
+          else {
+            finalDay = i.toString()
+            finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
+            drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
+            colCount++;
           }
         }
         else if(numStr == '02') {
           if(numStrDay == '28') {
             i += 72;
-            drawTable += "<th class = days id = days" + x + '-' + y + ">" + i + "</th>";
+          }
+          else {
+            finalDay = i.toString()
+            finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
+            drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
+            colCount++;
           }
         }
         else {
           finalDay = i.toString()
           finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
           drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
+          colCount++;
         }
-            x++;
+        x++;
       }
-
 
       drawTable += "</tr>";
       drawTable += "</thead>";
       drawTable += '<tbody class="dragscroll">';
 
+      drawTable += '<tr>';
+      //counters for the employee and date rows/col
+      x=0;
+      y=1;
 
-
-        drawTable += '<tr>';
-        //counters for the employee and date rows/col
-        x=0;
-        y=1;
-
-        // counter for the main table
-        let z =1;
-        for (var key in localStorage) {
-
-            typeofKey = (typeof localStorage[key]);
+      // counter for the main table
+      let z =1;
+      for (var key in localStorage) {
+        typeofKey = (typeof localStorage[key]);
 
         //cols of the employee names
         if(typeofKey == 'string' || typeofKey instanceof String ){
-            employee = JSON.parse(localStorage.getItem(key));
-        drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "</td>";
+          employee = JSON.parse(localStorage.getItem(key));
+          drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "</td>";
 
-        // rows and cols of the main table and date
-        for (let j = sysDate.getDate() - 7; j <= sysDate.getDate() + 7; j++) {
-          drawTable += "<td id =" + z + '-' + y + "></td>";
-          z++;
-        }
-        // set z to one to start the main tables x at 1 for off by one error
-        z=1;
-        //reset x for each row
-        x=0;
-
+          // rows and cols of the main table and date
+          for (let j = 0; j < colCount; j++) {
+            drawTable += "<td id =" + z + '-' + y + "></td>";
+            z++;
+          }
+          // set z to one to start the main tables x at 1 for off by one error
+          z=1;
+          //reset x for each row
+          x=0;
 
         drawTable += '</tr>';
         y++;
-
-
-
+      }
     }
 
-}
-
-      drawTable += "</tbody>";
-      drawTable += "</table>";
-      document.write(drawTable);
-    </script>
+    drawTable += "</tbody>";
+    drawTable += "</table>";
+    document.write(drawTable);
+  </script>
 
     <div id="addEmployee" class="modal">
         <!--form addEmployee-->
@@ -234,7 +226,6 @@
       <pre id=output></pre>
 
       <script> console.log() </script>
-
 
       <!--Add Task button-->
       <div class="employee-mod-btn">
