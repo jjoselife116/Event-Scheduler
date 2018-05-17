@@ -60,7 +60,7 @@
       let finalDay = null;
       let finalDayF = null;
       let colCount = 0;
-      for (let i = startDate; i <= endDate; i++) {
+      for (let i = startDate; i <= endDate +1; i++) {
         numStr = (i.toString()).substr(4,2);
         numStrDay = (i.toString()).substr(6,2);
         if(numStr == '09' || numStr == '04' || numStr == '06' || numStr == '11') {
@@ -131,6 +131,25 @@
         drawTable += '</tr>';
         y++;
       }
+
+    }
+   drawTable += '<tr>';
+   var noRows = 10 - localStorage.length;
+    for(; noRows >= 0; noRows--){
+
+      drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + "" + "</td>";
+      // rows and cols of the main table and date
+      for (let j = 0; j < colCount; j++) {
+        drawTable += "<td id =" + z + '-' + y + "></td>";
+        z++;
+      }
+      // set z to one to start the main tables x at 1 for off by one error
+      z=1;
+      //reset x for each row
+      x=0;
+    drawTable += '</tr>';
+    y++;
+
     }
     drawTable += "</tbody>";
     drawTable += "</table>";
