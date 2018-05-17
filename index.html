@@ -32,11 +32,39 @@
       drawTable += "<thead>";
       drawTable += "<tr>";
       drawTable += "<th style='color:white;'>Employee Name</th>";
+
+
+
+      let today = new Date();
+      let dd = today.getDate();
+      let mm = today.getMonth()+1; //January is 0!
+      let yyyy = today.getFullYear();
+
+      let oneWeekAhead = new Date();
+      let nextWeek = today.getDate() + 10;
+
+
+      if(dd<10 || nextWeek <10) {
+          dd = '0'+dd
+          nextWeek = '0' + nextWeek;
+      }
+
+      if(mm<10) {
+          mm = '0'+mm
+      }
+
+      let edate = yyyy + mm + nextWeek;
+
+      console.log(edate);
+
+
       /* Finds the logged earliest and latest dates */
-      let startDate = 10000000000000000000;
-      let endDate = 0;
-      let startDateN = 0;
-      let endDateN = 0;
+      //let startDate = 20180501;
+      let startDate  = yyyy +  mm + dd;
+      let endDate = parseInt(edate);
+      let startDateN = 20180501;
+      let endDateN = 20180531;
+      if( localStorage.length > 0){
       for (var key in localStorage) {
         typeofKey = (typeof localStorage[key]);
         if (typeofKey == 'string' || typeofKey instanceof String ){
@@ -55,6 +83,7 @@
           }
         }
       }
+    }
       let numStr = null;
       let numStrDay = null;
       let finalDay = null;
