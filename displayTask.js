@@ -9,9 +9,6 @@ let employee;
       for (var i = 0; i < localStorage.length; i++){
 
         empArry.push(localStorage.key(i))
-
-
-
       }
     //  console.log(empArry.toString());
     // loop through the local storage and pull the data
