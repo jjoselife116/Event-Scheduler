@@ -9,7 +9,6 @@ table {
 }
 
 th, td {
-
   border: 0.0925em solid black;
   width: 8.75em;
   height: 2.1875em;
@@ -33,13 +32,9 @@ th, td {
 /* Settings for Tasks table */
 .tableTasks {
   width:200%;
-
   empty-cells: show;
   height:62.5em;
   line-height: 2.1875em;
-
-
-
   width: 6.25em;
 }
 
