@@ -32,35 +32,51 @@
       drawTable += "<thead>";
       drawTable += "<tr>";
       drawTable += "<th style='color:white;'>Employee Name</th>";
-
-
-
       let today = new Date();
       let dd = today.getDate();
       let mm = today.getMonth()+1; //January is 0!
+      let mmN = mm;
       let yyyy = today.getFullYear();
-
       let oneWeekAhead = new Date();
-      let nextWeek = today.getDate() + 10;
+      let nextWeek = (today.getDate()+10) + 10;
 
-
-      if(dd<10 || nextWeek <10) {
-          dd = '0'+dd
-          nextWeek = '0' + nextWeek;
+      if (nextWeek > 30 && (mmN == 9 || mmN == 4 || mmN == 6 || mmN == 11)) {
+        mmN++;
+        nextWeek -= 30;
+      }
+      else if (nextWeek > 31 && (mmN == 1 || mmN == 3 || mmN == 5 || mmN == 7 || mmN == 8 || mmN == 10 || mmN == 12)) {
+        mmN++;
+        nextWeek -= 31;
+      }
+      else if (nextWeek > 28 && mmN == 2) {
+        mmN++;
+        nextWeek -= 28;
       }
 
-      if(mm<10) {
-          mm = '0'+mm
+      if(dd < 10) {
+        dd = '0'+ dd;
       }
 
-      let edate = yyyy + mm + nextWeek;
+      if(nextWeek < 10) {
+        nextWeek = '0' + nextWeek;
+      }
 
-      console.log(edate);
+      if(mmN < 10) {
+          mmN = '0' + mmN
+      }
 
+      if(mm < 10) {
+        mm = '0' + mm;
+      }
+
+      let edate = yyyy + mmN + nextWeek;
 
       /* Finds the logged earliest and latest dates */
       //let startDate = 20180501;
-      let startDate  = yyyy +  mm + dd;
+
+      let startDate1  = yyyy.toString() +  mm.toString() + dd.toString();
+      alert(startDate1);
+      let startDate = parseInt(startDate1);
       let endDate = parseInt(edate);
       let startDateN = 20180501;
       let endDateN = 20180531;
@@ -160,12 +176,10 @@
         drawTable += '</tr>';
         y++;
       }
-
     }
    drawTable += '<tr>';
    var noRows = 10 - localStorage.length;
     for(; noRows >= 0; noRows--){
-
       drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + "" + "</td>";
       // rows and cols of the main table and date
       for (let j = 0; j < colCount; j++) {
@@ -178,7 +192,6 @@
       x=0;
     drawTable += '</tr>';
     y++;
-
     }
     drawTable += "</tbody>";
     drawTable += "</table>";
