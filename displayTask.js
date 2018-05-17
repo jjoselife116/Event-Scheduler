@@ -25,10 +25,12 @@ for(let j = 0; j < empArry.length; j++){
       //console.log(employee['Employee Name']);
       //console.log(employee.Task[taskIndex]["Task Name"])
       //
+
       if($("#wholeTable #emp0-1").text() == employee['Employee Name']){
         $('#1-1').html(employee.Task[taskIndex]["Task Name"]);
 
       }
+      console.log($("#wholeTable #emp0-1").text());
 
 }
 

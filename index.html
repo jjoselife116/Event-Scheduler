@@ -24,7 +24,6 @@
       var sysMonth = new Date();
       var dayCount = sysDay.getDay();
       var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
       let employee;
       let typeofKey;
       let x = 1;
@@ -33,7 +32,6 @@
       drawTable += "<thead>";
       drawTable += "<tr>";
       drawTable += "<th style='color:white;'>Employee Name</th>";
-
       /* Finds the logged earliest and latest dates */
       let startDate = 10000000000000000000;
       let endDate = 0;
@@ -57,7 +55,6 @@
           }
         }
       }
-
       let numStr = null;
       let numStrDay = null;
       let finalDay = null;
@@ -107,26 +104,21 @@
         }
         x++;
       }
-
       drawTable += "</tr>";
       drawTable += "</thead>";
       drawTable += '<tbody class="dragscroll">';
-
       drawTable += '<tr>';
       //counters for the employee and date rows/col
       x=0;
       y=1;
-
       // counter for the main table
       let z =1;
       for (var key in localStorage) {
         typeofKey = (typeof localStorage[key]);
-
         //cols of the employee names
         if(typeofKey == 'string' || typeofKey instanceof String ){
           employee = JSON.parse(localStorage.getItem(key));
           drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "</td>";
-
           // rows and cols of the main table and date
           for (let j = 0; j < colCount; j++) {
             drawTable += "<td id =" + z + '-' + y + "></td>";
@@ -136,12 +128,10 @@
           z=1;
           //reset x for each row
           x=0;
-
         drawTable += '</tr>';
         y++;
       }
     }
-
     drawTable += "</tbody>";
     drawTable += "</table>";
     document.write(drawTable);
