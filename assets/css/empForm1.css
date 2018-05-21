@@ -2427,7 +2427,7 @@ pre code {
   margin-left: -15px;
   margin-right: -15px;
   position: relative;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 }
 /* line 14, /usr/local/rvm/gems/ruby-2.4.0/gems/bootstrap-sass-3.3.7/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
 .row:before, .row:after {

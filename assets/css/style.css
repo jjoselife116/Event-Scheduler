@@ -55,7 +55,8 @@ body {
 
 .container input[type="date"] {
   display: block;
-	height: 27px;
+	width: 162px;
+	/* height: 27px; */
   line-height: 27px;
 }
 
