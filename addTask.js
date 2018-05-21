@@ -9,9 +9,13 @@ function submit_json(form){
 let employee = localStorage.getItem($('#empDropDown').val());
 
 
+<<<<<<< HEAD
 
 
 employee = JSON.parse(employee);
+=======
+($('#empDropDown').val());
+>>>>>>> 5a8639f478724d10c93013ff3c78568f53117fbb
 
 
 
