@@ -1,313 +1,419 @@
-<!-- https://datatables.net/ -->
-
-<!DOCTYPE html>
 <html>
-  <head>
-    <title> Scheduling Calendar </title>
 
-    <link href="addTask.css" rel="stylesheet">
-    <link href="teststyle.css" rel="stylesheet">
+<head>
+    <title>Event Scheduler</title>
 
-    <script src="jquery.js"></script>
-    <script src="addEmp.js"></script>
-    <script src="addTask.js"></script>
-    <script src="javascript.js"></script>
-    <script src="displayTask.js"></script>
-  </head>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-  <body>
-    <h2 align="center">Scheduling Calendar</h2>
+        <script src="assets/js/script.js"></script>
 
-    <script>
-      var sysDate = new Date();
-      var sysDay = new Date();
-      var sysMonth = new Date();
-      var dayCount = sysDay.getDay();
-      var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      let employee;
-      let typeofKey;
-      let x = 1;
-      let y = 0;
-      let trInc= 0;
-      var drawTable = '<table id = wholeTable>';
-      drawTable += "<thead>";
-      drawTable += "<tr>";
-      drawTable += "<th style='color:white;'>Employee Name</th>";
-      let today = new Date();
-      let dd = today.getDate();
-      let mm = today.getMonth()+1; //January is 0!
-      let mmN = mm;
-      let yyyy = today.getFullYear();
-      let oneWeekAhead = new Date();
-      let nextWeek = (today.getDate()+10) + 10;
+      <!----------------------------------------------------->
+        <link href="assets/css/addTask.css" rel="stylesheet">
+        <link href="assets/css/teststyle.css" rel="stylesheet">
+        <link href="assets/css/empForm1.css" rel="stylesheet">
 
-      if (nextWeek > 30 && (mmN == 9 || mmN == 4 || mmN == 6 || mmN == 11)) {
-        mmN++;
-        nextWeek -= 30;
-      }
-      else if (nextWeek > 31 && (mmN == 1 || mmN == 3 || mmN == 5 || mmN == 7 || mmN == 8 || mmN == 10 || mmN == 12)) {
-        mmN++;
-        nextWeek -= 31;
-      }
-      else if (nextWeek > 28 && mmN == 2) {
-        mmN++;
-        nextWeek -= 28;
-      }
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/addEmp.js"></script>
+        <script src="assets/js/addTask.js"></script>
+        <script src="assets/js/javascript.js"></script>
+        <script src="assets/js/displayTask.js"></script>
 
-      if(dd < 10) {
-        dd = '0'+ dd;
-      }
+</head>
 
-      if(nextWeek < 10) {
-        nextWeek = '0' + nextWeek;
-      }
+<body>
 
-      if(mmN < 10) {
-          mmN = '0' + mmN
-      }
+    <div id="mainContainer">
 
-      if(mm < 10) {
-        mm = '0' + mm;
-      }
+        <div id="topContainer">
 
-      let edate = yyyy + mmN + nextWeek;
+            <div id="navBarContainer">
+                <nav class="navBar">
 
-      /* Finds the logged earliest and latest dates */
+                    <span role="link" tabindex="0" class="logo">
+			                     <img src="assets/images/icons/head_emerald.png">
+		                </span>
 
-      let startDate1  = yyyy.toString() +  mm.toString() + dd.toString();
 
-      let startDate = parseInt(startDate1);
-      let endDate = parseInt(edate);
-      let startDateN = 20180501;
-      let endDateN = 20180531;
-      if( localStorage.length > 0){
-      for (var key in localStorage) {
-        typeofKey = (typeof localStorage[key]);
-        if (typeofKey == 'string' || typeofKey instanceof String ){
-          emp1 = JSON.parse(localStorage.getItem(key));
-          if ("Task" in emp1) {
-            for (let i = 0; i < emp1.Task.length; i++) {
-              startDateN = parseInt(emp1.Task[i]['Task Start Date'].substr(0,4) + emp1.Task[i]['Task Start Date'].substr(5,2) + emp1.Task[i]['Task Start Date'].substr(8,2));
-              endDateN = parseInt(emp1.Task[i]['Task End Date'].substr(0,4) + emp1.Task[i]['Task End Date'].substr(5,2) + emp1.Task[i]['Task End Date'].substr(8,2));
-              if(endDateN > endDate) {
-                endDate = endDateN;
-              }
-              if(startDateN < startDate) {
-                startDate = startDateN;
-              }
-            }
-          }
-        }
-      }
-    }
-      let numStr = null;
-      let numStrDay = null;
-      let finalDay = null;
-      let finalDayF = null;
-      let colCount = 0;
-      for (let i = startDate; i <= endDate +1; i++) {
-        numStr = (i.toString()).substr(4,2);
-        numStrDay = (i.toString()).substr(6,2);
-        if(numStr == '09' || numStr == '04' || numStr == '06' || numStr == '11') {
-          if(numStrDay == '30') {
-            i += 70;
-          }
-          else {
-            finalDay = i.toString()
-            finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
-            drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
-            colCount++;
-          }
-        }
-        else if(numStr == '01' || numStr == '03' || numStr == '05' || numStr == '07' || numStr == '08' || numStr == '10' || numStr == '12') {
-          if(numStrDay == '31') {
-            i += 69;
-          }
-          else {
-            finalDay = i.toString()
-            finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
-            drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
-            colCount++;
-          }
-        }
-        else if(numStr == '02') {
-          if(numStrDay == '28') {
-            i += 72;
-          }
-          else {
-            finalDay = i.toString()
-            finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
-            drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
-            colCount++;
-          }
-        }
-        else {
-          finalDay = i.toString()
-          finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
-          drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
-          colCount++;
-        }
-        x++;
-      }
-      drawTable += "</tr>";
-      drawTable += "</thead>";
-      drawTable += '<tbody class="dragscroll">';
-      drawTable += "<tr id =" + trInc + ">";
-      trInc++;
-      //counters for the employee and date rows/col
-      x=0;
-      y=1;
-      // counter for the main table
-      let z =1;
-      for (var key in localStorage) {
-        typeofKey = (typeof localStorage[key]);
-        //cols of the employee names
-        if(typeofKey == 'string' || typeofKey instanceof String ){
-          employee = JSON.parse(localStorage.getItem(key));
-          drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "</td>";
-          // rows and cols of the main table and date
-          for (let j = 0; j < colCount; j++) {
-            drawTable += "<td id =" + z + '-' + y + "></td>";
-            z++;
-          }
-          // set z to one to start the main tables x at 1 for off by one error
-          z=1;
-          //reset x for each row
-          x=0;
-        drawTable += '</tr>';
-        y++;
-      }
-    }
-   drawTable += '<tr>';
-   var noRows = 10 - localStorage.length;
-    for(; noRows >= 0; noRows--){
-      drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + "" + "</td>";
-      // rows and cols of the main table and date
-      for (let j = 0; j < colCount; j++) {
-        drawTable += "<td id =" + z + '-' + y + "></td>";
-        z++;
-      }
-      // set z to one to start the main tables x at 1 for off by one error
-      z=1;
-      //reset x for each row
-      x=0;
-    drawTable += '</tr>';
-    y++;
-    }
-    drawTable += "</tbody>";
-    drawTable += "</table>";
-    document.write(drawTable);
-  </script>
 
-    <div id="addEmployee" class="modal">
-        <!--form addEmployee-->
-    <div id="task-messages">
-        <form class="modal-content animate" method="POST" name="empForm" onsubmit="return create_employee(this);">
+                    <div class="group">
+                        <div class="navItem">
+                            <span role="link" tabindex="0" onclick="document.getElementById('addEmployee').style.display='inline-block'" class="navItemLink">Add Employee</span>
+                        </div>
 
-          <div class="container">
-            <div class="imgcontainer">
-              <span onclick="document.getElementById('addEmployee').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <div class="navItem">
+                            <span role="link" tabindex="0" onclick="document.getElementById('addTask').style.display='inline-block'" class="navItemLink">Add Task</span>
+                        </div>
+
+
+                    </div>
+
+                </nav>
             </div>
-            <label for="empName"><b>Employee Name:</b></label>
-            <input type="text" name="empName" required><br>
 
-            <label for="tskname"><b>Employee Id:</b></label>
-            <input type="text" name="empId" required><br>
+            <div id="mainViewContainer">
+                <div id="mainContent">
+                    <div class="gridViewContainer">
+                      <h2 align="center">Scheduling Calendar</h2>
 
-            <button id="submitbtn" type="submit">Submit</button>
-            <button type="button" onclick="document.getElementById('addEmployee').style.display='none'; " class="cancelbtn">Cancel</button>
-          </div>
+                        <script>
+                          var sysDate = new Date();
+                          var sysDay = new Date();
+                          var sysMonth = new Date();
+                          var dayCount = sysDay.getDay();
+                          var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                          let employee;
+                          let typeofKey;
+                          let x = 1;
+                          let y = 0;
+                          let trInc= 0;
+                          var drawTable = '<table id = wholeTable>';
+                          drawTable += "<thead>";
+                          drawTable += "<tr>";
+                          drawTable += "<th style='color:white;'>Employee Name</th>";
+                          let today = new Date();
+                          let dd = today.getDate();
+                          let mm = today.getMonth()+1; //January is 0!
+                          let mmN = mm;
+                          let yyyy = today.getFullYear();
+                          let oneWeekAhead = new Date();
+                          let nextWeek = (today.getDate()+10) + 10;
+                          if (nextWeek > 30 && (mmN == 9 || mmN == 4 || mmN == 6 || mmN == 11)) {
+                            mmN++;
+                            nextWeek -= 30;
+                          }
+                          else if (nextWeek > 31 && (mmN == 1 || mmN == 3 || mmN == 5 || mmN == 7 || mmN == 8 || mmN == 10 || mmN == 12)) {
+                            mmN++;
+                            nextWeek -= 31;
+                          }
+                          else if (nextWeek > 28 && mmN == 2) {
+                            mmN++;
+                            nextWeek -= 28;
+                          }
+                          if(dd < 10) {
+                            dd = '0'+ dd;
+                          }
+                          if(nextWeek < 10) {
+                            nextWeek = '0' + nextWeek;
+                          }
+                          if(mmN < 10) {
+                              mmN = '0' + mmN
+                          }
+                          if(mm < 10) {
+                            mm = '0' + mm;
+                          }
+                          let edate = yyyy + mmN + nextWeek;
+                          /* Finds the logged earliest and latest dates */
+                          let startDate1  = yyyy.toString() +  mm.toString() + dd.toString();
+                          let startDate = parseInt(startDate1);
+                          let endDate = parseInt(edate);
+                          let startDateN = 20180501;
+                          let endDateN = 20180531;
+                          if( localStorage.length > 0){
+                          for (var key in localStorage) {
+                            typeofKey = (typeof localStorage[key]);
+                            if (typeofKey == 'string' || typeofKey instanceof String ){
+                              emp1 = JSON.parse(localStorage.getItem(key));
+                              if ("Task" in emp1) {
+                                for (let i = 0; i < emp1.Task.length; i++) {
+                                  startDateN = parseInt(emp1.Task[i]['Task Start Date'].substr(0,4) + emp1.Task[i]['Task Start Date'].substr(5,2) + emp1.Task[i]['Task Start Date'].substr(8,2));
+                                  endDateN = parseInt(emp1.Task[i]['Task End Date'].substr(0,4) + emp1.Task[i]['Task End Date'].substr(5,2) + emp1.Task[i]['Task End Date'].substr(8,2));
+                                  if(endDateN > endDate) {
+                                    endDate = endDateN;
+                                  }
+                                  if(startDateN < startDate) {
+                                    startDate = startDateN;
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                          let numStr = null;
+                          let numStrDay = null;
+                          let finalDay = null;
+                          let finalDayF = null;
+                          let colCount = 0;
+                          for (let i = startDate; i <= endDate +1; i++) {
+                            numStr = (i.toString()).substr(4,2);
+                            numStrDay = (i.toString()).substr(6,2);
+                            if(numStr == '09' || numStr == '04' || numStr == '06' || numStr == '11') {
+                              if(numStrDay == '31') {
+                                i += 69;
+                              }
+                              else {
+                                finalDay = i.toString()
+                                finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
+                                drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
+                                colCount++;
+                              }
+                            }
+                            else if(numStr == '01' || numStr == '03' || numStr == '05' || numStr == '07' || numStr == '08' || numStr == '10' || numStr == '12') {
+                              if(numStrDay == '32') {
+                                i += 68;
+                              }
+                              else {
+                                finalDay = i.toString()
+                                finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
+                                drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
+                                colCount++;
+                              }
+                            }
+                            else if(numStr == '02') {
+                              if(numStrDay == '29') {
+                                i += 71;
+                              }
+                              else {
+                                finalDay = i.toString()
+                                finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
+                                drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
+                                colCount++;
+                              }
+                            }
+                            else {
+                              finalDay = i.toString()
+                              finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
+                              drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
+                              colCount++;
+                            }
+                            x++;
+                          }
+                          drawTable += "</tr>";
+                          drawTable += "</thead>";
+                          drawTable += '<tbody class="dragscroll">';
+                          drawTable += "<tr id =" + trInc + ">";
+                          trInc++;
+                          //counters for the employee and date rows/col
+                          x=0;
+                          y=1;
+                          // counter for the main table
+                          let z =1;
+                          for (var key in localStorage) {
+                            typeofKey = (typeof localStorage[key]);
+                            //cols of the employee names
+                            if(typeofKey == 'string' || typeofKey instanceof String ){
+                              employee = JSON.parse(localStorage.getItem(key));
+                              drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "</td>";
+                              // rows and cols of the main table and date
+                              for (let j = 0; j < colCount; j++) {
+                                drawTable += "<td class =" + z + '-' + y + "></td>";
+                                z++;
+                              }
+                              // set z to one to start the main tables x at 1 for off by one error
+                              z=1;
+                              //reset x for each row
+                              x=0;
+                            drawTable += '</tr>';
+                            y++;
+                          }
+                        }
+                       drawTable += '<tr>';
+                       var noRows = 10 - localStorage.length;
+                        for(; noRows >= 0; noRows--){
+                          drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + "" + "</td>";
+                          // rows and cols of the main table and date
+                          for (let j = 0; j < colCount; j++) {
+                            drawTable += "<td class =" + z + '-' + y + "></td>";
+                            z++;
+                          }
+                          // set z to one to start the main tables x at 1 for off by one error
+                          z=1;
+                          //reset x for each row
+                          x=0;
+                        drawTable += '</tr>';
+                        y++;
+                        }
+                        drawTable += "</tbody>";
+                        drawTable += "</table>";
+                        document.write(drawTable);
+                      </script>
 
-          <div class="container" style="background-color:#f1f1f1">
+                      <div id="addEmployee" class="modal">
+                          <!--form addEmployee-->
+                      <div id="task-messages">
+                          <form class="modal-content animate" id="" accept-charset="UTF-8" method="POST" name="empForm" onsubmit="return create_employee(this);">
 
-          </div>
-        </form>
-        </div>
-      </div>
+                              <div class="container">
 
-    <div id="addTask" class="modal">
-      <!--form addTask-->
-      <div id="task-messages">
-            <form class="modal-content animate" method="POST" name="taskForm" onsubmit="return submit_json(this);">
+                                <div class="imgcontainer">
+                                  <span onclick="document.getElementById('addEmployee').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                </div>
 
-              <div class="container">
-                <div class="imgcontainer">
-                  <span onclick="document.getElementById('addTask').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                <div style="margin-top:50px;" class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+
+                                            <div class="panel-title"><strong>Add Employee</strong>
+                                                <div class="pull-right">
+                                                    <div style="margin-top: -6px">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div style="padding-top:30px" class="panel-body">
+                                          <div id="labelinputc" class="labelinputclass">
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label for="empName">Employee Name:</label>
+                                                    <input class="form-control" type="text" name="empName" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label for="empId">Employee ID:</label>
+                                                    <input class="form-control" type="text" name="empId" required>
+                                                </div>
+
+                                            </div>
+                                          </div>
+                                            <br>
+                                            <div id="buttonget">
+                                              <div style="float: left;">
+                                                <button id="submitbtn" type="submit" class="btn btn-success">Submit</button>
+                                              </div>
+                                              <div style="float: right;">
+                                                <button type="button" onclick="document.getElementById('addEmployee').style.display='none'" class="btn btn-danger" >Cancel</button>
+                                              </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </form>
+                          </div>
+                        </div>
+
+                      <div id="addTask" class="modal">
+                        <!--form addTask-->
+                        <div id="task-messages">
+                              <form class="modal-content animate" accept-charset="UTF-8" method="POST" name="taskForm" onsubmit="return submit_json(this);">
+
+                                <div class="container">
+
+                                  <div class="imgcontainer">
+                                    <span onclick="document.getElementById('addTask').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                  </div>
+
+                                  <div style="margin-top:50px;" class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2">
+                                      <div class="panel panel-default">
+                                          <div class="panel-heading">
+
+                                              <div class="panel-title"><strong>Add Task</strong>
+                                                  <div class="pull-right">
+                                                      <div style="margin-top: -6px">
+
+                                                      </div>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+                                          <div style="padding-top:30px" class="panel-body">
+                                            <div id="labelinputc" class="labelinputclass">
+                                              <div class="row">
+                                                  <div class="col-md-9">
+                                                      <label for="emplName">Employee to add Task to:</label>
+                                                      <select id ="empDropDown" name="emplName" ></select><br>
+                                                  </div>
+                                              </div>
+
+                                              <div class="row">
+                                                  <div class="col-md-9">
+                                                      <label for="tskname">Task Name:</label>
+                                                      <input class="form-control" type="text" name="tskname" required>
+                                                  </div>
+                                              </div>
+
+                                              <div class="row">
+                                                  <div class="col-md-9">
+                                                      <label for="tskdes">Task Description:</label>
+                                                      <input class="form-control" type="text" name="tskdes" required>
+                                                  </div>
+                                              </div>
+
+
+                                              <div class="datefields">
+                                                <div class="field-wrap1">
+                                                  <div class="row">
+                                                      <div class="col-md-9">
+                                                          <label for="=tskstart">Start Date:</label>
+                                                          <input class="form-control" type="date" name="tskstart" required>
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="row">
+                                                      <div class="col-md-9">
+                                                          <label for="tskend">End Date:</label>
+                                                          <input class="form-control" type="date" name="tskend" required>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                              <div class="row">
+                                                  <div class="col-md-9">
+                                                      <label for="tskStatus">Task Status:</label>
+                                                      <input class="form-control" type="text" name="tskStatus" required>
+                                                  </div>
+                                              </div>
+
+                                            </div>
+                                              <br>
+                                            <div id="buttonget">
+                                                <div style="float: left;">
+                                                  <button id="submitbtn" type="submit" class="btn btn-success">Submit</button>
+                                                </div>
+                                                <div style="float: right;">
+                                                  <button type="button" onclick="document.getElementById('addTask').style.display='none'" class="btn btn-danger" >Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <script>
+
+                              let empArry = [];
+
+                              for (var i = 0; i < localStorage.length; i++){
+                                  empArry.push(localStorage.key(i))
+                              }
+
+                              for(let j = 0; j < empArry.length; j++){
+                                employee = JSON.parse(localStorage.getItem(empArry[j]));
+                                console.log(employee["Employee Name"]);
+                                $("#empDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+                              }
+                              </script>
+
+                              </form>
+                          </div>
+                      </div>
+
+                      <script>
+                        // Get the modal
+                        var modal = document.getElementById('addEmployee');
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function(event) {
+                          if (event.target == modal) {
+                              modal.style.display = "none";
+                          }
+                        }
+                      </script>
+
+                        <!-- <pre id=output></pre> -->
+
+                        <script> console.log() </script>
+
+
+                    </div>
                 </div>
+          </div>
 
-
-                <label for="emplName"><b>Employee to add Task to:</b></label>
-                <select id ="empDropDown" name="emplName" ></select><br>
-                <label for="tskname"><b>Task Name:</b></label>
-                <input type="text" name="tskname" required><br>
-
-                <label for="tskdes"><b>Task Descripts:</b></label><br>
-                <textarea rows="4" cols="50" name="tskdes">
-                  Enter Task Descripts here...</textarea><br>
-
-                <label for="tskstart"><b>Task Start Date:</b></label>
-                <input type="date" name="tskstart" required><br>
-
-                <label for="tskend"><b>Task End Date:</b></label>
-                <input type="date"  name="tskend" required><br>
-
-                <label for="tskStatus"><b>Task Status:</b></label>
-                <input type="text" name="tskStatus" required><br>
-
-                <button id="submitbtn" type="submit">Submit</button>
-
-                <button type="button" onclick="document.getElementById('addTask').style.display='none'" class="cancelbtn">Cancel</button>
-              </div>
-
-              <div class="container" style="background-color:#f1f1f1">
-
-              </div>
-
-              <script>
-
-              let empArry = [];
-
-              for (var i = 0; i < localStorage.length; i++){
-                  empArry.push(localStorage.key(i))
-              }
-
-              for(let j = 0; j < empArry.length; j++){
-                employee = JSON.parse(localStorage.getItem(empArry[j]));
-                console.log(employee["Employee Name"]);
-                $("#empDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
-              }
-              </script>
-            </form>
         </div>
-    </div>
 
-      <script>
-        // Get the modal
-        var modal = document.getElementById('addEmployee');
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-          if (event.target == modal) {
-              modal.style.display = "none";
-          }
-        }
-      </script>
-
-
-
-      <pre id=output></pre>
-
-      <script> console.log() </script>
-
-      <!--Add Task button-->
-      <div class="employee-mod-btn">
-        <button type="button" class="add-Emp-button"  onclick="document.getElementById('addEmployee').style.display='block'">Add Employee</button>
-
-        <button type="button" id ="taskBtn"  class="ec-today-button ec-button ec-state-default ec-corner-left ec-corner-right " onclick="document.getElementById('addTask').style.display='block' ">Add Task
-          </button>
-
-
-      </div>
-
-  </body>
+</body>
 
 </html>
