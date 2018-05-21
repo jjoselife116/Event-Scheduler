@@ -66,6 +66,10 @@ tbody tr td:nth-child(1) {  /*the first cell in each tr*/
   text-align: center;
 }
 
+.tsContainer{
+  background-color: #071833;
+}
+
 #days, #emp{
 background-color: #071833;
 color: white;
