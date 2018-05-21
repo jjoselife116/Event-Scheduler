@@ -53,7 +53,7 @@
             <div id="mainViewContainer">
                 <div id="mainContent">
                     <div class="gridViewContainer">
-                        <h2 align="center">Scheduling Calendar</h2>
+                      <h2 align="center">Scheduling Calendar</h2>
 
                         <script>
                           var sysDate = new Date();
@@ -77,7 +77,6 @@
                           let yyyy = today.getFullYear();
                           let oneWeekAhead = new Date();
                           let nextWeek = (today.getDate()+10) + 10;
-
                           if (nextWeek > 30 && (mmN == 9 || mmN == 4 || mmN == 6 || mmN == 11)) {
                             mmN++;
                             nextWeek -= 30;
@@ -90,29 +89,21 @@
                             mmN++;
                             nextWeek -= 28;
                           }
-
                           if(dd < 10) {
                             dd = '0'+ dd;
                           }
-
                           if(nextWeek < 10) {
                             nextWeek = '0' + nextWeek;
                           }
-
                           if(mmN < 10) {
                               mmN = '0' + mmN
                           }
-
                           if(mm < 10) {
                             mm = '0' + mm;
                           }
-
                           let edate = yyyy + mmN + nextWeek;
-
                           /* Finds the logged earliest and latest dates */
-
                           let startDate1  = yyyy.toString() +  mm.toString() + dd.toString();
-
                           let startDate = parseInt(startDate1);
                           let endDate = parseInt(edate);
                           let startDateN = 20180501;
@@ -146,17 +137,6 @@
                             numStr = (i.toString()).substr(4,2);
                             numStrDay = (i.toString()).substr(6,2);
                             if(numStr == '09' || numStr == '04' || numStr == '06' || numStr == '11') {
-                              if(numStrDay == '30') {
-                                i += 70;
-                              }
-                              else {
-                                finalDay = i.toString()
-                                finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
-                                drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
-                                colCount++;
-                              }
-                            }
-                            else if(numStr == '01' || numStr == '03' || numStr == '05' || numStr == '07' || numStr == '08' || numStr == '10' || numStr == '12') {
                               if(numStrDay == '31') {
                                 i += 69;
                               }
@@ -167,9 +147,20 @@
                                 colCount++;
                               }
                             }
+                            else if(numStr == '01' || numStr == '03' || numStr == '05' || numStr == '07' || numStr == '08' || numStr == '10' || numStr == '12') {
+                              if(numStrDay == '32') {
+                                i += 68;
+                              }
+                              else {
+                                finalDay = i.toString()
+                                finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
+                                drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
+                                colCount++;
+                              }
+                            }
                             else if(numStr == '02') {
-                              if(numStrDay == '28') {
-                                i += 72;
+                              if(numStrDay == '29') {
+                                i += 71;
                               }
                               else {
                                 finalDay = i.toString()
@@ -204,7 +195,7 @@
                               drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "</td>";
                               // rows and cols of the main table and date
                               for (let j = 0; j < colCount; j++) {
-                                drawTable += "<td id =" + z + '-' + y + "></td>";
+                                drawTable += "<td class =" + z + '-' + y + "></td>";
                                 z++;
                               }
                               // set z to one to start the main tables x at 1 for off by one error
@@ -221,7 +212,7 @@
                           drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + "" + "</td>";
                           // rows and cols of the main table and date
                           for (let j = 0; j < colCount; j++) {
-                            drawTable += "<td id =" + z + '-' + y + "></td>";
+                            drawTable += "<td class =" + z + '-' + y + "></td>";
                             z++;
                           }
                           // set z to one to start the main tables x at 1 for off by one error
