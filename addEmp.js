@@ -10,7 +10,8 @@ if(form.empName.value in localStorage){
   let employee = {
     "Employee Name"                 : form.empName.value,
     "Employee Id"                   : form.empId.value,
-    
+    "Task" : [],
+
         };
 
   // set the local storage to the new employee array

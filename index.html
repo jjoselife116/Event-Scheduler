@@ -28,15 +28,59 @@
       let typeofKey;
       let x = 1;
       let y = 0;
+      let trInc= 0;
       var drawTable = '<table id = wholeTable>';
       drawTable += "<thead>";
       drawTable += "<tr>";
       drawTable += "<th style='color:white;'>Employee Name</th>";
+      let today = new Date();
+      let dd = today.getDate();
+      let mm = today.getMonth()+1; //January is 0!
+      let mmN = mm;
+      let yyyy = today.getFullYear();
+      let oneWeekAhead = new Date();
+      let nextWeek = (today.getDate()+10) + 10;
+
+      if (nextWeek > 30 && (mmN == 9 || mmN == 4 || mmN == 6 || mmN == 11)) {
+        mmN++;
+        nextWeek -= 30;
+      }
+      else if (nextWeek > 31 && (mmN == 1 || mmN == 3 || mmN == 5 || mmN == 7 || mmN == 8 || mmN == 10 || mmN == 12)) {
+        mmN++;
+        nextWeek -= 31;
+      }
+      else if (nextWeek > 28 && mmN == 2) {
+        mmN++;
+        nextWeek -= 28;
+      }
+
+      if(dd < 10) {
+        dd = '0'+ dd;
+      }
+
+      if(nextWeek < 10) {
+        nextWeek = '0' + nextWeek;
+      }
+
+      if(mmN < 10) {
+          mmN = '0' + mmN
+      }
+
+      if(mm < 10) {
+        mm = '0' + mm;
+      }
+
+      let edate = yyyy + mmN + nextWeek;
+
       /* Finds the logged earliest and latest dates */
-      let startDate = 10000000000000000000;
-      let endDate = 0;
-      let startDateN = 0;
-      let endDateN = 0;
+
+      let startDate1  = yyyy.toString() +  mm.toString() + dd.toString();
+
+      let startDate = parseInt(startDate1);
+      let endDate = parseInt(edate);
+      let startDateN = 20180501;
+      let endDateN = 20180531;
+      if( localStorage.length > 0){
       for (var key in localStorage) {
         typeofKey = (typeof localStorage[key]);
         if (typeofKey == 'string' || typeofKey instanceof String ){
@@ -55,12 +99,13 @@
           }
         }
       }
+    }
       let numStr = null;
       let numStrDay = null;
       let finalDay = null;
       let finalDayF = null;
       let colCount = 0;
-      for (let i = startDate; i <= endDate; i++) {
+      for (let i = startDate; i <= endDate +1; i++) {
         numStr = (i.toString()).substr(4,2);
         numStrDay = (i.toString()).substr(6,2);
         if(numStr == '09' || numStr == '04' || numStr == '06' || numStr == '11') {
@@ -107,7 +152,8 @@
       drawTable += "</tr>";
       drawTable += "</thead>";
       drawTable += '<tbody class="dragscroll">';
-      drawTable += '<tr>';
+      drawTable += "<tr id =" + trInc + ">";
+      trInc++;
       //counters for the employee and date rows/col
       x=0;
       y=1;
@@ -131,6 +177,22 @@
         drawTable += '</tr>';
         y++;
       }
+    }
+   drawTable += '<tr>';
+   var noRows = 10 - localStorage.length;
+    for(; noRows >= 0; noRows--){
+      drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + "" + "</td>";
+      // rows and cols of the main table and date
+      for (let j = 0; j < colCount; j++) {
+        drawTable += "<td id =" + z + '-' + y + "></td>";
+        z++;
+      }
+      // set z to one to start the main tables x at 1 for off by one error
+      z=1;
+      //reset x for each row
+      x=0;
+    drawTable += '</tr>';
+    y++;
     }
     drawTable += "</tbody>";
     drawTable += "</table>";
@@ -173,8 +235,9 @@
                   <span onclick="document.getElementById('addTask').style.display='none'" class="close" title="Close Modal">&times;</span>
                 </div>
 
+
                 <label for="emplName"><b>Employee to add Task to:</b></label>
-                <input typr="text" name="emplName" required><br>
+                <select id ="empDropDown" name="emplName" ></select><br>
                 <label for="tskname"><b>Task Name:</b></label>
                 <input type="text" name="tskname" required><br>
 
@@ -192,12 +255,28 @@
                 <input type="text" name="tskStatus" required><br>
 
                 <button id="submitbtn" type="submit">Submit</button>
+
                 <button type="button" onclick="document.getElementById('addTask').style.display='none'" class="cancelbtn">Cancel</button>
               </div>
 
               <div class="container" style="background-color:#f1f1f1">
 
               </div>
+
+              <script>
+
+              let empArry = [];
+
+              for (var i = 0; i < localStorage.length; i++){
+                  empArry.push(localStorage.key(i))
+              }
+
+              for(let j = 0; j < empArry.length; j++){
+                employee = JSON.parse(localStorage.getItem(empArry[j]));
+                console.log(employee["Employee Name"]);
+                $("#empDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+              }
+              </script>
             </form>
         </div>
     </div>
@@ -213,15 +292,20 @@
         }
       </script>
 
+
+
       <pre id=output></pre>
 
       <script> console.log() </script>
 
       <!--Add Task button-->
       <div class="employee-mod-btn">
-        <button type="button" class="add-Emp-button" onclick="document.getElementById('addEmployee').style.display='block'">Add Employee</button>
-        <button type="button" class="ec-today-button ec-button ec-state-default ec-corner-left ec-corner-right " onclick="document.getElementById('addTask').style.display='block'">Add Task
-        </button>
+        <button type="button" class="add-Emp-button"  onclick="document.getElementById('addEmployee').style.display='block'">Add Employee</button>
+
+        <button type="button" id ="taskBtn"  class="ec-today-button ec-button ec-state-default ec-corner-left ec-corner-right " onclick="document.getElementById('addTask').style.display='block' ">Add Task
+          </button>
+
+
       </div>
 
   </body>
