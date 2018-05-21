@@ -3,6 +3,8 @@ $(document).ready(function(){
   let typeofKey;
   let empArry = [];
   let employee;
+
+
         //cols of the employee names
   for (var i = 0; i < localStorage.length; i++){
       empArry.push(localStorage.key(i))
@@ -19,13 +21,23 @@ $(document).ready(function(){
          if($("#wholeTable #emp0-1").text() == employee['Employee Name']){
           //$('#1-1').html(employee.Task[taskIndex]["Task Name"]);
             //$( "#wholeTable #1-1" ).slice( 2, 4 ).append("<div style = 'Background-color: yellow;'> a </div>");
-            $('.dragscroll td').slice(2,4).css("background", "yellow").text(employee.Task[taskIndex]["Task Name"]);
+            //$('.dragscroll td').slice(2,9).css("background", "yellow").text(employee.Task[taskIndex]["Task Name"]);
 
         }
-        console.log(  $( "#wholeTable" ).slice( 2, 4 ));
+        console.log($( "#wholeTable" ).slice( 2, 4 ));
       }
+
     }
   }
 
 
+
+  //$("#1-1").wrap("<span class= tsContainer style = background-color: red;> ").text("hello");
 });
+
+function disableBtn(){
+
+
+   document.getElementById("taskBtn").disabled = true;
+  
+}

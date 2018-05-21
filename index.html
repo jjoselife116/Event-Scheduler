@@ -28,6 +28,7 @@
       let typeofKey;
       let x = 1;
       let y = 0;
+      let trInc= 0;
       var drawTable = '<table id = wholeTable>';
       drawTable += "<thead>";
       drawTable += "<tr>";
@@ -151,7 +152,8 @@
       drawTable += "</tr>";
       drawTable += "</thead>";
       drawTable += '<tbody class="dragscroll">';
-      drawTable += '<tr>';
+      drawTable += "<tr id =" + trInc + ">";
+      trInc++;
       //counters for the employee and date rows/col
       x=0;
       y=1;
@@ -233,8 +235,9 @@
                   <span onclick="document.getElementById('addTask').style.display='none'" class="close" title="Close Modal">&times;</span>
                 </div>
 
+
                 <label for="emplName"><b>Employee to add Task to:</b></label>
-                <input typr="text" name="emplName" required><br>
+                <select id ="empDropDown" name="emplName" ></select><br>
                 <label for="tskname"><b>Task Name:</b></label>
                 <input type="text" name="tskname" required><br>
 
@@ -252,12 +255,28 @@
                 <input type="text" name="tskStatus" required><br>
 
                 <button id="submitbtn" type="submit">Submit</button>
+
                 <button type="button" onclick="document.getElementById('addTask').style.display='none'" class="cancelbtn">Cancel</button>
               </div>
 
               <div class="container" style="background-color:#f1f1f1">
 
               </div>
+
+              <script>
+
+              let empArry = [];
+
+              for (var i = 0; i < localStorage.length; i++){
+                  empArry.push(localStorage.key(i))
+              }
+
+              for(let j = 0; j < empArry.length; j++){
+                employee = JSON.parse(localStorage.getItem(empArry[j]));
+                console.log(employee["Employee Name"]);
+                $("#empDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+              }
+              </script>
             </form>
         </div>
     </div>
@@ -281,9 +300,12 @@
 
       <!--Add Task button-->
       <div class="employee-mod-btn">
-        <button type="button" class="add-Emp-button" onclick="document.getElementById('addEmployee').style.display='block'">Add Employee</button>
-        <button type="button" class="ec-today-button ec-button ec-state-default ec-corner-left ec-corner-right " onclick="document.getElementById('addTask').style.display='block'">Add Task
-        </button>
+        <button type="button" class="add-Emp-button"  onclick="document.getElementById('addEmployee').style.display='block'">Add Employee</button>
+
+        <button type="button" id ="taskBtn"  class="ec-today-button ec-button ec-state-default ec-corner-left ec-corner-right " onclick="document.getElementById('addTask').style.display='block' ">Add Task
+          </button>
+
+
       </div>
 
   </body>
