@@ -5,8 +5,6 @@
 
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-        <script src="assets/js/script.js"></script>
-
       <!----------------------------------------------------->
         <link href="assets/css/addTask.css" rel="stylesheet">
         <link href="assets/css/teststyle.css" rel="stylesheet">
@@ -255,14 +253,14 @@
                                         <div style="padding-top:25px" class="panel-body">
                                           <div id="labelinputc" class="labelinputclass">
                                             <div class="row">
-                                                <div class="col-md-9">
+                                                <div class="marginlsi">
                                                     <label for="empName">Employee Name:</label>
                                                     <input class="form-control" type="text" name="empName" required>
                                                 </div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-md-9">
+                                                <div class="marginlsi">
                                                     <label for="empId">Employee ID:</label>
                                                     <input class="form-control" type="text" name="empId" required>
                                                 </div>
@@ -457,20 +455,20 @@
                                 empArry.push(localStorage.key(i))
                             }
                             for(j = 0; j < empArry.length; j++){
-                              employee = JSON.parse(localStorage.getItem(empArry[j]));
-                                $("#removeDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
-                        }
-                        function populate(){
-                          //
-                            $(taskDropDown).empty();
-                            for(let k = 0; k < employee.Task.length; k++){
-                            employee = localStorage.getItem(document.getElementById("removeDropDown").value);
-                            employee = JSON.parse(employee);
-                            if('Task' in employee ){
-                              $('#taskDropDown').append("<option >" + employee.Task[k]["Task Name"] + "</option>");
-                          }
-                          }
-                        }
+                                  employee = JSON.parse(localStorage.getItem(empArry[j]));
+                                    $("#removeDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+                            }
+                            function populate(){
+                              //
+                                $(taskDropDown).empty();
+                                for(let k = 0; k < employee.Task.length; k++){
+                                employee = localStorage.getItem(document.getElementById("removeDropDown").value);
+                                employee = JSON.parse(employee);
+                                if('Task' in employee ){
+                                  $('#taskDropDown').append("<option >" + employee.Task[k]["Task Name"] + "</option>");
+                              }
+                              }
+                            }
                             </script>
                           </form>
                           </div>

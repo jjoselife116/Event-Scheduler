@@ -7,8 +7,8 @@ function remove_task(form){
 
 
 
-  let indexToRemove = $("#taskDropDown").prop('selectedIndex')
-  var removed = employee.Task.splice(indexToRemove, 1);
+    let indexToRemove = $("#taskDropDown").prop('selectedIndex')
+    var removed = employee.Task.splice(indexToRemove, 1);
 
 
 
