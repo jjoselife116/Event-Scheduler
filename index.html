@@ -5,7 +5,7 @@
 
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-        <script src="assets/js/script.js"></script>
+
 
       <!----------------------------------------------------->
         <link href="assets/css/addTask.css" rel="stylesheet">
@@ -457,8 +457,11 @@
                                 empArry.push(localStorage.key(i))
                             }
                             for(j = 0; j < empArry.length; j++){
+
                               employee = JSON.parse(localStorage.getItem(empArry[j]));
+                              if('Task' in employee && employee.Task.length != 0 ){  
                                 $("#removeDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+                              }
                         }
                         function populate(){
                           //
@@ -466,7 +469,7 @@
                             for(let k = 0; k < employee.Task.length; k++){
                             employee = localStorage.getItem(document.getElementById("removeDropDown").value);
                             employee = JSON.parse(employee);
-                            if('Task' in employee ){
+                            if('Task' in employee && employee.Task[k] != undefined ){
                               $('#taskDropDown').append("<option >" + employee.Task[k]["Task Name"] + "</option>");
                           }
                           }
