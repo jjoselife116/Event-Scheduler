@@ -22,8 +22,8 @@ thead {
 }
 
 thead th {
-  min-width: 141px;
-  max-width: 141px;
+  min-width: 140px;
+  max-width: 140px;
   height: 35px;
   text-align: center;
 }
@@ -31,7 +31,7 @@ thead th {
 thead th:nth-child(1) {/*first cell in the header*/
   position: relative;
   display:float;
-  min-width: 142px;
+  min-width: 140px;
   background-color: black;
 }
 
@@ -46,6 +46,7 @@ tbody {
 
 tbody td {
   background-color: white;
+  vertical-align: top;
   min-width: 140px;
   max-width: 140px;
   border: 1px solid #222;
