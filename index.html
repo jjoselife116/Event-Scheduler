@@ -5,56 +5,43 @@
 
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-      
 
       <!----------------------------------------------------->
         <link href="assets/css/addTask.css" rel="stylesheet">
         <link href="assets/css/teststyle.css" rel="stylesheet">
         <link href="assets/css/empForm1.css" rel="stylesheet">
-
         <script src="assets/js/jquery.js"></script>
         <script src="assets/js/addEmp.js"></script>
         <script src="assets/js/addTask.js"></script>
         <script src="assets/js/javascript.js"></script>
         <script src="assets/js/displayTask.js"></script>
-
+        <script src="assets/js/removeTask.js"></script>
 </head>
-
 <body>
-
     <div id="mainContainer">
-
         <div id="topContainer">
-
             <div id="navBarContainer">
                 <nav class="navBar">
-
                     <span role="link" tabindex="0" class="logo">
 			                     <img src="assets/images/icons/head_emerald.png">
 		                </span>
-
-
-
                     <div class="group">
                         <div class="navItem">
                             <span role="link" tabindex="0" onclick="document.getElementById('addEmployee').style.display='inline-block'" class="navItemLink">Add Employee</span>
                         </div>
-
                         <div class="navItem">
                             <span role="link" tabindex="0" onclick="document.getElementById('addTask').style.display='inline-block'" class="navItemLink">Add Task</span>
                         </div>
-
-
+                        <div class="navItem">
+                            <span role="link" tabindex="0" onclick="document.getElementById('removeTask').style.display='inline-block'" class="navItemLink">Remove Task</span>
+                        </div>
                     </div>
-
                 </nav>
             </div>
-
             <div id="mainViewContainer">
                 <div id="mainContent">
                     <div class="gridViewContainer">
                       <h2 align="center">Scheduling Calendar</h2>
-
                         <script>
                           var sysDate = new Date();
                           var sysDay = new Date();
@@ -226,7 +213,6 @@
                         drawTable += "</table>";
                         document.write(drawTable);
                       </script>
-
                       <div id="addEmployee" class="modal">
                           <!--form addEmployee-->
                       <div id="task-messages">
@@ -238,7 +224,7 @@
                                   <span onclick="document.getElementById('addEmployee').style.display='none'" class="close" title="Close Modal">&times;</span>
                                 </div>
 
-                                <div style="margin-top:50px;" class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2">
+                                <div style="margin-top:40px;" class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
 
@@ -251,7 +237,7 @@
                                             </div>
 
                                         </div>
-                                        <div style="padding-top:30px" class="panel-body">
+                                        <div style="padding-top:25px" class="panel-body">
                                           <div id="labelinputc" class="labelinputclass">
                                             <div class="row">
                                                 <div class="col-md-9">
@@ -296,7 +282,7 @@
                                     <span onclick="document.getElementById('addTask').style.display='none'" class="close" title="Close Modal">&times;</span>
                                   </div>
 
-                                  <div style="margin-top:50px;" class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2">
+                                  <div style="margin-top:30px;" class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2">
                                       <div class="panel panel-default">
                                           <div class="panel-heading">
 
@@ -309,12 +295,12 @@
                                               </div>
 
                                           </div>
-                                          <div style="padding-top:30px" class="panel-body">
+                                          <div style="padding-top:15px" class="panel-body">
                                             <div id="labelinputc" class="labelinputclass">
                                               <div class="row">
                                                   <div class="col-md-9">
-                                                      <label for="emplName">Employee to add Task to:</label>
-                                                      <select id ="empDropDown" name="emplName" ></select><br>
+                                                      <label for="emplName">Employee:</label>
+                                                      <select id="empDropDown" class="form-control" name="emplName"></select>
                                                   </div>
                                               </div>
 
@@ -374,16 +360,13 @@
                               </div>
 
                               <script>
-
                               let empArry = [];
-
                               for (var i = 0; i < localStorage.length; i++){
                                   empArry.push(localStorage.key(i))
                               }
-
                               for(let j = 0; j < empArry.length; j++){
                                 employee = JSON.parse(localStorage.getItem(empArry[j]));
-                                console.log(employee["Employee Name"]);
+
                                 $("#empDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
                               }
                               </script>
@@ -391,6 +374,95 @@
                               </form>
                           </div>
                       </div>
+
+
+
+                      <div id="removeTask" class="modal">
+                          <!--remove task-->
+                      <div id="task-messages">
+                          <form class="modal-content animate" id="" accept-charset="UTF-8" method="POST" name="removeTask" onsubmit="return remove_task(this);">
+
+                              <div class="container">
+
+                                <div class="imgcontainer">
+                                  <span onclick="document.getElementById('removeTask').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                </div>
+
+                                <div style="margin-top:40px;" class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+
+                                            <div class="panel-title"><strong>Add Employee</strong>
+                                                <div class="pull-right">
+                                                    <div style="margin-top: -6px">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div style="padding-top:25px" class="panel-body">
+                                          <div id="labelinputc" class="labelinputclass">
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label for="empName">Employee to remove task from:</label>
+                                                  <select id="removeDropDown" onchange="populate()" class="form-control" name="emplName"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <label for="empId">Employee task:</label>
+                                                      <select id="taskDropDown" class="form-control" name="emplName"></select>
+                                                </div>
+
+                                            </div>
+                                          </div>
+                                            <br>
+                                            <div id="buttonget">
+                                              <div style="float: left;">
+                                                <button id="submitbtn" type="submit" class="btn btn-success">Submit</button>
+                                              </div>
+                                              <div style="float: right;">
+                                                <button type="button" onclick="document.getElementById('addEmployee').style.display='none'" class="btn btn-danger" >Cancel</button>
+                                              </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                            empArry = [];
+                            for (i = 0; i < localStorage.length; i++){
+                                empArry.push(localStorage.key(i))
+                            }
+                            for(j = 0; j < empArry.length; j++){
+                              employee = JSON.parse(localStorage.getItem(empArry[j]));
+
+
+                                $("#removeDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+
+                        }
+
+                        function populate(){
+                          //
+                            $(taskDropDown).empty();
+                            for(let k = 0; k < employee.Task.length; k++){
+                            employee = localStorage.getItem(document.getElementById("removeDropDown").value);
+                            employee = JSON.parse(employee);
+                            if('Task' in employee ){
+                              $('#taskDropDown').append("<option >" + employee.Task[k]["Task Name"] + "</option>");
+                          }
+
+                          }
+
+                        }
+                            </script>
+                          </form>
+                          </div>
+                        </div>
+
 
                       <script>
                         // Get the modal
@@ -404,8 +476,6 @@
                       </script>
 
                         <!-- <pre id=output></pre> -->
-
-                        <script> console.log() </script>
 
 
                     </div>
