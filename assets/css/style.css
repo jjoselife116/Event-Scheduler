@@ -122,6 +122,7 @@ body {
     margin-left: 220px;
     padding-bottom: 90px;
     width: calc(100% - 220px);
+		overflow-x: hidden;
 }
 
 #mainContent {

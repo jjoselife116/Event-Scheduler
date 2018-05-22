@@ -12,7 +12,7 @@ function remove_task(form){
 
 
 
-alert($(removeDropDown).val());
+
   // overwrite the employee JSON in the local storage with the newly updated task array
   localStorage.setItem($(removeDropDown).val(), JSON.stringify(employee));
 
