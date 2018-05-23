@@ -62,6 +62,7 @@ tbody tr td:nth-child(1) {  /*the first cell in each tr*/
 .dragscroll {
   overflow-y: hidden;
   margin-right: 0;
+  height: 600px;
 }
 
 
@@ -83,17 +84,17 @@ color: white;
 
 /* Track */
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
+    box-shadow: inset 0 0 5px black;
+
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #071833;
-    border-radius: 10px;
+
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #071833;
+    background: #0944a3;
 }

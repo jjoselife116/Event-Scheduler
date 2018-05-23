@@ -82,7 +82,7 @@
                           drawTable += "<tr>";
                           drawTable += "<th style='color:white;'>Employee Name</th>";
                           let today = new Date();
-                          let dd = today.getDate() - 7;
+                          let dd = today.getDate();
                           let mm = today.getMonth()+1; //January is 0!
                           let mmN = mm;
                           let yyyy = today.getFullYear();
@@ -218,7 +218,7 @@
                           }
                         }
                        drawTable += '<tr>';
-                       var noRows = 11 - localStorage.length;
+                       var noRows = 14 - localStorage.length;
                         for(; noRows >= 0; noRows--){
                           drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + "" + "</td>";
                           // rows and cols of the main table and date
@@ -458,10 +458,6 @@
                         }
                         </script>
 
-
-
-
-
                       <script>
                         // Get the modal
                         var modal = document.getElementById('addEmployee');
@@ -472,6 +468,7 @@
                           }
                         }
                       </script>
+                    </form>
                     </div>
                   </div>
 
