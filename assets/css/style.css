@@ -16,7 +16,6 @@ html, body {
 /* #3fda60 */
 
 body {
-		background-image: url("vintage-concrete.png");
     background-color: white;
     font-size: 14px;
     min-width: 720px;
@@ -46,7 +45,7 @@ body {
 
 .container input[type="text"] {
   display: block;
-  width: 140%;
+  /* width: 140%; */
 }
 
 .container textarea {
@@ -55,12 +54,10 @@ body {
 
 .container input[type="date"] {
   display: block;
-	height: 27px;
+	width: 162px;
+	/* height: 27px; */
   line-height: 27px;
 }
-
-
-
 
 #topContainer {
 	min-height: 100%;
@@ -125,6 +122,7 @@ body {
     margin-left: 220px;
     padding-bottom: 90px;
     width: calc(100% - 220px);
+		overflow-x: hidden;
 }
 
 #mainContent {
@@ -283,4 +281,9 @@ input:focus {
 .buttonItems .button {
     display: block;
     margin: 0 auto 20px auto;
+}
+
+.marginlsi {
+  width: 180px;
+  margin: auto;
 }
