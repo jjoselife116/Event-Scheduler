@@ -32,7 +32,7 @@ $(document).ready(function(){
              colFill = true;
            }
            if(colFill == true) {
-             myTable.rows[j+1].cells[k].innerHTML += '<span style="background-color:' + color + '">' + employee.Task[taskIndex]["Task Name"] + '</br></span>';
+             myTable.rows[j+1].cells[k].innerHTML += '<div style="background-color:' + color + '">' + employee.Task[taskIndex]["Task Name"] + '</br></div>';
            }
            if(myTable.rows[0].cells[k].innerHTML == employee.Task[taskIndex]["Task End Date"]) {
              colFill = false;
