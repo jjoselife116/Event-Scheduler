@@ -18,6 +18,7 @@
         <script src="assets/js/javascript.js"></script>
         <script src="assets/js/displayTask.js"></script>
         <script src="assets/js/removeTask.js"></script>
+        <script src="assets/js/removeEmp.js"></script>
 
 </head>
 
@@ -48,6 +49,11 @@
                         <div class="navItem">
                             <span role="link" tabindex="0" onclick="document.getElementById('removeTask').style.display='inline-block'" class="navItemLink">Remove Task</span>
                         </div>
+
+                        <div class="navItem">
+                            <span role="link" tabindex="0" onclick="document.getElementById('removeEmp').style.display='inline-block'" class="navItemLink">Remove Employee</span>
+                        </div>
+
 
 
                     </div>
@@ -388,6 +394,73 @@
                               </form>
                           </div>
                       </div>
+
+
+
+                      <div id="removeEmp" class="modal">
+                          <!--remove task-->
+                      <div id="task-messages">
+                          <form class="modal-content animate" id="" accept-charset="UTF-8" method="POST" name="removeEmp" onsubmit="return remove_Emp(this);">
+
+                              <div class="container">
+
+                                <div style="margin-top:40px;" class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+
+                                            <div class="panel-title"><strong>Remove Employee</strong>
+                                                <div class="pull-right">
+                                                    <div style="margin-top: -6px">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div style="padding-top:25px" class="panel-body">
+                                          <div id="labelinputc" class="labelinputclass">
+                                            <div class="row">
+                                                <div class="marginlsi">
+                                                    <label for="empName">Employee:</label>
+                                                  <select id="removeEmpDropDown"class="form-control" name="emplName"></select>
+                                                </div>
+                                            </div>
+
+
+                                          </div>
+                                            <br>
+                                            <div id="buttonget">
+                                              <div style="float: left;">
+                                                <button id="submitbtn" type="submit" class="btn btn-success">Submit</button>
+                                              </div>
+                                              <div style="float: right;">
+                                                <button type="button" onclick="document.getElementById('removeEmp').style.display='none'" class="btn btn-danger" >Cancel</button>
+                                              </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <script>
+                            empArry = [];
+                            for (i = 0; i < localStorage.length; i++){
+                                empArry.push(localStorage.key(i))
+                            }
+
+                            for(j = 0; j < empArry.length; j++){
+
+                              employee = JSON.parse(localStorage.getItem(empArry[j]));
+
+                                $("#removeEmpDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+
+                        }
+                        </script>
+
+
+
+
 
                       <script>
                         // Get the modal
