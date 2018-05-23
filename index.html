@@ -456,10 +456,12 @@
                             for (i = 0; i < localStorage.length; i++){
                                 empArry.push(localStorage.key(i))
                             }
+                            employee = JSON.parse(localStorage.getItem(empArry[0]));
+                              $('#taskDropDown').append("<option >" + employee.Task[0]["Task Name"] + "</option>");
                             for(j = 0; j < empArry.length; j++){
 
                               employee = JSON.parse(localStorage.getItem(empArry[j]));
-                              if('Task' in employee && employee.Task.length != 0 ){  
+                              if('Task' in employee && employee.Task.length != 0 ){
                                 $("#removeDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
                               }
                         }
