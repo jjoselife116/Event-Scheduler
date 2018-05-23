@@ -1,10 +1,9 @@
 function remove_Emp(form){
-
-
+    // pull employee to remove from dropdown list
     let employee = localStorage.getItem($('#removeEmpDropDown').val());
 
     employee = JSON.parse(employee);
-
-  localStorage.removeItem(employee["Employee Name"]);
+    // Remove selected employee from the local storage
+    localStorage.removeItem(employee["Employee Name"]);
 
 }
