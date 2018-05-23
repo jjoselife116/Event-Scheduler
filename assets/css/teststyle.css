@@ -49,6 +49,7 @@ tbody td {
   min-width: 140px;
   max-width: 140px;
   border: 1px solid #222;
+  white-space: nowrap
 }
 
 tbody tr td:nth-child(1) {  /*the first cell in each tr*/
@@ -96,5 +97,5 @@ color: white;
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #0944a3;
+    background: #1caf8f
 }
