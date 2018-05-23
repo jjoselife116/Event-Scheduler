@@ -82,7 +82,7 @@
                           drawTable += "<tr>";
                           drawTable += "<th style='color:white;'>Employee Name</th>";
                           let today = new Date();
-                          let dd = today.getDate();
+                          let dd = today.getDate() - 7;
                           let mm = today.getMonth()+1; //January is 0!
                           let mmN = mm;
                           let yyyy = today.getFullYear();
@@ -472,6 +472,8 @@
                           }
                         }
                       </script>
+                    </div>
+                  </div>
 
                       <div id="removeTask" class="modal">
                           <!--remove task-->
