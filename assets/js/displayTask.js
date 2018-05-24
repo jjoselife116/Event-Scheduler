@@ -7,7 +7,7 @@ $(document).ready(function(){
   let color = null;
         //cols of the employee names
   for (var i = 0; i < localStorage.length; i++){
-      empArry.push(localStorage.key(i))
+      empArry.push(localStorage.key(i));
   }
   // loop through the local storage and pull the data
   for(let j = 0; j < empArry.length; j++){

@@ -70,6 +70,7 @@
 						                    let yyyy = today.getFullYear();
 						                    let oneWeekAhead = new Date();
 						                    let nextWeek = (today.getDate()+10) + 10;
+																/* If next week falls into the next month, print correctly */
 						                    if (nextWeek > 30 && (mmN == 9 || mmN == 4 || mmN == 6 || mmN == 11)) {
 						                      mmN++;
 						                      nextWeek -= 30;
@@ -82,6 +83,7 @@
 						                      mmN++;
 						                      nextWeek -= 28;
 						                    }
+																/* Formatting of the dates at the top of the table */
 						                    if(dd < 10) {
 						                      dd = '0'+ dd;
 						                    }
@@ -101,6 +103,7 @@
 						                    let endDate = parseInt(edate);
 						                    let startDateN = 20180501;
 						                    let endDateN = 20180531;
+																/* Change the strings of dates to ints for calculation of start and end date of the table */
 						                    if( localStorage.length > 0){
 						                    for (var key in localStorage) {
 						                      typeofKey = (typeof localStorage[key]);
@@ -126,6 +129,7 @@
 						                    let finalDay = null;
 						                    let finalDayF = null;
 						                    let colCount = 0;
+																/* Correctly print the months and days at the top of the table */
 						                    for (let i = startDate; i <= endDate +1; i++) {
 						                      numStr = (i.toString()).substr(4,2);
 						                      numStrDay = (i.toString()).substr(6,2);
@@ -237,17 +241,17 @@
 												<div class="panel-body" style="padding-top:25px">
 													<div class="labelinputclass" id="labelinputc">
 														<div class="row">
-															<div class="col-md-9">
+															<div class="marginlsi">
 																<label for="empName">Employee Name:</label> <input class="form-control" name="empName" required="" type="text">
 															</div>
 														</div>
 														<div class="row">
-															<div class="col-md-9">
+															<div class="marginlsi">
 																<label for="empId">Employee ID:</label> <input class="form-control" name="empId" required="" type="text">
 															</div>
 														</div>
 														<div class="row">
-															<div class="col-md-9">
+															<div class="marginlsi">
 																<label for="empId">Employee Color:</label> <input class="form-control" name="empColor" required="" type="color">
 															</div>
 														</div>
