@@ -136,7 +136,7 @@
 						                        else {
 						                          finalDay = i.toString()
 						                          finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
-						                          drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "<\/th>";
+						                          drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
 						                          colCount++;
 						                        }
 						                      }
@@ -147,7 +147,7 @@
 						                        else {
 						                          finalDay = i.toString()
 						                          finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
-						                          drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "<\/th>";
+						                          drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
 						                          colCount++;
 						                        }
 						                      }
@@ -158,20 +158,20 @@
 						                        else {
 						                          finalDay = i.toString()
 						                          finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
-						                          drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "<\/th>";
+						                          drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
 						                          colCount++;
 						                        }
 						                      }
 						                      else {
 						                        finalDay = i.toString()
 						                        finalDayF = (finalDay.substr(0,4)) + "-" + (finalDay.substr(4,2)) + "-" + (finalDay.substr(6,2));
-						                        drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "<\/th>";
+						                        drawTable += "<th class = days id = days" + x + '-' + y + ">" + finalDayF + "</th>";
 						                        colCount++;
 						                      }
 						                      x++;
 						                    }
-						                    drawTable += "<\/tr>";
-						                    drawTable += "<\/thead>";
+						                    drawTable += "</tr>";
+						                    drawTable += "</thead>";
 						                    drawTable += '<tbody class="dragscroll">';
 						                    drawTable += "<tr id =" + trInc + ">";
 						                    trInc++;
@@ -185,38 +185,38 @@
 						                      //cols of the employee names
 						                      if(typeofKey == 'string' || typeofKey instanceof String ){
 						                        employee = JSON.parse(localStorage.getItem(key));
-						                        drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "<\/td>";
+						                        drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "</td>";
 						                        // rows and cols of the main table and date
 						                        for (let j = 0; j < colCount; j++) {
-						                          drawTable += "<td class =" + z + '-' + y + "><\/td>";
+						                          drawTable += "<td class =" + z + '-' + y + "></td>";
 						                          z++;
 						                        }
 						                        // set z to one to start the main tables x at 1 for off by one error
 						                        z=1;
 						                        //reset x for each row
 						                        x=0;
-						                      drawTable += '<\/tr>';
+						                      drawTable += '</tr>';
 						                      y++;
 						                    }
 						                  }
 						                 drawTable += '<tr>';
 						                 var noRows = 14 - localStorage.length;
 						                  for(; noRows >= 0; noRows--){
-						                    drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + "" + "<\/td>";
+						                    drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + "" + "</td>";
 						                    // rows and cols of the main table and date
 						                    for (let j = 0; j < colCount; j++) {
-						                      drawTable += "<td class =" + z + '-' + y + "><\/td>";
+						                      drawTable += "<td class =" + z + '-' + y + "></td>";
 						                      z++;
 						                    }
 						                    // set z to one to start the main tables x at 1 for off by one error
 						                    z=1;
 						                    //reset x for each row
 						                    x=0;
-						                  drawTable += '<\/tr>';
+						                  drawTable += '</tr>';
 						                  y++;
 						                  }
-						                  drawTable += "<\/tbody>";
-						                  drawTable += "<\/table>";
+						                  drawTable += "</tbody>";
+						                  drawTable += "</table>";
 						                  document.write(drawTable);
 						</script>
 						<div class="modal" id="addEmployee">
