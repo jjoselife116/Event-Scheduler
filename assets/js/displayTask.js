@@ -1,13 +1,3 @@
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
-
 $(document).ready(function(){
   let typeofKey;
   let empArry = [];
@@ -22,8 +12,6 @@ $(document).ready(function(){
   // loop through the local storage and pull the data
   for(let j = 0; j < empArry.length; j++){
     employee = JSON.parse(localStorage.getItem(empArry[j]));
-    color = employee["Employee Color"];
-    console.log(color);
     // If employee has any task
     if("Task" in employee){
       // while employee has task in his array
@@ -33,7 +21,7 @@ $(document).ready(function(){
              colFill = true;
            }
            if(colFill == true) {
-             myTable.rows[j+1].cells[k].innerHTML += '<div style="background-color:' + color + '">' + employee.Task[taskIndex]["Task Name"] + '</br></div>';
+             myTable.rows[j+1].cells[k].innerHTML += '<div style="background-color:' + employee["Employee Color"] + '">' + employee.Task[taskIndex]["Task Name"] + '</br></div>';
            }
            if(myTable.rows[0].cells[k].innerHTML == employee.Task[taskIndex]["Task End Date"]) {
              colFill = false;
