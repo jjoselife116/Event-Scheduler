@@ -550,7 +550,7 @@
 														</div>
 														<div class="row">
 															<div class="marginlsi">
-																<label for="empId">Employee Color:</label> <input class="form-control" name="empColor" required="" type="color">
+																<label for="empId" >Employee Color:</label> <input class="form-control" name="empColor"  type="color" value = "#0000ff" id = "empColor";>
 															</div>
 														</div>
 													</div><br>
@@ -575,6 +575,7 @@
 													 empArry.push(localStorage.key(i))
 											 }
 
+
 											 // loop through all the employees that were pushed to an array in the localStorage
 											 for(let y = 0; y <empArry.length; y++){
 											// if employee has a task add task to the task dropdown
@@ -596,12 +597,21 @@
 													 $("#editEmpDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
 												 }
 									 }
+									 employee = JSON.parse(localStorage.getItem($('#editEmpDropDown').val()));
+
+										$("#empColor").attr("value", employee["Employee Color"]);
+
+
 									 function populateEdit(){
+										 employee = JSON.parse(localStorage.getItem($('#editEmpDropDown').val()));
+
+											$("#empColor").attr("value", employee["Employee Color"]);
 											$(editTaskDropDown).empty();
 											for(let k = 0; k < employee.Task.length; k++){
 											employee = localStorage.getItem(document.getElementById("editEmpDropDown").value);
 											employee = JSON.parse(employee);
 											if('Task' in employee && employee.Task[k] != undefined ){
+
 												$('#editTaskDropDown').append("<option >" + employee.Task[k]["Task Name"] + "</option>");
 										}
 										}
