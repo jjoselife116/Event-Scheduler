@@ -15,7 +15,6 @@ employee = JSON.parse(employee);
 if('Task' in employee){
 employee.Task.push({
   "Task Name"             : form.tskname.value,
-  "Task Descripts"        : form.tskdes.value,
   "Task Start Date"       : form.tskstart.value,
   "Task End Date"         : form.tskend.value,
   "Task Status"           : form.tskStatus.value,
