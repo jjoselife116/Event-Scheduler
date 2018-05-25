@@ -17,7 +17,7 @@ function edit_Emp(form){
         }
 
       }
-      if(form.tskstart !=null && form.tskend != null){
+      if(form.tskstart !=null && form.tskstart.value != "" && form.tskend != null && form.tskend.value != ""){
         for(let taskIndex = 0; taskIndex < employee.Task.length; taskIndex++){
         if(employeeToEdit.Task[taskIndex]["Task Name"] == $('#editTaskDropDown').val()){
           employeeToEdit.Task[taskIndex]["Task Start Date"] = form.tskstart.value;
