@@ -11,7 +11,7 @@ table {
 html, body{
   height: 100%;
   width: 100%;
-  background: linear-gradient(45deg, #e1e1e1, #f6f6f6);
+  background: linear-gradient(55deg, black, hotpink);
 }
 
 /*thead*/
@@ -39,7 +39,7 @@ thead th:nth-child(1) { /*first cell in the header*/
     position: relative;
     display: float;
     min-width: 140px;
-    background-color: #202020;
+    background-color: #000;
 }
 
 /*tbody*/
@@ -62,6 +62,8 @@ tbody td {
 tbody tr td:nth-child(1) {  /*the first cell in each tr*/
   position: relative;
   /*display: block; seperates the first column from the tbody*/
+    border-left: 1px solid black;
+    display: block;
   height: 40px;
   min-width: 140px;
   max-width: 140px;
@@ -71,23 +73,29 @@ tbody tr td:nth-child(1) {  /*the first cell in each tr*/
   overflow-y: hidden;
   margin-right: 0;
   height: 600px;
+
+
+
 }
 
 .days {
-    background-color: #31bc86;
+    background-color: black;
     color: white;
     text-align: center;
 }
 
 .employ {
-		background-color: #2ea879;
+		background-color: black;
 		color: white;
 		text-align: center;
+
 }
 
 #days, #emp{
-background-color: #071833;
+  
+background-color: #000;
 color: white;
+
 }
 
 ::-webkit-scrollbar {
@@ -102,11 +110,11 @@ color: white;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #071833;
+    background: black;
 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #1caf8f
+    background: hotpink
 }

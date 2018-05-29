@@ -22,25 +22,6 @@ body {
 }
 
 
-.playerControls .buttons {
-	margin: 0 auto;
-    display: table;
-}
-
-
-
-.progress {
-	background-color: #a0a0a0;
-    height: 4px;
-    width: 0;
-    border-radius: 2px;
-}
-
-.playbackBar .progressBar {
-	margin-top: 3px;
-}
-
-
 
 
 .container input[type="text"] {
@@ -196,13 +177,6 @@ body {
 
 
 
-.tracklistRow .trackCount img {
-    width: 20px;
-    visibility: hidden;
-    position: absolute;
-    cursor: pointer;
-}
-
 
 .button {
     color: #fff;
@@ -227,55 +201,10 @@ body {
     margin-bottom: 20px;
 }
 
-.tracklistContainer h2,
-.gridViewContainer h2,
-.artistsContainer h2 {
-    text-align: center;
-}
+
 
 [role="link"] {
     cursor: pointer;
-}
-
-.searchContainer {
-    background-color: #242424;
-    padding: 20px 28px;
-}
-
-.searchContainer h4 {
-    margin: 0;
-    font-weight: 300;
-}
-
-.searchContainer .searchInput {
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-weight: 700;
-    font-size: 62px;
-    letter-spacing: 2px;
-}
-
-input:focus {
-    outline: none;
-}
-
-.searchResultRow {
-    padding: 15px 10px;
-}
-
-.searchResultRow:hover {
-    background-color: #282828;
-}
-
-.searchResultRow .artistName span {
-    color: #fff;
-}
-
-.noResults {
-    margin: 15px;
-    display: block;
 }
 
 .buttonItems .button {
