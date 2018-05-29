@@ -22,8 +22,6 @@ body {
 }
 
 
-
-
 .container input[type="text"] {
   display: block;
   /* width: 140%; */
@@ -172,10 +170,6 @@ body {
     color: #939393;
     font-weight: 200;
 }
-
-
-
-
 
 
 .button {
