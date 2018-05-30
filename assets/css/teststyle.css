@@ -11,7 +11,6 @@ table {
 html, body{
   height: 100%;
   width: 100%;
-  background: linear-gradient(55deg, black, hotpink);
 }
 
 /*thead*/
@@ -73,9 +72,6 @@ tbody tr td:nth-child(1) {  /*the first cell in each tr*/
   overflow-y: hidden;
   margin-right: 0;
   height: 600px;
-
-
-
 }
 
 .days {
@@ -88,11 +84,10 @@ tbody tr td:nth-child(1) {  /*the first cell in each tr*/
 		background-color: black;
 		color: white;
 		text-align: center;
-
 }
 
 #days, #emp{
-  
+
 background-color: #000;
 color: white;
 
