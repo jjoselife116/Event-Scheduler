@@ -22,9 +22,10 @@
 	</script>
 	<script src="assets/js/editEmp.js">
 	</script>
+	<script src="assets/js/removeTaskTime.js"></script>
 
 </head>
-<body>
+<body >
 	<div id="mainContainer">
 		<div id="topContainer">
 			<div id="navBarContainer">
@@ -55,6 +56,7 @@
 					<div class="gridViewContainer">
 						<h2 align="center" style = color:white>Scheduling Calendar</h2>
 						<script>
+
                   var sysDate = new Date();
                   var sysDay = new Date();
                   var sysMonth = new Date();
@@ -230,7 +232,7 @@
                 drawTable += "</table>";
                 document.write(drawTable);
 						</script>
-						<div class="modal" id="addEmployee">
+						<div class="modal" id="addEmployee" >
 							<!--form addEmployee-->
 							<div id="task-messages">
 								<form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="empForm" onsubmit="return create_employee(this);">
@@ -402,17 +404,19 @@
 									<script>
 		                   empArry.length = 0;
                        // push the local storage to an array
-		                   for (i = 0; i < localStorage.length; i++){
+		                   for (let i = 0; i < localStorage.length; i++){
 		                       empArry.push(localStorage.key(i))
 		                   }
 
                        // loop through all the employees that were pushed to an array in the localStorage
-		                   for(let y = 0; y <empArry.length; y++){
+		                   for(let y = 0; y < empArry.length; y++){
+												  employee = JSON.parse(localStorage.getItem(empArry[y]));
                       // if employee has a task add task to the task dropdown
 		                   if('Task' in employee && employee.Task[y] != undefined ){
+
                          // Loop through the employees task and add them for the first employee in the list
-                         for(let taskForEmp =0; taskForEmp < employee.Task.length; taskForEmp++){
-		                     employee = JSON.parse(localStorage.getItem(empArry[y]));
+                         for(let taskForEmp = 0; taskForEmp < employee.Task.length; taskForEmp++){
+
 		                     $('#taskDropDown').append("<option >" + employee.Task[taskForEmp]["Task Name"] + "</option>");
 
                          }
@@ -425,6 +429,7 @@
 		                     employee = JSON.parse(localStorage.getItem(empArry[j]));
 		                     if('Task' in employee && employee.Task.length != 0 ){
 		                       $("#removeDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+
 		                     }
 		               }
 
