@@ -5,6 +5,10 @@ $(document).ready(function(){
   let myTable = document.getElementById('wholeTable');
   let colFill = false;
   let color = null;
+  let firstK = 0;
+  let lastK =0;
+  let mid = 0;
+  let taskID = 0;
         //cols of the employee names
   for (var i = 0; i < localStorage.length; i++){
       empArry.push(localStorage.key(i));
@@ -18,16 +22,32 @@ $(document).ready(function(){
       for(let taskIndex = 0; taskIndex < employee.Task.length; taskIndex++){
          for(let k = 1; k < myTable.rows[0].cells.length; k++) {
            if(myTable.rows[0].cells[k].innerHTML == employee.Task[taskIndex]["Task Start Date"]) {
+             firstK = k;
              colFill = true;
+
            }
            if(colFill == true) {
-             myTable.rows[j+1].cells[k].innerHTML += '<div style="background-color:' + employee["Employee Color"] + '">' + employee.Task[taskIndex]["Task Name"] + '</br></div>';
+
+            myTable.rows[j+1].cells[k].setAttribute("class", "TaskID-"+taskID);
+
+
+            myTable.rows[j+1].cells[k].innerHTML += '<div id="taskID-' + taskID + '" style="background-color:' + employee["Employee Color"] + '; ">' + employee.Task[taskIndex]["Task Name"] + '</br></div>';
+
            }
+
            if(myTable.rows[0].cells[k].innerHTML == employee.Task[taskIndex]["Task End Date"]) {
              colFill = false;
-           }
+             lastK = k;
+            }
+           mid = Math.floor((lastK + firstK )/ 2);
+             taskID++;
          }
+
+
+
+
        }
+       taskID=1;
      }
    }
 });

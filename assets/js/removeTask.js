@@ -1,6 +1,7 @@
 function remove_task(form){
 
 
+
     let employee = localStorage.getItem($('#removeDropDown').val());
 
     employee = JSON.parse(employee);

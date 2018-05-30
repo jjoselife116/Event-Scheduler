@@ -1729,10 +1729,10 @@ html {
 }
 
 /* line 27, /usr/local/rvm/gems/ruby-2.4.0/gems/bootstrap-sass-3.3.7/assets/stylesheets/bootstrap/_scaffolding.scss */
-body {
+ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  line-height: 1.42857143;
+  line-height: 1.42857143 !important;
   color: #333333;
   background-color: #fff;
 }
