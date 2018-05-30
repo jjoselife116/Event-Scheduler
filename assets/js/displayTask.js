@@ -31,7 +31,7 @@ $(document).ready(function(){
             myTable.rows[j+1].cells[k].setAttribute("class", "TaskID-"+taskID);
 
 
-            myTable.rows[j+1].cells[k].innerHTML += '<div id="taskID-' + taskID + '" style="background-color:' + employee["Employee Color"] + '; ">' + employee.Task[taskIndex]["Task Name"] + '</br></div>';
+            myTable.rows[j+1].cells[k].innerHTML += '<div id="taskID-' + taskID + '" style="background-color:' + employee["Employee Color"] + '; border-style: hidden hidden solid hidden; border-width: 3px;border-color: white ">' + employee.Task[taskIndex]["Task Name"] + '</br></div>';
 
            }
 
