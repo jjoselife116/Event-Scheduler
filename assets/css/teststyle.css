@@ -11,7 +11,7 @@ table {
 html, body{
   height: 100%;
   width: 100%;
-  background: linear-gradient(55deg, black, #9e2787);
+  background: linear-gradient(45deg, black, #9e2787);
 }
 
 /*thead*/
@@ -40,6 +40,7 @@ thead th:nth-child(1) { /*first cell in the header*/
     display: float;
     min-width: 140px;
     background-color: black;
+    color: #9e2787;
 }
 
 /*tbody*/
@@ -53,6 +54,7 @@ tbody {
 
 tbody td {
   background-color: white;
+
   min-width: 140px;
   max-width: 140px;
   border: 1px solid #474747;
@@ -62,8 +64,7 @@ tbody td {
 tbody tr td:nth-child(1) {  /*the first cell in each tr*/
   position: relative;
   /*display: block; seperates the first column from the tbody*/
-    border-left: 1px solid black;
-
+  border-left: 1px solid black;
   height: 60px;
   min-width: 140px;
   max-width: 140px;
@@ -74,7 +75,7 @@ tbody tr td:nth-child(1) {  /*the first cell in each tr*/
   overflow-y: hidden;
   margin-right: 0;
   height: 600px;
-    border: 1px solid black;
+  border: 1px solid black;
 
 
 
@@ -84,6 +85,8 @@ tbody tr td:nth-child(1) {  /*the first cell in each tr*/
     background-color: black ;
     color: white;
     text-align: center;
+    color: white;
+
 }
 
 .employ {
@@ -94,7 +97,8 @@ tbody tr td:nth-child(1) {  /*the first cell in each tr*/
 		color: white;
 		text-align: center;
     height: 500px;
-      border-left: 1px solid black;
+    border-left: 1px solid black;
+    color:white;
 
 }
 

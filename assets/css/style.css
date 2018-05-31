@@ -50,6 +50,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+
 }
 
 .navBar {
@@ -64,11 +65,11 @@ body {
 }
 
 .logo img {
-    width: 32px;
+    width: 70px;
 }
 
 .navBar .group {
-    border-top: 1px solid #a0a0a0;
+    border-top: 1px solid #9e2787;
     padding: 10px 0;
 }
 
@@ -82,8 +83,9 @@ body {
 }
 
 .navItemLink {
-    color: #a0a0a0;
+
     text-decoration: none;
+		color: #f9b924;
 }
 
 .navItemLink:hover {
