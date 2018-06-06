@@ -198,7 +198,7 @@
                     //cols of the employee names
                     if(typeofKey == 'string' || typeofKey instanceof String ){
                       employee = JSON.parse(localStorage.getItem(key));
-                      drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + "</td>";
+                      drawTable += "<td class = employ id =emp" + x + '-' + y + ">" + employee['Employee Name'] + '</br>' + '(' + employee['Employee Id'] + ')' + "</td>";
                       // rows and cols of the main table and date
                       for (let j = 0; j < colCount; j++) {
                         drawTable += "<td class =" + z + '-' + y + "></td>";
@@ -256,7 +256,14 @@
 														</div>
 														<div class="row">
 															<div class="marginlsi">
-																<label for="empId">Employee Tag:</label> <input class="form-control" name="empId" required="" type="text">
+																<label for="empId">Employee Tag:</label>
+																<input list="empTag" class="form-control" name="empId" required="" type="text">
+																	<datalist name="empId" id="empTag">
+																		<option value="Java"></option>
+																		<option value=".Net"></option>
+																		<option value="JavaScript"></option>
+																		<option value="Python"></option>
+																	</datalist>
 															</div>
 														</div>
 														<div class="row">
@@ -623,7 +630,7 @@
 									}
 
 
-									
+
 									</script>
 								</form>
 							</div>
