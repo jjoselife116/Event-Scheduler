@@ -10,6 +10,7 @@ if(form.empName.value in localStorage){
   let employee = {
     "Employee Name"                 : form.empName.value,
     "Employee Id"                   : form.empId.value,
+    "Employee Color"                : form.empColor.value,
     "Task" : [],
 
         };

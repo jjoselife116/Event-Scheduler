@@ -16,7 +16,6 @@ html, body {
 /* #3fda60 */
 
 body {
-		background-image: url("vintage-concrete.png");
     background-color: white;
     font-size: 14px;
     min-width: 720px;
@@ -46,7 +45,7 @@ body {
 
 .container input[type="text"] {
   display: block;
-  width: 140%;
+  /* width: 140%; */
 }
 
 .container textarea {
@@ -55,12 +54,10 @@ body {
 
 .container input[type="date"] {
   display: block;
-	height: 27px;
+	width: 162px;
+	/* height: 27px; */
   line-height: 27px;
 }
-
-
-
 
 #topContainer {
 	min-height: 100%;
@@ -68,7 +65,7 @@ body {
 }
 
 #navBarContainer {
-	background-color: #000;
+	background-color: #e43939;
     width: 220px;
     height: 100vh;
     position: fixed;
@@ -106,7 +103,7 @@ body {
 }
 
 .navItemLink {
-    color: #a0a0a0;
+    color: white;
     text-decoration: none;
 }
 
@@ -125,6 +122,7 @@ body {
     margin-left: 220px;
     padding-bottom: 90px;
     width: calc(100% - 220px);
+		overflow-x: hidden;
 }
 
 #mainContent {
@@ -283,4 +281,171 @@ input:focus {
 .buttonItems .button {
     display: block;
     margin: 0 auto 20px auto;
+}
+
+.marginlsi {
+  width: 180px;
+  margin: auto;
+}
+
+/***Test Style***/
+
+table {
+  /* border: 0.0625em solid black; */
+  table-layout: fixed;
+  position: relative;
+  width: auto;
+  overflow: hidden;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+html, body{
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(45deg, #e1e1e1, #f6f6f6);
+}
+
+/*thead*/
+thead {
+  position: relative;
+  display: block; /*seperates the header from the body allowing it to be positioned*/
+  width: 1535px;
+  overflow: visible;
+  /* border: 1px solid black; */
+}
+
+td, th {
+    padding: 0.75em 1.5em;
+    text-align: left;
+}
+
+thead th {
+  min-width: 140px;
+  max-width: 140px;
+  height: 35px;
+  text-align: center;
+}
+
+thead th:nth-child(1) { /*first cell in the header*/
+    position: relative;
+    display: float;
+    min-width: 140px;
+    background-color: #202020;
+}
+
+/*tbody*/
+tbody {
+  position: relative;
+  display: block; /*seperates the tbody from the header*/
+  width: 1535px;
+  height: 475px;
+  overflow: scroll;
+}
+
+tbody td {
+  background-color: white;
+  min-width: 140px;
+  max-width: 140px;
+  border: 2px solid #474747;
+  white-space: nowrap
+}
+
+tbody tr td:nth-child(1) {  /*the first cell in each tr*/
+  position: relative;
+  /*display: block; seperates the first column from the tbody*/
+  height: 40px;
+  min-width: 140px;
+  max-width: 140px;
+}
+
+.dragscroll {
+  overflow-y: hidden;
+  margin-right: 0;
+  height: 600px;
+}
+
+.days {
+    background-color: #e43939;
+    color: white;
+    text-align: center;
+}
+
+.employ {
+		background-color: #e43939;
+		color: white;
+		text-align: center;
+}
+
+#days, #emp{
+background-color: #071833;
+color: white;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px black;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #071833;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #1caf8f
+}
+
+/*** Theme DropDown ***/
+
+ul{
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+		border: white;
+}
+
+ul li {
+		float: left;
+		width: 180px;
+		height: 40px;
+		background-color: black;
+		color: white;
+		opacity: .8;
+		line-height: 40px;
+		text-align: left;
+		position: relative;
+}
+
+ul li a{
+		text-decoration: none;
+		color: white;
+		display: block;
+}
+
+ul li a:hover {
+		background-color: #e43939;
+}
+
+
+span ul {
+		display: none;
+		position: absolute;
+		border-radius: 8px 8px 8px 8px;
+}
+
+span:hover ul {
+	display: block;
+}
+
+.themeborder {
+	border-radius: 4px;
+	border-color: white;
 }
