@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-<meta charset='utf-8' />
+<meta charset='utf-8' name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href='fullcalendar.css' rel='stylesheet' />
 <link href='fullcalendar.print.css' rel='stylesheet' media='print' />
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -53,13 +53,160 @@
     cursor: move;
     z-index: 10;
 }
+
+/* @media (min-width: 480px)
+._258j4 {
+    padding-top: 75px;
+    padding-bottom: 85px;
+} */
+
+/* @media (min-width: 1360px) {
+    div.static, table {
+       /* 1362px
+       position: static;
+       padding-left: 75px;
+       padding-bottom: 85px;
+    }
+} */
+
+#fixplace {
+  position: absolute;
+}
+
+
+
+.side-nav {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	background-color: #35475e;
+	z-index: 1;
+	display: none;
+}
+.side-nav.visible {
+	display: block;
+}
+.side-nav ul {
+	margin: 0;
+	padding: 0;
+}
+.side-nav ul li {
+	padding: 16px 16px;
+	border-bottom: 1px solid #3c506a;
+	position: relative;
+}
+.side-nav ul li.active:before {
+	content: '';
+	position: absolute;
+	width: 4px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+}
+.side-nav ul li a {
+	color: #fff;
+	display: block;
+	text-decoration: none;
+}
+.side-nav ul li i {
+	color: #0497df;
+	min-width: 20px;
+	text-align: center;
+}
+.side-nav ul li span:nth-child(2) {
+	margin-left: 10px;
+	font-size: 14px;
+	font-weight: 600;
+}
+/* main content styles */
+.main-content {
+	padding: 40px;
+	margin-top: 0;
+	padding: 0;
+	padding-top: 44px;
+	height: 100%;
+	overflow: scroll;
+}
+.main-content .title {
+	background-color: #eef1f7;
+	border-bottom: 1px solid #b8bec9;
+	padding: 10px 20px;
+	font-weight: 700;
+	color: #333;
+	font-size: 18px;
+}
+/* set element styles to fit tablet and higher(desktop) */
+@media screen and (min-width: 1350px) {
+	.header {
+		background-color: #35475e;
+		z-index: 1;
+	}
+	.header .logo {
+		display: none;
+	}
+	.nav-trigger {
+		display: none;
+	}
+	.nav-trigger span, .nav-trigger span:before, span:after {
+		background-color: #fff;
+	}
+	.side-nav {
+		display: block;
+		width: 70px;
+		z-index: 2;
+	}
+	.side-nav ul li span:nth-child(2) {
+		display: none;
+	}
+	.side-nav .logo i {
+		padding-left: 12px;
+	}
+	.side-nav .logo span {
+		display: none;
+	}
+	.side-nav ul li i {
+		font-size: 26px;
+	}
+	.side-nav ul li a {
+		text-align: center;
+	}
+	.main-content {
+		margin-left: 70px;
+	}
+}
+/* set element styles for desktop */
+@media screen and (min-width: 800px) {
+	.side-nav {
+		width: 200px;
+	}
+	.side-nav ul li span:nth-child(2) {
+		display: inline-block;
+	}
+	.side-nav ul li i {
+		font-size: 16px;
+	}
+	.side-nav ul li a {
+		text-align: left;
+	}
+	.side-nav .logo i {
+		padding-left: 0;
+	}
+	.side-nav .logo span {
+		display: inline-block;
+	}
+	.main-content {
+		margin-left: 200px;
+	}
+}
+
 </style>
 
 </head>
 <body >
 
   <div id='calendar' ></div>
-    <div id="navBarContainer">
+    <div id="navBarContainer" class="side-nav">
       <nav class="navBar">
         <span class="logo" role="link" tabindex="0"><img src="healthplanservicelogo.jpg"></span>
         <div class="group">

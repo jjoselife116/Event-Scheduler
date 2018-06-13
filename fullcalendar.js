@@ -4012,7 +4012,7 @@
                         t.businessHourGenerator = null
                     }), this.optionsManager.watch("applyingDirClasses", ["?isRTL", "?locale"], function(t) {
                         e.toggleClass("fc-ltr", !t.isRTL), e.toggleClass("fc-rtl", t.isRTL)
-                    }), this.contentEl = r("<div class='fc-view-container'/>").prependTo(e), this.initToolbars(), this.renderHeader(), this.renderFooter(), this.renderView(this.opt("defaultView")), this.opt("handleWindowResize") && r(window).resize(this.windowResizeProxy = s.debounce(this.windowResize.bind(this), this.opt("windowResizeDelay")))
+                    }), this.contentEl = r("<div id='fixplace' class='fc-view-container static'/>").prependTo(e), this.initToolbars(), this.renderHeader(), this.renderFooter(), this.renderView(this.opt("defaultView")), this.opt("handleWindowResize") && r(window).resize(this.windowResizeProxy = s.debounce(this.windowResize.bind(this), this.opt("windowResizeDelay")))
                 }, t.prototype.destroy = function() {
                     this.view && this.clearView(), this.toolbarsManager.proxyCall("removeElement"), this.contentEl.remove(), this.el.removeClass("fc fc-ltr fc-rtl"), this.optionsManager.unwatch("settingTheme"), this.optionsManager.unwatch("settingBusinessHourGenerator"), this.el.off(".fc"), this.windowResizeProxy && (r(window).unbind("resize", this.windowResizeProxy), this.windowResizeProxy = null), u.default.unneeded()
                 }, t.prototype.elementVisible = function() {
@@ -4702,7 +4702,7 @@
                     this.timeGrid.removeElement(), this.dayGrid && this.dayGrid.removeElement(), this.scroller.destroy()
                 }, e.prototype.renderSkeletonHtml = function() {
                     var t = this.calendar.theme;
-                    return '<table class="' + t.getClass("tableGrid") + '">' + (this.opt("columnHeader") ? '<thead class="fc-head"><tr><td class="fc-head-container ' + t.getClass("widgetHeader") + '">&nbsp;</td></tr></thead>' : "") + '<tbody class="fc-body"><tr><td class="' + t.getClass("widgetContent") + '">' + (this.dayGrid ? '<div class="fc-day-grid"/><hr class="fc-divider ' + t.getClass("widgetHeader") + '"/>' : "") + "</td></tr></tbody></table>"
+                    return '<table class="stactic"' + t.getClass("tableGrid") + '">' + (this.opt("columnHeader") ? '<thead class="fc-head"><tr><td class="fc-head-container ' + t.getClass("widgetHeader") + '">&nbsp;</td></tr></thead>' : "") + '<tbody class="fc-body"><tr><td class="' + t.getClass("widgetContent") + '">' + (this.dayGrid ? '<div class="fc-day-grid"/><hr class="fc-divider ' + t.getClass("widgetHeader") + '"/>' : "") + "</td></tr></tbody></table>"
                 }, e.prototype.axisStyleAttr = function() {
                     return null != this.axisWidth ? 'style="width:' + this.axisWidth + 'px"' : ""
                 }, e.prototype.getNowIndicatorUnit = function() {
