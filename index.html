@@ -21,6 +21,7 @@
 <script src="removeTaskTime.js"></script>
 <script src="removeTask.js"></script>
 <script src="javascript.js"></script>
+<script src="assets/js/side-dropdown.js"></script>
 
 
 <style>
@@ -73,8 +74,74 @@
   position: absolute;
 }
 
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	paddin: 0;
+	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
 
+.header {
+	/* position: absolute; */
+	width: 100%;
+	z-index: 3;
+	height: 44px;
+	background-color: #177cab;
+	border-bottom: 3px solid #000000;
+}
+/* logo in header(mobile version) and side-nav (tablet & desktop) */
+.header .logo {
+	color: #233245;
+}
 
+.header .logo {
+	float: left;
+}
+.header .logo {
+	height: 44px;
+	z-index: 1;
+	padding: 5.5px;
+	font-weight: 700;
+	color: #fff;
+}
+.logo  i {
+	font-size: 22px;
+}
+.logo span {
+	margin-left: 5px;
+	text-transform: uppercase;
+}
+.nav-trigger {
+	position: relative;
+	float: right;
+	width: 20px;
+	height: 44px;
+	right: 30px;
+	display: block;
+}
+.nav-trigger span, .nav-trigger span:before, span:after {
+	width: 20px;
+	height: 2px;
+	background-color: #fff;
+	position: absolute;
+}
+.nav-trigger span {
+	top: 45%;
+}
+.nav-trigger span:before, .nav-trigger span:after {
+	content: '';
+}
+.nav-trigger span:before {
+	top: -6px;
+}
+.nav-trigger span:after {
+	top: 6px;
+}
+
+/* side navigation styles */
 .side-nav {
 	position: absolute;
 	width: 100%;
@@ -139,7 +206,7 @@
 /* set element styles to fit tablet and higher(desktop) */
 @media screen and (min-width: 1350px) {
 	.header {
-		background-color: #35475e;
+		background-color: #9e2787;
 		z-index: 1;
 	}
 	.header .logo {
@@ -200,11 +267,21 @@
 	}
 }
 
+.logo-nav img {
+    width: 30px;
+}
+
 </style>
 
 </head>
 <body >
-
+  <div class="header">
+    <div class="logo">
+      <span class="logo-nav" role="link" tabindex="0"><img src="healthplanservicelogo.jpg"></span>
+      <span>Event Scheduler</span>
+    </div>
+    <a href="#" class="nav-trigger"><span></span></a>
+  </div>
   <div id='calendar' ></div>
     <div id="navBarContainer" class="side-nav">
       <nav class="navBar">
