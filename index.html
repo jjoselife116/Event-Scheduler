@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-<meta charset='utf-8' />
+<meta charset='utf-8' name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href='assests/css/fullcalendar.css' rel='stylesheet' />
 <link href='assests/css/fullcalendar.min.print.css' rel='stylesheet' media='print' />
 <link href="assests/css/style.css" rel="stylesheet" type="text/css">
@@ -21,6 +21,9 @@
 <script src="assests/js/removeTaskTime.js"></script>
 <script src="assests/js/removeTask.js"></script>
 <script src="assests/js/javascript.js"></script>
+<script src="assests/js/side-dropdown.js"></script>
+<title img src="assests/images/healthplanservicelogo.jpg">Task Scheduler</title>
+<link rel="shortcut icon" href="assests\images\favicon.ico" />
 
 
 <style>
@@ -36,13 +39,235 @@
     max-width: 900px;
     margin: 50px auto;
   }
+  </style>
+
+<style>
+#mydiv,
+#mydiv1,
+#mydiv2,
+#mydiv3,
+#mydiv4 {
+    position: absolute;
+}
+#mydivheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+}
+
+#fixplace {
+  position: absolute;
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	paddin: 0;
+	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
+.header {
+	/* position: absolute; */
+	width: 100%;
+	z-index: 3;
+	height: 44px;
+	background-color: #177cab;
+	border-bottom: 3px solid #000000;
+}
+/* logo in header(mobile version) and side-nav (tablet & desktop) */
+.header .logo {
+	color: #233245;
+}
+.header .logo {
+	float: left;
+}
+.header .logo {
+	height: 44px;
+	z-index: 1;
+	padding: 5.5px;
+	font-weight: 700;
+	color: #fff;
+}
+.logo  i {
+	font-size: 22px;
+}
+.logo span {
+	margin-left: 5px;
+	text-transform: uppercase;
+}
+.nav-trigger {
+	position: relative;
+	float: right;
+	width: 20px;
+	height: 44px;
+	right: 30px;
+	display: block;
+}
+.nav-trigger span, .nav-trigger span:before, span:after {
+	width: 20px;
+	height: 2px;
+	background-color: #fff;
+	position: absolute;
+}
+.nav-trigger span {
+	top: 45%;
+}
+.nav-trigger span:before, .nav-trigger span:after {
+	content: '';
+}
+.nav-trigger span:before {
+	top: -6px;
+}
+.nav-trigger span:after {
+	top: 6px;
+}
+/* side navigation styles */
+.side-nav {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	background-color: #35475e;
+	z-index: 1;
+	display: none;
+}
+.side-nav.visible {
+	display: block;
+}
+.side-nav ul {
+	margin: 0;
+	padding: 0;
+}
+.side-nav ul li {
+	padding: 16px 16px;
+	border-bottom: 1px solid #3c506a;
+	position: relative;
+}
+.side-nav ul li.active:before {
+	content: '';
+	position: absolute;
+	width: 4px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+}
+.side-nav ul li a {
+	color: #fff;
+	display: block;
+	text-decoration: none;
+}
+.side-nav ul li i {
+	color: #0497df;
+	min-width: 20px;
+	text-align: center;
+}
+.side-nav ul li span:nth-child(2) {
+	margin-left: 10px;
+	font-size: 14px;
+	font-weight: 600;
+}
+/* main content styles */
+.main-content {
+	padding: 40px;
+	margin-top: 0;
+	padding: 0;
+	padding-top: 44px;
+	height: 100%;
+	overflow: scroll;
+}
+.main-content .title {
+	background-color: #eef1f7;
+	border-bottom: 1px solid #b8bec9;
+	padding: 10px 20px;
+	font-weight: 700;
+	color: #333;
+	font-size: 18px;
+}
+/* set element styles to fit tablet and higher(desktop) */
+@media screen and (min-width: 1350px) {
+	.header {
+		background-color: #9e2787;
+		z-index: 1;
+	}
+	.header .logo {
+		display: none;
+	}
+	.nav-trigger {
+		display: none;
+	}
+	.nav-trigger span, .nav-trigger span:before, span:after {
+		background-color: #fff;
+	}
+	.side-nav {
+		display: block;
+		width: 70px;
+		z-index: 2;
+	}
+	.side-nav ul li span:nth-child(2) {
+		display: none;
+	}
+	.side-nav .logo i {
+		padding-left: 12px;
+	}
+	.side-nav .logo span {
+		display: none;
+	}
+	.side-nav ul li i {
+		font-size: 26px;
+	}
+	.side-nav ul li a {
+		text-align: center;
+	}
+	.main-content {
+		margin-left: 70px;
+	}
+}
+/* set element styles for desktop */
+@media screen and (min-width: 850px) {
+	.side-nav {
+		width: 200px;
+	}
+	.side-nav ul li span:nth-child(2) {
+		display: inline-block;
+	}
+	.side-nav ul li i {
+		font-size: 16px;
+	}
+	.side-nav ul li a {
+		text-align: left;
+	}
+	.side-nav .logo i {
+		padding-left: 0;
+	}
+	.side-nav .logo span {
+		display: inline-block;
+	}
+	.main-content {
+		margin-left: 200px;
+	}
+
+}
+.logo-nav img {
+    width: 30px;
+}
+
+
 
 </style>
+
 </head>
 <body >
 
+  <div class="header">
+   <div class="logo">
+     <span class="logo-nav" role="link" tabindex="0"><img src="assests\images\healthplanservicelogo.jpg"></span>
+     <span>Event Scheduler</span>
+   </div>
+   <a href="#" class="nav-trigger"><span></span></a>
+ </div>
   <div id='calendar' ></div>
-    <div id="navBarContainer">
+    <div id="navBarContainer" class="side-nav">
       <nav class="navBar">
         <span class="logo" role="link" tabindex="0"><img src="assests/images/healthplanservicelogo.jpg"></span>
         <div class="group">
@@ -71,9 +296,9 @@
 	<div id="task-messages">
 		<form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="empForm" onsubmit="return create_employee(this);">
 			<div class="container">
-				<div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:40px;">
-					<div class="panel panel-default">
-						<div class="panel-heading">
+				<div class="#" style="margin-top:40px;">
+					<div id= "mydiv" class="panel panel-default" style="top:40px; left:500;">
+						<div id= "mydivheader" class="panel-heading">
 							<div class="panel-title">
 								<strong>Add Employee</strong>
 								<div class="pull-right">
@@ -127,9 +352,9 @@
             <div id="task-messages">
               <form accept-charset="UTF-8" class="modal-content animate" id="taskForm" method="post" name="taskForm" onsubmit="return submit_json(this);">
                 <div class="container">
-                  <div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:30px;">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
+                  <div class="#" style="margin-top:30px;">
+                    <div id= "mydiv1" class="panel panel-default" style="top:40px; left:500;">
+          						<div id= "mydivheader" class="panel-heading">
                         <div class="panel-title">
                           <strong>Add Task</strong>
                           <div class="pull-right">
@@ -200,9 +425,9 @@
 							<div id="task-messages">
 								<form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="removeTask" onsubmit="return remove_task(this);">
 									<div class="container">
-										<div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:40px;">
-											<div class="panel panel-default">
-												<div class="panel-heading">
+										<div class="#" style="margin-top:40px;">
+                      <div id= "mydiv2" class="panel panel-default" style="top:40px; left:500;">
+                        <div id= "mydivheader" class="panel-heading">
 													<div class="panel-title">
 														<strong>Remove Task</strong>
 														<div class="pull-right">
@@ -284,9 +509,9 @@
 							<div id="task-messages">
 								<form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="removeEmp" onsubmit="return remove_Emp(this);">
 									<div class="container">
-										<div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:40px;">
-											<div class="panel panel-default">
-												<div class="panel-heading">
+										<div class="#" style="margin-top:40px;">
+                      <div id= "mydiv3" class="panel panel-default" style="top:40px; left:500;">
+                        <div id= "mydivheader" class="panel-heading">
 													<div class="panel-title">
 														<strong>Remove Employee</strong>
 														<div class="pull-right">
@@ -334,9 +559,9 @@
 							<div id="task-messages">
 								<form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="editEmp" onsubmit="return edit_Emp(this);">
 									<div class="container">
-										<div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:40px;">
-											<div class="panel panel-default">
-												<div class="panel-heading">
+										<div class="#" style="margin-top:40px;">
+                      <div id= "mydiv4" class="panel panel-default" style="top:40px; left:500;">
+                        <div id= "mydivheader" class="panel-heading">
 													<div class="panel-title">
 														<strong>Edit Employee</strong>
 														<div class="pull-right">
@@ -564,7 +789,7 @@ if( localStorage.length > 0) {
             employeeTaskDate.push(employee.Task[taskIndex]["Task End Date"]);
 
               taskName = employeeTaskName[j];
-              alert(employeeTaskDate[k+1]);
+
             events.push({"id": employeesNum, "resourceId" : employeesNum, "start" : employeeTaskDate[k], "end": (employeeTaskDate[k + 1]) , "title" : taskName });
               //alert("j-" + j + " " + employeeTaskDate[k] + "  j + 1-" + (j+1) + " " + employeeTaskDate[j+1] );
                 j++;
@@ -610,6 +835,48 @@ if( localStorage.length > 0) {
     $('#calendar').fullCalendar('gotoDate', startDate.toString());
 
   });
+
+
+  dragElement(document.getElementById(("mydiv")));
+   dragElement(document.getElementById(("mydiv1")));
+   dragElement(document.getElementById(("mydiv2")));
+   dragElement(document.getElementById(("mydiv3")));
+   dragElement(document.getElementById(("mydiv4")));
+   function dragElement(elmnt) {
+   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+   if (document.getElementById(elmnt.id + "header")) {
+     /* if present, the header is where you move the DIV from:*/
+     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+   } else {
+     /* otherwise, move the DIV from anywhere inside the DIV:*/
+     elmnt.onmousedown = dragMouseDown;
+   }
+   function dragMouseDown(e) {
+     e = e || window.event;
+     // get the mouse cursor position at startup:
+     pos3 = e.clientX;
+     pos4 = e.clientY;
+     document.onmouseup = closeDragElement;
+     // call a function whenever the cursor moves:
+     document.onmousemove = elementDrag;
+   }
+   function elementDrag(e) {
+     e = e || window.event;
+     // calculate the new cursor position:
+     pos1 = pos3 - e.clientX;
+     pos2 = pos4 - e.clientY;
+     pos3 = e.clientX;
+     pos4 = e.clientY;
+     // set the element's new position:
+     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+   }
+   function closeDragElement() {
+       /* stop moving when mouse button is released:*/
+       document.onmouseup = null;
+       document.onmousemove = null;
+     }
+   }
 
 
 
