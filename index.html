@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset='utf-8' />
+<link href='assests/css/fullcalendar.css' rel='stylesheet' />
+<link href='assests/css/fullcalendar.min.print.css' rel='stylesheet' media='print' />
+<link href="assests/css/style.css" rel="stylesheet" type="text/css">
+<link href="assests/css/teststyle.css" rel="stylesheet" type="text/css">
+<link href='assests/css/scheduler.css' rel='stylesheet' />
+<link href="assests/css/addTask.css" rel="stylesheet" type="text/css">
+<link href="assests/css/empForm1.min.css" rel="stylesheet" type="text/css">
+<script src='assests/js/moment.min.js'></script>
+<script src='assests/js/jquery.min.js'></script>
+<script src='assests/js/fullcalendar.min.js'></script>
+<script src='assests/js/scheduler.min.js'></script>
+<script src='assests/js/addEmp.js'></script>
+<script src="assests/js/addTask.js"></script>
+<script src="assests/js/editEmp.js"></script>
+<script src="assests/js/removeEmp.js"></script>
+<script src="assests/js/removeTaskTime.js"></script>
+<script src="assests/js/removeTask.js"></script>
+<script src="assests/js/javascript.js"></script>
+
+
+<style>
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 50px auto;
+  }
+
+</style>
+</head>
+<body >
+
+  <div id='calendar' ></div>
+    <div id="navBarContainer">
+      <nav class="navBar">
+        <span class="logo" role="link" tabindex="0"><img src="assests/images/healthplanservicelogo.jpg"></span>
+        <div class="group">
+          <div class="navItem">
+            <span class="navItemLink" onclick="document.getElementById('addEmployee').style.display='inline-block'" role="link" tabindex="0">Add Employee</span>
+          </div>
+          <div class="navItem">
+            <span class="navItemLink" onclick="document.getElementById('addTask').style.display='inline-block'" role="link" tabindex="0">Add Task</span>
+          </div>
+          <div class="navItem">
+            <span class="navItemLink" onclick="document.getElementById('removeTask').style.display='inline-block'" role="link" tabindex="0">Remove Task</span>
+          </div>
+          <div class="navItem">
+            <span class="navItemLink" onclick="document.getElementById('editEmp').style.display='inline-block'" role="link" tabindex="0">Edit Employee</span>
+          </div>
+          <div class="navItem">
+            <span class="navItemLink" onclick="document.getElementById('removeEmp').style.display='inline-block'" role="link" tabindex="0">Remove Employee</span>
+          </div>
+
+        </div>
+      </nav>
+    </div>
+
+<div class="modal" id="addEmployee" >
+	<!--form addEmployee-->
+	<div id="task-messages">
+		<form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="empForm" onsubmit="return create_employee(this);">
+			<div class="container">
+				<div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:40px;">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<strong>Add Employee</strong>
+								<div class="pull-right">
+									<div style="margin-top: -6px"></div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body" style="padding-top:25px">
+							<div class="labelinputclass" id="labelinputc">
+								<div class="row">
+									<div class="marginlsi">
+										<label for="empName">Employee Name:</label> <input class="form-control" name="empName" required="" type="text">
+									</div>
+								</div>
+								<div class="row">
+									<div class="marginlsi">
+										<label for="empId">Employee Tag:</label>
+										<input list="empTag" class="form-control" name="empId" required="" type="text">
+											<datalist name="empId" id="empTag">
+												<option value="Java"></option>
+												<option value=".Net"></option>
+												<option value="JavaScript"></option>
+												<option value="Python"></option>
+											</datalist>
+									</div>
+								</div>
+								<div class="row">
+									<div class="marginlsi">
+										<label for="empId">Employee Color:</label> <input class="form-control" name="empColor" required="" type="color">
+									</div>
+								</div>
+							</div><br>
+							<div id="buttonget">
+								<div style="float: left;">
+									<button class="btn btn-success" id="submitbtn" type="submit">Submit</button>
+								</div>
+								<div style="float: right;">
+									<button class="btn btn-danger" onclick="document.getElementById('addEmployee').style.display='none'" type="button">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+	<div class="modal" id="addTask">
+<!--form addTask-->
+            <div id="task-messages">
+              <form accept-charset="UTF-8" class="modal-content animate" id="taskForm" method="post" name="taskForm" onsubmit="return submit_json(this);">
+                <div class="container">
+                  <div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:30px;">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="panel-title">
+                          <strong>Add Task</strong>
+                          <div class="pull-right">
+                            <div style="margin-top: -6px"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-body" style="padding-top:15px">
+                        <div class="labelinputclass" id="labelinputc">
+                          <div class="row">
+                            <div class="marginlsi">
+                              <label for="emplName">Employee:</label> <select class="form-control" id="empDropDown" name="emplName">
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="marginlsi">
+                              <label for="tskname">Task Name:</label> <input class="form-control" name="tskname" required="" type="text">
+                            </div>
+                          </div>
+                          <div class="datefields">
+                            <div class="field-wrap1">
+                              <div class="row">
+                                <div class="" style="float: left;">
+                                  <label for="=tskstart">Start Date:</label> <input class="form-control" name="tskstart" required="" type="date">
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="" style="float: right;">
+                                  <label for="tskend">End Date:</label> <input class="form-control" name="tskend" required="" type="date">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div><br>
+                        <div id="buttonget">
+                          <div style="float: left;">
+                            <button class="btn btn-success" id="submitbtn" type="submit">Submit</button>
+                          </div>
+                          <div style="float: right;">
+                            <button class="btn btn-danger" onclick="document.getElementById('addTask').style.display='none'" type="button">Cancel</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                   empArry = [];
+
+
+                   for (var i = 0; i < localStorage.length; i++){
+                       empArry.push(localStorage.key(i))
+                   }
+
+                   for(let j = 0; j < empArry.length; j++){
+                     employee = JSON.parse(localStorage.getItem(empArry[j]));
+
+                     $("#empDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+                   }
+                </script>
+              </form>
+            </div>
+          </div>
+
+          <div class="modal" id="removeTask">
+							<!--remove task-->
+							<div id="task-messages">
+								<form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="removeTask" onsubmit="return remove_task(this);">
+									<div class="container">
+										<div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:40px;">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<div class="panel-title">
+														<strong>Remove Task</strong>
+														<div class="pull-right">
+															<div style="margin-top: -6px"></div>
+														</div>
+													</div>
+												</div>
+												<div class="panel-body" style="padding-top:25px">
+													<div class="labelinputclass" id="labelinputc">
+														<div class="row">
+															<div class="marginlsi">
+																<label for="empName">Employee:</label> <select class="form-control" id="removeDropDown" name="emplName" onchange="populate()">
+																</select>
+															</div>
+														</div>
+														<div class="row">
+															<div class="marginlsi">
+																<label for="empId">Employee task:</label> <select class="form-control" id="taskDropDown" name="emplName">
+																</select>
+															</div>
+														</div>
+													</div><br>
+													<div id="buttonget">
+														<div style="float: left;">
+															<button class="btn btn-success" id="submitbtn" type="submit">Submit</button>
+														</div>
+														<div style="float: right;">
+															<button class="btn btn-danger" onclick="document.getElementById('removeTask').style.display='none'" type="button">Cancel</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<script>
+
+
+		                   empArry.length = 0;
+                       // push the local storage to an array
+		                   for (let i = 0; i < localStorage.length; i++){
+		                       empArry.push(localStorage.key(i))
+		                   }
+                       // loop through all the employees that were pushed to an array in the localStorage
+		                   for(let y = 0; y < empArry.length; y++){
+												  employee = JSON.parse(localStorage.getItem(empArry[y]));
+                      // if employee has a task add task to the task dropdown
+		                   if('Task' in employee && employee.Task[y] != undefined ){
+                         // Loop through the employees task and add them for the first employee in the list
+                         for(let taskForEmp = 0; taskForEmp < employee.Task.length; taskForEmp++){
+		                     $('#taskDropDown').append("<option >" + employee.Task[taskForEmp]["Task Name"] + "</option>");
+                         }
+                         break;
+                       }
+		               }
+                      // loop though the empArray and add the employees name to the employee dropdown
+		                   for(j = 0; j < empArry.length; j++){
+		                     employee = JSON.parse(localStorage.getItem(empArry[j]));
+		                     if('Task' in employee && employee.Task.length != 0 ){
+		                       $("#removeDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+		                     }
+		               }
+		               function populate(){
+		                   $(taskDropDown).empty();
+		                   for(let k = 0; k < employee.Task.length; k++){
+		                   employee = localStorage.getItem(document.getElementById("removeDropDown").value);
+		                   employee = JSON.parse(employee);
+		                   if('Task' in employee && employee.Task[k] != undefined ){
+		                     $('#taskDropDown').append("<option >" + employee.Task[k]["Task Name"] + "</option>");
+		                 }
+		                 }
+		               }
+									</script>
+								</form>
+							</div>
+						</div><!-- end of remove task div-->
+
+						<div class="modal" id="removeEmp">
+							<!--remove emp-->
+							<div id="task-messages">
+								<form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="removeEmp" onsubmit="return remove_Emp(this);">
+									<div class="container">
+										<div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:40px;">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<div class="panel-title">
+														<strong>Remove Employee</strong>
+														<div class="pull-right">
+															<div style="margin-top: -6px"></div>
+														</div>
+													</div>
+												</div>
+												<div class="panel-body" style="padding-top:25px">
+													<div class="labelinputclass" id="labelinputc">
+														<div class="row">
+															<div class="marginlsi">
+																<label for="empName">Employee:</label> <select class="form-control" id="removeEmpDropDown" name="emplName">
+																</select>
+															</div>
+														</div>
+													</div><br>
+													<div id="buttonget">
+														<div style="float: left;">
+															<button class="btn btn-success" id="submitbtn" type="submit">Submit</button>
+														</div>
+														<div style="float: right;">
+															<button class="btn btn-danger" onclick="document.getElementById('removeEmp').style.display='none'" type="button">Cancel</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+							<script>
+                     empArry = [];
+                     for (i = 0; i < localStorage.length; i++){
+                         empArry.push(localStorage.key(i))
+                     }
+                     for(j = 0; j < empArry.length; j++){
+                       employee = JSON.parse(localStorage.getItem(empArry[j]));
+                         $("#removeEmpDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+                  }
+									</script>
+								</form>
+							</div>
+						</div><!--end of remove employee div -->
+
+						<div class="modal" id="editEmp">
+							<!--Edit employee-->
+							<div id="task-messages">
+								<form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="editEmp" onsubmit="return edit_Emp(this);">
+									<div class="container">
+										<div class="col-md-4 col-md-offset-4 col-sm-7 col-sm-offset-2" style="margin-top:40px;">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<div class="panel-title">
+														<strong>Edit Employee</strong>
+														<div class="pull-right">
+															<div style="margin-top: -6px"></div>
+														</div>
+													</div>
+												</div>
+												<div class="panel-body" style="padding-top:25px">
+													<div class="labelinputclass" id="labelinputc">
+														<div class="row">
+															<div class="marginlsi">
+																<label for="empName">Employee:</label> <select class="form-control" id="editEmpDropDown" name="emplName" onchange="populateEdit()">
+																</select>
+															</div>
+														</div>
+                            <div class="row">
+															<div class="marginlsi">
+																<label for="editEmpName">Edit Employeee Name:</label> <input class="form-control" name="editEmpName" type="text">
+															</div>
+														</div>
+
+														<div class="row">
+															<div class="marginlsi">
+																<label for="empId">Employee task:</label> <select class="form-control" id="editTaskDropDown" name="emplName">
+																</select>
+															</div>
+														</div>
+														<div class="row">
+															<div class="marginlsi">
+																<label for="tskname">Task Name:</label> <input class="form-control" name="tskname" type="text">
+															</div>
+														</div>
+														<div class="datefields">
+															<div class="field-wrap1">
+																<div class="row">
+																	<div class="" style="float: left;">
+																		<label for="=tskstart">Edit Start Date:</label> <input class="form-control" name="tskstart"  type="date">
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="" style="float: right;">
+																		<label for="tskend">Edit End Date:</label> <input class="form-control" name="tskend" type="date">
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="marginlsi">
+																<label for="empId" >Employee Color:</label> <input class="form-control" name="empColor"  type="color" value = "#0000ff" id = "empColor";>
+															</div>
+														</div>
+													</div><br>
+													<div id="buttonget">
+
+														<div style="float: left;">
+															<button class="btn btn-success" id="submitbtn" type="submit">Edit</button>
+														</div>
+
+														<div style="float: left;">
+															<button class="btn btn-danger" onclick="document.getElementById('editEmp').style.display='none'" type="button">Cancel</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<script>
+											 empArry.length = 0;
+											 // push the local storage to an array
+											 for (let i = 0; i < localStorage.length; i++){
+													 empArry.push(localStorage.key(i))
+											 }
+											 // loop through all the employees that were pushed to an array in the localStorage
+											 for(let y = 0; y <empArry.length; y++){
+                          employee = JSON.parse(localStorage.getItem(empArry[y]));
+											// if employee has a task add task to the task dropdown
+											 if('Task' in employee && employee.Task.length != 0 ){
+												 // Loop through the employees task and add them for the first employee in the list
+												 for(let taskForEmp =0; taskForEmp < employee.Task.length; taskForEmp++){
+
+                         // If employee is defined the add to the edit task dropdown
+                         if(employee){
+												 $('#editTaskDropDown').append("<option >" + employee.Task[taskForEmp]["Task Name"] + "</option>");
+                       }
+                         }
+												 break;
+											 }
+									 }
+
+
+											// loop though the empArray and add the employees name to the employee dropdown
+											 for(j = 0; j < empArry.length; j++){
+												 employee = JSON.parse(localStorage.getItem(empArry[j]));
+													 $("#editEmpDropDown").append("<option >"+ employee["Employee Name"] +"</option>");
+									 }
+									 employee = JSON.parse(localStorage.getItem($('#editEmpDropDown').val()));
+                   if(employee != null){
+                   if("Employee Color" in employee ){
+										$("#empColor").attr("value", employee["Employee Color"]);
+                  }
+                }
+									 function populateEdit(){
+										 employee = JSON.parse(localStorage.getItem($('#editEmpDropDown').val()));
+											$("#empColor").attr("value", employee["Employee Color"]);
+											$(editTaskDropDown).empty();
+											for(let k = 0; k < employee.Task.length; k++){
+											employee = localStorage.getItem(document.getElementById("editEmpDropDown").value);
+											employee = JSON.parse(employee);
+											if('Task' in employee && employee.Task[k] != undefined ){
+												$('#editTaskDropDown').append("<option >" + employee.Task[k]["Task Name"] + "</option>");
+										}
+										}
+									}
+
+
+  $(function() { // document ready
+    let today = new Date();
+    let employeeName;
+    let employee;
+    let resource = [];
+    let events = [];
+    let i =0;
+    let employeeTaskDate = [];
+    let employeeTaskName = [];
+    let taskName;
+    let j =0;
+    let k =0;
+    let employeesNum = 0;
+    let emp1;
+
+    /* Get today's date */
+
+    let dd = today.getDate();
+    let mm = today.getMonth()+1; //January is 0!
+    let mmN = mm;
+    let yyyy = today.getFullYear();
+    let nextWeek = (today.getDate()+10) + 10;
+    if (nextWeek > 30 && (mmN == 9 || mmN == 4 || mmN == 6 || mmN == 11)) {
+     mmN++;
+     nextWeek -= 30;
+    }
+    else if (nextWeek > 31 && (mmN == 1 || mmN == 3 || mmN == 5 || mmN == 7 || mmN == 8 || mmN == 10 || mmN == 12)) {
+     mmN++;
+     nextWeek -= 31;
+    }
+    else if (nextWeek > 28 && mmN == 2) {
+     mmN++;
+     nextWeek -= 28;
+    }
+    /* Formatting of the dates at the top of the table */
+    if(dd < 10) {
+     dd = '0'+ dd;
+    }
+    if(nextWeek < 10) {
+     nextWeek = '0' + nextWeek;
+    }
+    if(mmN < 10) {
+       mmN = '0' + mmN
+    }
+    if(mm < 10) {
+     mm = '0' + mm;
+    }
+
+    let startDate1  = yyyy.toString() +  mm.toString() + dd.toString();
+    let startDate = parseInt(startDate1);
+    let earliestTaskDate = startDate;
+
+if( localStorage.length > 0) {
+   	for (var key in localStorage) {
+
+     	typeofKey = (typeof localStorage[key]);
+     	if (typeofKey == 'string' || typeofKey instanceof String ){
+
+       	emp1 = JSON.parse(localStorage.getItem(key));
+       	if ("Task" in emp1) {
+
+         	for (let i = 0; i < emp1.Task.length; i++) {
+
+           	earliestTaskDate = parseInt(emp1.Task[i]['Task Start Date'].substr(0,4) + emp1.Task[i]['Task Start Date'].substr(5,2) + emp1.Task[i]['Task Start Date'].substr(8,2));
+            if(earliestTaskDate < startDate) {
+
+             	startDate = earliestTaskDate;
+           	}
+          }
+         }
+     	 }
+   	 }
+   }
+
+    for (var key in localStorage) {
+        typeofKey = (typeof localStorage[key]);
+        //cols of the employee names
+        if(typeofKey == 'string' || typeofKey instanceof String ){
+          employee = JSON.parse(localStorage.getItem(key));
+          employeeName = employee['Employee Name'] + " \n" + " (" + employee['Employee Id'] + ")";
+          // rows and cols of the main table and date
+
+
+          var rgb = employee["Employee Color"];
+           var colr;
+           if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(rgb)){
+               colr= rgb.substring(1).split('');
+               if(colr.length== 3){
+                   colr= [colr[0], colr[0], colr[1], colr[1], colr[2], colr[2]];
+               }
+               colr= '0x'+colr.join('');
+               var rgb =[(colr>>16)&255, (colr>>8)&255, colr&255].join(',')+',1'
+             }
+           bgroundColor = Math.round(((parseInt(rgb[0]) * 299) +
+                       (parseInt(rgb[1]) * 587) +
+                       (parseInt(rgb[2]) * 114)) / 2);
+
+             var newTextColor = (bgroundColor > 125) ? 'black' : 'white';
+
+        resource.push({"id": i,"title": employeeName, "eventColor" : employee["Employee Color"], textColor: newTextColor});
+        //{ id: '1', resourceId: '0', start: employeeTaskDate[0], end: employeeTaskDate[1], title: employeeTaskName[0] },
+      i++;
+
+    if("Task" in employee){
+        for(let taskIndex = 0; taskIndex < employee.Task.length; taskIndex++ ){
+
+            employeeTaskName.push(employee.Task[taskIndex]["Task Name"]);
+            employeeTaskDate.push(employee.Task[taskIndex]["Task Start Date"]);
+            employeeTaskDate.push(employee.Task[taskIndex]["Task End Date"]);
+
+              taskName = employeeTaskName[j];
+              alert(employeeTaskDate[k+1]);
+            events.push({"id": employeesNum, "resourceId" : employeesNum, "start" : employeeTaskDate[k], "end": (employeeTaskDate[k + 1]) , "title" : taskName });
+              //alert("j-" + j + " " + employeeTaskDate[k] + "  j + 1-" + (j+1) + " " + employeeTaskDate[j+1] );
+                j++;
+                k +=2;
+        }
+      }
+
+      employeesNum++;
+
+    }
+      }
+    $('#calendar').fullCalendar({
+
+      //now: today,
+      //editable: true, // enable draggable events
+      aspectRatio: 1.5,
+      //dragScroll: true,
+
+      //scrollTime: '01:00', // undo default 6am scrollTime
+      header: {
+          left:   '',
+          center: 'title',
+          right:  '',
+      },
+
+      defaultView: 'customWeek',
+      views: {
+          customWeek: {
+
+              type: 'timeline',
+              duration: { weeks: 1 },
+              slotDuration: {days: 1},
+              duration : {days : 100},
+          }
+      },
+
+      resourceLabelText: 'Employees',
+      resources: resource,
+      events: events,
+    });
+
+
+    $('#calendar').fullCalendar('gotoDate', startDate.toString());
+
+  });
+
+
+
+
+
+</script>
+
+</body>
+</html>
