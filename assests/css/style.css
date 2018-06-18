@@ -11,6 +11,7 @@
 
 body{
   background-color: lightgrey;
+  overflow-y: hidden;
 }
 
 /* #3fda60 */
