@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 
 let today = new Date();
 let dd = today.getDate()-1;
@@ -41,3 +41,4 @@ todayDate = parseInt(todayDate);
 
   return true;
 });
+*/

@@ -17,6 +17,8 @@ employee.Task.push({
   "Task Name"             : form.tskname.value,
   "Task Start Date"       : form.tskstart.value,
   "Task End Date"         : form.tskend.value,
+  "Task Tag"              : form.tskTag.value,
+  "Task Active"           : $('#tskActive').val(),
 
 });
 }

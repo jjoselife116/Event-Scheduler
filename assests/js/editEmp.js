@@ -8,9 +8,11 @@ function edit_Emp(form){
 
     employeeToEdit["Employee Color"] = form.empColor.value;
 
-    if(form.editEmpTag != null){
+    if(form.editEmpTag.value != null && form.editEmpTag.value != ""){
+
       employeeToEdit["Employee Id"] = form.editEmpTag.value;
     }
+
     // add task to the end of the task array for chosen employee
     // create a employee object to store the employee's name and taks info
     if(form.tskstart !=null && form.tskstart.value != ""  && form.tskend != null && form.tskend.value != ""){
@@ -24,6 +26,15 @@ function edit_Emp(form){
       }
     }
   }
+
+
+  for(let taskIndex = 0; taskIndex < employee.Task.length; taskIndex++){
+  if(employeeToEdit.Task[taskIndex]["Task Name"] == $('#editTaskDropDown').val()){
+    employeeToEdit.Task[taskIndex]["Task Active"] = $('#editTskActive').val();
+    break;
+  }
+    }
+
 
     if(form.tskname.value != ""){
       for(let taskIndex = 0; taskIndex < employee.Task.length; taskIndex++){

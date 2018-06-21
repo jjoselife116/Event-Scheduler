@@ -41,7 +41,7 @@ body{
 
 #navBarContainer {
 	background-color: #000;
-    width: 240px;
+    width: 280px;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -215,6 +215,7 @@ body{
 #mydiv3,
 #mydiv4 {
     position: absolute;
+    left:650px;
 }
 #mydivheader {
     padding: 10px;
@@ -239,7 +240,6 @@ body {
 	width: 100%;
 	z-index: 3;
 	height: 44px;
-
 	background-color: #177cab;
 	border-bottom: 3px solid #000000;
 }
@@ -358,6 +358,7 @@ body {
 
 		z-index: 1;
      background: linear-gradient(80deg, black, #9e2787);
+
 	}
 	.header .logo {
 		display: none;
@@ -482,5 +483,5 @@ color: white;
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: hotpink
+    background: #9e2787;
 }

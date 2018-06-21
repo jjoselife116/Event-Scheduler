@@ -17,7 +17,6 @@
     <script src="assests/js/addTask.js"></script>
     <script src="assests/js/editEmp.js"></script>
     <script src="assests/js/removeEmp.js"></script>
-    <script src="assests/js/removeTaskTime.js"></script>
     <script src="assests/js/removeTask.js"></script>
     <script src="assests/js/javascript.js"></script>
     <script src="assests/js/side-dropdown.js"></script>
@@ -163,6 +162,23 @@
                                             <input class="form-control" name="tskname" required="" type="text">
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="marginlsi">
+                                            <label for="tskTag">Task Tag:</label>
+                                            <input class="form-control" name="tskTag" required="" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="marginlsi">
+                                            <label for="tskActive">Task Active:</label>
+                                            <select name="tskActive" class="form-control" id="tskActive">
+                                                <option value="active">Active</option>
+                                                <option value="Not Active">Not Active</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
                                     <div class="datefields">
                                         <div class="field-wrap1">
                                             <div class="row">
@@ -356,7 +372,7 @@
             <form accept-charset="UTF-8" class="modal-content animate" id="" method="post" name="editEmp" onsubmit="return edit_Emp(this);">
                 <div class="container">
                     <div class="#" style="margin-top:40px;">
-                        <div id="mydiv4" class="panel panel-default" style="top:40px; left:500;">
+                        <div id="mydiv4" class="panel panel-default" style="top:40px; right:500;">
                             <div id="mydivheader" class="panel-heading">
                                 <div class="panel-title">
                                     <strong>Edit Employee</strong>
@@ -401,6 +417,15 @@
                                             <input class="form-control" name="tskname" type="text">
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="marginlsi">
+                                            <label for="tskActive">Task Active:</label>
+                                            <select name="editTskActive" class="form-control" id="editTskActive">
+                                                <option value="active">Active</option>
+                                                <option value="Not Active">Not Active</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="datefields">
                                         <div class="field-wrap1">
                                             <div class="row">
@@ -440,273 +465,278 @@
                     </div>
                 </div>
 
-                <script>
-                    empArry.length = 0;
-                    // push the local storage to an array
-                    for (let i = 0; i < localStorage.length; i++) {
-                        empArry.push(localStorage.key(i))
-                    }
-                    // loop through all the employees that were pushed to an array in the localStorage
-                    for (let y = 0; y < empArry.length; y++) {
-                        employee = JSON.parse(localStorage.getItem(empArry[y]));
-                        // if employee has a task add task to the task dropdown
-                        if ('Task' in employee && employee.Task.length != 0) {
-                            // Loop through the employees task and add them for the first employee in the list
-                            for (let taskForEmp = 0; taskForEmp < employee.Task.length; taskForEmp++) {
+            <script>
+                empArry.length = 0;
+                // push the local storage to an array
+                for (let i = 0; i < localStorage.length; i++) {
+                    empArry.push(localStorage.key(i))
+                }
+                // loop through all the employees that were pushed to an array in the localStorage
+                for (let y = 0; y < empArry.length; y++) {
+                    employee = JSON.parse(localStorage.getItem(empArry[y]));
+                    // if employee has a task add task to the task dropdown
+                    if ('Task' in employee && employee.Task.length != 0) {
+                        // Loop through the employees task and add them for the first employee in the list
+                        for (let taskForEmp = 0; taskForEmp < employee.Task.length; taskForEmp++) {
 
-                                // If employee is defined the add to the edit task dropdown
-                                if (employee) {
-                                    $('#editTaskDropDown').append("<option >" + employee.Task[taskForEmp]["Task Name"] + "</option>");
-                                }
+                            // If employee is defined the add to the edit task dropdown
+                            if (employee) {
+                                $('#editTaskDropDown').append("<option >" + employee.Task[taskForEmp]["Task Name"] + "</option>");
                             }
-                            break;
                         }
+                        break;
                     }
+                }
 
-                    // loop though the empArray and add the employees name to the employee dropdown
-                    for (j = 0; j < empArry.length; j++) {
-                        employee = JSON.parse(localStorage.getItem(empArry[j]));
-                        $("#editEmpDropDown").append("<option >" + employee["Employee Name"] + "</option>");
-                    }
-                    employee = JSON.parse(localStorage.getItem($('#editEmpDropDown').val()));
-                    if (employee != null) {
-                        if ("Employee Color" in employee) {
-                            $("#empColor").attr("value", employee["Employee Color"]);
-                        }
-                    }
-
-                    function populateEdit() {
-                        employee = JSON.parse(localStorage.getItem($('#editEmpDropDown').val()));
+                // loop though the empArray and add the employees name to the employee dropdown
+                for (j = 0; j < empArry.length; j++) {
+                    employee = JSON.parse(localStorage.getItem(empArry[j]));
+                    $("#editEmpDropDown").append("<option >" + employee["Employee Name"] + "</option>");
+                }
+                employee = JSON.parse(localStorage.getItem($('#editEmpDropDown').val()));
+                if (employee != null) {
+                    if ("Employee Color" in employee) {
                         $("#empColor").attr("value", employee["Employee Color"]);
-                        $(editTaskDropDown).empty();
-                        for (let k = 0; k < employee.Task.length; k++) {
-                            employee = localStorage.getItem(document.getElementById("editEmpDropDown").value);
-                            employee = JSON.parse(employee);
-                            if ('Task' in employee && employee.Task[k] != undefined) {
-                                $('#editTaskDropDown').append("<option >" + employee.Task[k]["Task Name"] + "</option>");
-                            }
+                    }
+                }
+
+                function populateEdit() {
+                    employee = JSON.parse(localStorage.getItem($('#editEmpDropDown').val()));
+                    $("#empColor").attr("value", employee["Employee Color"]);
+                    $(editTaskDropDown).empty();
+                    for (let k = 0; k < employee.Task.length; k++) {
+                        employee = localStorage.getItem(document.getElementById("editEmpDropDown").value);
+                        employee = JSON.parse(employee);
+                        if ('Task' in employee && employee.Task[k] != undefined) {
+                            $('#editTaskDropDown').append("<option >" + employee.Task[k]["Task Name"] + "</option>");
                         }
                     }
+                }
 
-                    $(function() { // document ready
-                        let today = new Date();
-                        let employeeName;
-                        let employee;
-                        let resource = [];
-                        let events = [];
-                        let i = 0;
-                        let employeeTaskDate = [];
-                        let employeeTaskName = [];
-                        let taskName;
-                        let j = 0;
-                        let k = 0;
-                        let employeesNum = 0;
-                        let emp1;
+                $(function() { // document ready
+                    let today = new Date();
+                    let employeeName;
+                    let employee;
+                    let resource = [];
+                    let events = [];
+                    let i = 0;
+                    let employeeTaskDate = [];
+                    let employeeTaskName = [];
+                    let taskName;
+                    let j = 0;
+                    let k = 0;
+                    let employeesNum = 0;
+                    let emp1;
 
-                        /* Get today's date */
+                    /* Get today's date */
+                    let dd = today.getDate();
+                    let mm = today.getMonth() + 1; //January is 0!
+                    let mmN = mm;
+                    let yyyy = today.getFullYear();
+                    let nextWeek = (today.getDate() + 10) + 10;
+                    if (nextWeek > 30 && (mmN == 9 || mmN == 4 || mmN == 6 || mmN == 11)) {
+                        mmN++;
+                        nextWeek -= 30;
+                    } else if (nextWeek > 31 && (mmN == 1 || mmN == 3 || mmN == 5 || mmN == 7 || mmN == 8 || mmN == 10 || mmN == 12)) {
+                        mmN++;
+                        nextWeek -= 31;
+                    } else if (nextWeek > 28 && mmN == 2) {
+                        mmN++;
+                        nextWeek -= 28;
+                    }
+                    /* Formatting of the dates at the top of the table */
+                    if (dd < 10) {
+                        dd = '0' + dd;
+                    }
+                    if (nextWeek < 10) {
+                        nextWeek = '0' + nextWeek;
+                    }
+                    if (mmN < 10) {
+                        mmN = '0' + mmN
+                    }
+                    if (mm < 10) {
+                        mm = '0' + mm;
+                    }
+                    let startDate1 = yyyy.toString() + mm.toString() + dd.toString();
+                    let startDate = parseInt(startDate1);
+                    let earliestTaskDate = startDate;
 
-                        let dd = today.getDate();
-                        let mm = today.getMonth() + 1; //January is 0!
-                        let mmN = mm;
-                        let yyyy = today.getFullYear();
-                        let nextWeek = (today.getDate() + 10) + 10;
-                        if (nextWeek > 30 && (mmN == 9 || mmN == 4 || mmN == 6 || mmN == 11)) {
-                            mmN++;
-                            nextWeek -= 30;
-                        } else if (nextWeek > 31 && (mmN == 1 || mmN == 3 || mmN == 5 || mmN == 7 || mmN == 8 || mmN == 10 || mmN == 12)) {
-                            mmN++;
-                            nextWeek -= 31;
-                        } else if (nextWeek > 28 && mmN == 2) {
-                            mmN++;
-                            nextWeek -= 28;
-                        }
-                        /* Formatting of the dates at the top of the table */
-                        if (dd < 10) {
-                            dd = '0' + dd;
-                        }
-                        if (nextWeek < 10) {
-                            nextWeek = '0' + nextWeek;
-                        }
-                        if (mmN < 10) {
-                            mmN = '0' + mmN
-                        }
-                        if (mm < 10) {
-                            mm = '0' + mm;
-                        }
+                    if (localStorage.length > 0) {
+                        for (var key in localStorage) {
 
-                        let startDate1 = yyyy.toString() + mm.toString() + dd.toString();
-                        let startDate = parseInt(startDate1);
-                        let earliestTaskDate = startDate;
+                            typeofKey = (typeof localStorage[key]);
+                            if (typeofKey == 'string' || typeofKey instanceof String) {
 
-                        if (localStorage.length > 0) {
-                            for (var key in localStorage) {
+                                emp1 = JSON.parse(localStorage.getItem(key));
+                                if ("Task" in emp1) {
 
-                                typeofKey = (typeof localStorage[key]);
-                                if (typeofKey == 'string' || typeofKey instanceof String) {
+                                    for (let i = 0; i < emp1.Task.length; i++) {
 
-                                    emp1 = JSON.parse(localStorage.getItem(key));
-                                    if ("Task" in emp1) {
+                                        earliestTaskDate = parseInt(emp1.Task[i]['Task Start Date'].substr(0, 4) + emp1.Task[i]['Task Start Date'].substr(5, 2) + emp1.Task[i]['Task Start Date'].substr(8, 2));
+                                        if (earliestTaskDate < startDate) {
 
-                                        for (let i = 0; i < emp1.Task.length; i++) {
-
-                                            earliestTaskDate = parseInt(emp1.Task[i]['Task Start Date'].substr(0, 4) + emp1.Task[i]['Task Start Date'].substr(5, 2) + emp1.Task[i]['Task Start Date'].substr(8, 2));
-                                            if (earliestTaskDate < startDate) {
-
-                                                startDate = earliestTaskDate;
-                                            }
+                                            startDate = earliestTaskDate;
                                         }
                                     }
                                 }
                             }
                         }
+                    }
 
-                        for (var key in localStorage) {
-                            typeofKey = (typeof localStorage[key]);
-                            //cols of the employee names
-                            if (typeofKey == 'string' || typeofKey instanceof String) {
-                                employee = JSON.parse(localStorage.getItem(key));
-                                employeeName = employee['Employee Name'] + " \n" + " (" + employee['Employee Id'] + ")";
-                                // rows and cols of the main table and date
+                    for (var key in localStorage) {
+                        typeofKey = (typeof localStorage[key]);
 
-                                var rgb = employee["Employee Color"];
-                                var colr;
-                                if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(rgb)) {
-                                    colr = rgb.substring(1).split('');
-                                    if (colr.length == 3) {
-                                        colr = [colr[0], colr[0], colr[1], colr[1], colr[2], colr[2]];
-                                    }
-                                    colr = '0x' + colr.join('');
-                                    var rgb = [(colr >> 16) & 255, (colr >> 8) & 255, colr & 255].join(',') + ',1'
+                        //cols of the employee names
+                        if (typeofKey == 'string' || typeofKey instanceof String) {
+                            employee = JSON.parse(localStorage.getItem(key));
+                            employeeName = employee['Employee Name'] + " \n" + " (" + employee['Employee Id'] + ")";
+
+                            // rows and cols of the main table and date
+
+                            var rgb = employee["Employee Color"];
+                            var colr;
+                            if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(rgb)) {
+                                colr = rgb.substring(1).split('');
+                                if (colr.length == 3) {
+                                    colr = [colr[0], colr[0], colr[1], colr[1], colr[2], colr[2]];
                                 }
-                                bgroundColor = Math.round(((parseInt(rgb[0]) * 299) +
-                                    (parseInt(rgb[1]) * 587) +
-                                    (parseInt(rgb[2]) * 114)) / 2);
-
-                                var newTextColor = (bgroundColor > 125) ? 'black' : 'white';
-
-                                resource.push({
-                                    "id": i,
-                                    "title": employeeName,
-                                    "eventColor": employee["Employee Color"],
-                                    textColor: newTextColor
-                                });
-                                //{ id: '1', resourceId: '0', start: employeeTaskDate[0], end: employeeTaskDate[1], title: employeeTaskName[0] },
-                                i++;
-
-                                if ("Task" in employee) {
-                                    for (let taskIndex = 0; taskIndex < employee.Task.length; taskIndex++) {
-
-                                        employeeTaskName.push(employee.Task[taskIndex]["Task Name"]);
-                                        employeeTaskDate.push(employee.Task[taskIndex]["Task Start Date"]);
-                                        employeeTaskDate.push(employee.Task[taskIndex]["Task End Date"]);
-
-                                        taskName = employeeTaskName[j];
-
-                                        events.push({
-                                            "id": employeesNum,
-                                            "resourceId": employeesNum,
-                                            "start": employeeTaskDate[k],
-                                            "end": (employeeTaskDate[k + 1]),
-                                            "title": taskName
-                                        });
-                                        //alert("j-" + j + " " + employeeTaskDate[k] + "  j + 1-" + (j+1) + " " + employeeTaskDate[j+1] );
-                                        j++;
-                                        k += 2;
-                                    }
-                                }
-
-                                employeesNum++;
-
+                                colr = '0x' + colr.join('');
+                                var rgb = [(colr >> 16) & 255, (colr >> 8) & 255, colr & 255].join(',') + ',1'
                             }
-                        }
-                        $('#calendar').fullCalendar({
+                            bgroundColor = Math.round(((parseInt(rgb[0]) * 299) +
+                                (parseInt(rgb[1]) * 587) +
+                                (parseInt(rgb[2]) * 114)) / 2);
 
-                            //now: today,
-                            //editable: true, // enable draggable events
-                            aspectRatio: 1.5,
-                            //dragScroll: true,
+                            var newTextColor = (bgroundColor > 125) ? 'black' : 'white';
+                            resource.push({
+                                "id": i,
+                                "title": employeeName,
+                                textColor: newTextColor,
 
-                            //scrollTime: '01:00', // undo default 6am scrollTime
-                            header: {
-                                left: '',
-                                center: 'title',
-                                right: '',
-                            },
+                            });
+                            //{ id: '1', resourceId: '0', start: employeeTaskDate[0], end: employeeTaskDate[1], title: employeeTaskName[0] },
+                            i++;
+                              let activeColor;
+                            if ("Task" in employee) {
 
-                            defaultView: 'customWeek',
-                            views: {
-                                customWeek: {
+                                for (let taskIndex = 0; taskIndex < employee.Task.length; taskIndex++) {
 
-                                    type: 'timeline',
-                                    duration: {
-                                        weeks: 1
-                                    },
-                                    slotDuration: {
-                                        days: 1
-                                    },
-                                    duration: {
-                                        days: 100
-                                    },
+                                    employeeTaskName.push(employee.Task[taskIndex]["Task Name"]);
+                                    employeeTaskDate.push(employee.Task[taskIndex]["Task Start Date"]);
+                                    employeeTaskDate.push(employee.Task[taskIndex]["Task End Date"]);
+                                      activeColor = employee["Employee Color"] + "FF";
+                                      if(employee.Task[taskIndex]["Task Active"] === "Not Active"){
+                                          activeColor = employee["Employee Color"] + "0D";
+                                      }
+
+                                    taskName = employeeTaskName[j] +  " (" + employee.Task[taskIndex]["Task Tag"] + ")";
+                                    events.push({
+                                        "id": employeesNum,
+                                        "resourceId": employeesNum,
+                                        "start": employeeTaskDate[k],
+                                        "end": (employeeTaskDate[k + 1]),
+                                        "title": taskName,
+                                        "backgroundColor" : activeColor,
+
+                                    });
+                                    //alert("j-" + j + " " + employeeTaskDate[k] + "  j + 1-" + (j+1) + " " + employeeTaskDate[j+1] );
+                                    j++;
+                                    k += 2;
                                 }
-                            },
+                            }
 
-                            resourceLabelText: 'Employees',
-                            resources: resource,
-                            events: events,
-                        });
+                            employeesNum++;
 
-                        $('#calendar').fullCalendar('gotoDate', startDate.toString());
-
-                    });
-
-                    dragElement(document.getElementById(("mydiv")));
-                    dragElement(document.getElementById(("mydiv1")));
-                    dragElement(document.getElementById(("mydiv2")));
-                    dragElement(document.getElementById(("mydiv3")));
-                    dragElement(document.getElementById(("mydiv4")));
-
-                    function dragElement(elmnt) {
-                        var pos1 = 0,
-                            pos2 = 0,
-                            pos3 = 0,
-                            pos4 = 0;
-                        if (document.getElementById(elmnt.id + "header")) {
-                            /* if present, the header is where you move the DIV from:*/
-                            document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-                        } else {
-                            /* otherwise, move the DIV from anywhere inside the DIV:*/
-                            elmnt.onmousedown = dragMouseDown;
-                        }
-
-                        function dragMouseDown(e) {
-                            e = e || window.event;
-                            // get the mouse cursor position at startup:
-                            pos3 = e.clientX;
-                            pos4 = e.clientY;
-                            document.onmouseup = closeDragElement;
-                            // call a function whenever the cursor moves:
-                            document.onmousemove = elementDrag;
-                        }
-
-                        function elementDrag(e) {
-                            e = e || window.event;
-                            // calculate the new cursor position:
-                            pos1 = pos3 - e.clientX;
-                            pos2 = pos4 - e.clientY;
-                            pos3 = e.clientX;
-                            pos4 = e.clientY;
-                            // set the element's new position:
-                            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-                            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-                        }
-
-                        function closeDragElement() {
-                            /* stop moving when mouse button is released:*/
-                            document.onmouseup = null;
-                            document.onmousemove = null;
                         }
                     }
-                </script>
+                    $('#calendar').fullCalendar({
+
+                        //now: today,
+                        //editable: true, // enable draggable events
+                        aspectRatio: 1.5,
+                        //dragScroll: true,
+
+                        //scrollTime: '01:00', // undo default 6am scrollTime
+                        header: {
+                            left: 'title',
+                            center: '',
+                            right: '',
+                        },
+
+                        defaultView: 'customWeek',
+                        views: {
+                            customWeek: {
+
+                                type: 'timeline',
+                                duration: {
+                                    weeks: 1
+                                },
+                                slotDuration: {
+                                    days: 1
+                                },
+                                duration: {
+                                    days: 100
+                                },
+                            }
+                        },
+
+                        resourceLabelText: 'Employees',
+                        resources: resource,
+                        events: events,
+                    });
+
+                    $('#calendar').fullCalendar('gotoDate', startDate.toString());
+
+                });
+
+                dragElement(document.getElementById(("mydiv")));
+                dragElement(document.getElementById(("mydiv1")));
+                dragElement(document.getElementById(("mydiv2")));
+                dragElement(document.getElementById(("mydiv3")));
+                dragElement(document.getElementById(("mydiv4")));
+
+                function dragElement(elmnt) {
+                    var pos1 = 0,
+                        pos2 = 0,
+                        pos3 = 0,
+                        pos4 = 0;
+                    if (document.getElementById(elmnt.id + "header")) {
+                        /* if present, the header is where you move the DIV from:*/
+                        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+                    } else {
+                        /* otherwise, move the DIV from anywhere inside the DIV:*/
+                        elmnt.onmousedown = dragMouseDown;
+                    }
+
+                    function dragMouseDown(e) {
+                        e = e || window.event;
+                        // get the mouse cursor position at startup:
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        document.onmouseup = closeDragElement;
+                        // call a function whenever the cursor moves:
+                        document.onmousemove = elementDrag;
+                    }
+
+                    function elementDrag(e) {
+                        e = e || window.event;
+                        // calculate the new cursor position:
+                        pos1 = pos3 - e.clientX;
+                        pos2 = pos4 - e.clientY;
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        // set the element's new position:
+                        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                    }
+
+                    function closeDragElement() {
+                        /* stop moving when mouse button is released:*/
+                        document.onmouseup = null;
+                        document.onmousemove = null;
+                    }
+                }
+            </script>
 
 </body>
 
